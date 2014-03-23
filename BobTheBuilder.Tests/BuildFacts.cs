@@ -1,4 +1,6 @@
-﻿using Xunit;
+﻿using Ploeh.AutoFixture.Xunit;
+using Xunit;
+using Xunit.Extensions;
 
 namespace BobTheBuilder.Tests
 {
@@ -15,16 +17,15 @@ namespace BobTheBuilder.Tests
             Assert.IsAssignableFrom<SampleType>(result);
         }
 
-        [Fact]
-        public void SetStateByName()
+        [Theory, AutoData]
+        public void SetStateByName(string expected)
         {
             var sut = A.BuilderFor<SampleType>();
-            const string expectedStringValue = "expected value";
 
-            sut.WithStringProperty(expectedStringValue);
+            sut.WithStringProperty(expected);
             var result = sut.Build();
 
-            Assert.Equal(expectedStringValue, result.StringProperty);
+            Assert.Equal(expected, result.StringProperty);
         }
     }
 }
