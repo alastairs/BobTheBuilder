@@ -1,0 +1,16 @@
+<?xml version="1.0"?>
+<package xmlns="http://schemas.microsoft.com/packaging/2010/07/nuspec.xsd">
+  <metadata>
+    <id>BobTheBuider</id>
+    <version>1.0.0</version>
+    <authors>Alastair Smith</authors>
+    <requireLicenseAcceptance>false</requireLicenseAcceptance>
+    <description>
+      BobTheBuilder provides a generic implementation of the TestDataBuilder pattern. It offers a fluent syntax
+      for declaratively building arbitrary objects.
+    </description>
+  </metadata>
+  <files>
+    <file src="BobTheBuilder\bin\Release\BobTheBuilder.dll" target="lib" />
+  </files>
+</package>
