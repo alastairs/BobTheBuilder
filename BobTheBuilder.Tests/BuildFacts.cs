@@ -15,6 +15,21 @@ namespace BobTheBuilder.Tests
             Assert.IsAssignableFrom<SampleType>(result);
         }
 
-        private class SampleType { }
+        [Fact]
+        public void SetStateByName()
+        {
+            var sut = A.BuilderFor<SampleType>();
+            const string expectedStringValue = "expected value";
+
+            sut.WithStringProperty(expectedStringValue);
+            var result = sut.Build() as SampleType;
+
+            Assert.Equal(expectedStringValue, result.StringProperty);
+        }
+
+        private class SampleType
+        {
+            public string StringProperty { get; set; }
+        }
     }
 }
