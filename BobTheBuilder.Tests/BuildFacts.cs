@@ -18,7 +18,7 @@ namespace BobTheBuilder.Tests
         }
 
         [Theory, AutoData]
-        public void SetStateByName(string expected)
+        public void SetStringStateByName(string expected)
         {
             var sut = A.BuilderFor<SampleType>();
 
