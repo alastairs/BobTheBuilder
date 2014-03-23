@@ -52,7 +52,7 @@
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <UsingTask AssemblyFile="$(SolutionDir)packages\xunit.1.9.2\lib\net20\xunit.runner.msbuild.dll" TaskName="Xunit.Runner.MSBuild.xunit" />
   <Target Name="Test">
-    <xunit Assembly="$(OutputPath)$(AssemblyName)" />
+    <xunit Assembly="$(OutputPath)$(AssemblyName).dll" />
   </Target>
   <Import Project="$(SolutionDir)\.nuget\NuGet.targets" Condition="Exists('$(SolutionDir)\.nuget\NuGet.targets')" />
   <Target Name="EnsureNuGetPackageBuildImports" BeforeTargets="PrepareForBuild">
