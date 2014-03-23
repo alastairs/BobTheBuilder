@@ -11,6 +11,6 @@
     </description>
   </metadata>
   <files>
-    <file src="BobTheBuilder.dll" target="lib" />
+    <file src="BobTheBuilder.dll" target="lib\net451" />
   </files>
 </package>
