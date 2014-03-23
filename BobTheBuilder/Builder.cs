@@ -21,12 +21,17 @@ namespace BobTheBuilder
         public T Build()
         {
             var instance = CreateInstanceOfType();
+            PopulatePublicSettableProperties(instance);
+            return instance;
+        }
+
+        private void PopulatePublicSettableProperties(T instance)
+        {
             foreach (var memberInfo in _members.Select(m => new {memberName = m.Key, desiredValue = m.Value}))
             {
                 var property = typeof (T).GetProperty(memberInfo.memberName);
                 property.SetValue(instance, memberInfo.desiredValue);
             }
-            return instance;
         }
 
         private static T CreateInstanceOfType()
