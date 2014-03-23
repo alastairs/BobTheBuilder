@@ -46,6 +46,8 @@
   <ItemGroup>
     <Compile Include="BuildFacts.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="SampleType.cs" />
+    <Compile Include="SampleTypeEqualityComparer.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="packages.config" />

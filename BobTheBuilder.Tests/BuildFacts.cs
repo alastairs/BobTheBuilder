@@ -5,6 +5,22 @@ namespace BobTheBuilder.Tests
     public class BuildFacts
     {
         [Fact]
+        public void Usage()
+        {
+            const string stringProperty = "expected value";
+            var expected = new SampleType
+            {
+                StringProperty = stringProperty
+            };
+
+            var built = A.BuilderFor<SampleType>()
+                            .WithStringProperty(stringProperty)
+                            .Build();
+
+            Assert.Equal(expected, built, new SampleTypeEqualityComparer());
+        }
+
+        [Fact]
         public void CreateADynamicInstanceOfTheRequestedType()
         {
             var sut = A.BuilderFor<SampleType>();
@@ -25,11 +41,6 @@ namespace BobTheBuilder.Tests
             var result = sut.Build();
 
             Assert.Equal(expectedStringValue, result.StringProperty);
-        }
-
-        private class SampleType
-        {
-            public string StringProperty { get; set; }
         }
     }
 }
