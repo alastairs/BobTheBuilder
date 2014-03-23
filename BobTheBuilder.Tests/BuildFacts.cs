@@ -23,7 +23,7 @@ namespace BobTheBuilder.Tests
             var sut = A.BuilderFor<SampleType>();
 
             sut.WithStringProperty(expected);
-            var result = sut.Build();
+            SampleType result = sut.Build();
 
             Assert.Equal(expected, result.StringProperty);
         }
