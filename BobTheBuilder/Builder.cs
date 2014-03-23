@@ -6,7 +6,7 @@ namespace BobTheBuilder
     public class DynamicBuilder : DynamicObject
     {
         private readonly Type _destinationType;
-        private object property;
+        private object _property;
 
         internal DynamicBuilder(Type destinationType)
         {
@@ -20,7 +20,7 @@ namespace BobTheBuilder
 
         public override bool TryInvokeMember(InvokeMemberBinder binder, object[] args, out object result)
         {
-            property = args[0];
+            _property = args[0];
             result = this;
             return true;
         }
@@ -28,7 +28,7 @@ namespace BobTheBuilder
         public object Build()
         {
             object instance = Activator.CreateInstance(_destinationType);
-            instance.GetType().GetProperty("StringProperty").SetValue(instance, property);
+            instance.GetType().GetProperty("StringProperty").SetValue(instance, _property);
             return instance;
         }
     }
