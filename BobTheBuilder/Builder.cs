@@ -25,7 +25,7 @@ namespace BobTheBuilder
 
     public class A
     {
-        public static DynamicBuilder BuilderFor<T>()
+        public static DynamicBuilder BuilderFor<T>() where T: class
         {
             return new DynamicBuilder(typeof(T));
         }
