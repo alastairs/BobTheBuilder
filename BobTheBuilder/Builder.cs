@@ -20,6 +20,11 @@ namespace BobTheBuilder
             instance.GetType().GetProperty("StringProperty").SetValue(instance, _property);
             return instance;
         }
+
+        public static implicit operator T(DynamicBuilder<T> builder)
+        {
+            return builder.Build();
+        }
     }
 
     public class A

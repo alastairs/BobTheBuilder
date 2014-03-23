@@ -21,6 +21,21 @@ namespace BobTheBuilder.Tests
         }
 
         [Fact]
+        public void UsageWithImplicitCast()
+        {
+            const string stringProperty = "expected value";
+            var expected = new SampleType
+            {
+                StringProperty = stringProperty
+            };
+
+            SampleType built = A.BuilderFor<SampleType>()
+                                    .WithStringProperty(stringProperty);
+
+            Assert.Equal(expected, built, new SampleTypeEqualityComparer());
+        }
+
+        [Fact]
         public void CreateADynamicInstanceOfTheRequestedType()
         {
             var sut = A.BuilderFor<SampleType>();
