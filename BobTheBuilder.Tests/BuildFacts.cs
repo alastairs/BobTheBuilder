@@ -27,5 +27,16 @@ namespace BobTheBuilder.Tests
 
             Assert.Equal(expected, result.StringProperty);
         }
+
+        [Theory, AutoData]
+        public void SetIntStateByName(int expected)
+        {
+            var sut = A.BuilderFor<SampleType>();
+
+            sut.WithIntProperty(expected);
+            SampleType result = sut.Build();
+
+            Assert.Equal(expected, result.IntProperty);
+        }
     }
 }
