@@ -22,7 +22,7 @@ namespace BobTheBuilder.Tests
             const string expectedStringValue = "expected value";
 
             sut.WithStringProperty(expectedStringValue);
-            var result = sut.Build() as SampleType;
+            var result = sut.Build();
 
             Assert.Equal(expectedStringValue, result.StringProperty);
         }

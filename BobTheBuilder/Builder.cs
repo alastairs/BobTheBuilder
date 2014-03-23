@@ -3,20 +3,9 @@ using System.Dynamic;
 
 namespace BobTheBuilder
 {
-    public class DynamicBuilder : DynamicObject
+    public class DynamicBuilder<T> : DynamicObject where T: class
     {
-        private readonly Type _destinationType;
         private object _property;
-
-        internal DynamicBuilder(Type destinationType)
-        {
-            if (destinationType == null)
-            {
-                throw new ArgumentNullException("destinationType");
-            }
-
-            _destinationType = destinationType;
-        }
 
         public override bool TryInvokeMember(InvokeMemberBinder binder, object[] args, out object result)
         {
@@ -25,9 +14,9 @@ namespace BobTheBuilder
             return true;
         }
 
-        public object Build()
+        public T Build()
         {
-            object instance = Activator.CreateInstance(_destinationType);
+            var instance = Activator.CreateInstance<T>();
             instance.GetType().GetProperty("StringProperty").SetValue(instance, _property);
             return instance;
         }
@@ -37,7 +26,7 @@ namespace BobTheBuilder
     {
         public static dynamic BuilderFor<T>() where T: class
         {
-            return new DynamicBuilder(typeof(T));
+            return new DynamicBuilder<T>();
         }
     }
 }
