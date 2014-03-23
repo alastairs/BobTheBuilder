@@ -20,12 +20,18 @@ namespace BobTheBuilder
 
         public T Build()
         {
-            var instance = Activator.CreateInstance<T>();
-            foreach (var memberInfo in _members.Select(m => new { memberName = m.Key, desiredValue = m.Value }))
+            var instance = CreateInstanceOfType();
+            foreach (var memberInfo in _members.Select(m => new {memberName = m.Key, desiredValue = m.Value}))
             {
-                var property = typeof(T).GetProperty(memberInfo.memberName);
+                var property = typeof (T).GetProperty(memberInfo.memberName);
                 property.SetValue(instance, memberInfo.desiredValue);
             }
+            return instance;
+        }
+
+        private static T CreateInstanceOfType()
+        {
+            var instance = Activator.CreateInstance<T>();
             return instance;
         }
 
