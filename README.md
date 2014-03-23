@@ -11,7 +11,7 @@ ACustomer()
 	.WithGivenName("John")
 	.WithFamilyName("Doe")
 	.WithAddress(
-		anAddress()
+		AnAddress()
 			.WithFirstLine("123 Main Street")
 			.WithNoSecondLine()
 			.WithCity("Nashville")
