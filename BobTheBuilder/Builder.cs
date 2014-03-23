@@ -20,7 +20,7 @@ namespace BobTheBuilder
 
         public override bool TryInvokeMember(InvokeMemberBinder binder, object[] args, out object result)
         {
-            this.property = args[0];
+            property = args[0];
             result = this;
             return true;
         }
