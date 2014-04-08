@@ -1,4 +1,6 @@
-﻿using Xunit;
+﻿using System;
+
+using Xunit;
 
 namespace BobTheBuilder.Tests
 {
@@ -31,6 +33,21 @@ namespace BobTheBuilder.Tests
 
             SampleType built = A.BuilderFor<SampleType>()
                 .WithStringProperty(stringProperty);
+
+            Assert.Equal(expected, built, new SampleTypeEqualityComparer());
+        }
+
+        [Fact]
+        public void UsageWithComplexType()
+        {
+            var complexProperty = new Exception();
+            var expected = new SampleType
+            {
+                ComplexProperty = complexProperty
+            };
+
+            SampleType built = A.BuilderFor<SampleType>()
+                .WithComplexProperty(complexProperty);
 
             Assert.Equal(expected, built, new SampleTypeEqualityComparer());
         }
