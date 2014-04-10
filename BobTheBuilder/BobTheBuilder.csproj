@@ -41,6 +41,7 @@
   <ItemGroup>
     <Compile Include="Builder.cs" />
     <Compile Include="IDynamicBuilder.cs" />
+    <Compile Include="NamedArgumentsDynamicBuilder.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
