@@ -1,6 +1,7 @@
 ﻿namespace BobTheBuilder
 {
-    internal interface IArgumentStore {
+    internal interface IArgumentStore
+    {
         void SetMemberNameAndValue(string name, object value);
     }
 }
