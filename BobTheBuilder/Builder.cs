@@ -24,17 +24,22 @@ namespace BobTheBuilder
             return true;
         }
 
+        internal void SetMemberNameAndValue(string name, object value)
+        {
+            _members[name] = value;
+        }
+
         private void ParseMembersFromMethodName(InvokeMemberBinder binder, object[] args)
         {
             var memberName = binder.Name.Replace("With", "");
-            _members[memberName] = args[0];
+            SetMemberNameAndValue(memberName, args[0]);
         }
 
         private void ParseMembersFromNamedArguments(CallInfo callInfo, object[] args)
         {
             var memberName = callInfo.ArgumentNames.First();
             memberName = memberName.First().ToString().ToUpper() + memberName.Substring(1);
-            _members[memberName] = args[0];
+            SetMemberNameAndValue(memberName, args[0]);
         }
 
         public T Build()
