@@ -51,5 +51,22 @@ namespace BobTheBuilder.Tests
 
             Assert.Equal(expected, built, new SampleTypeEqualityComparer());
         }
+
+        [Fact]
+        public void UsageWithNamedArgument()
+        {
+            const string expectedStringValue = "expected value";
+            const int expectedIntValue = 1;
+            var expected = new SampleType
+            {
+                StringProperty = expectedStringValue,
+                IntProperty = expectedIntValue
+            };
+
+            SampleType built = A.BuilderFor<SampleType>().With(stringProperty: expectedStringValue, 
+                                                               intProperty: expectedIntValue);
+
+            Assert.Equal(expected, built, new SampleTypeEqualityComparer());
+        }
     }
 }
