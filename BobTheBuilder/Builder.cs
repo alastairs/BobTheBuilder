@@ -5,7 +5,7 @@ using System.Linq;
 
 namespace BobTheBuilder
 {
-    public class DynamicBuilder<T> : DynamicObject where T: class
+    public class DynamicBuilder<T> : DynamicObject, IDynamicBuilder<T> where T: class
     {
         private readonly IDictionary<string, object> _members = new Dictionary<string, object>();
 
