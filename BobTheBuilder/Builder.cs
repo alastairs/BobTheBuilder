@@ -11,11 +11,25 @@ namespace BobTheBuilder
 
         public override bool TryInvokeMember(InvokeMemberBinder binder, object[] args, out object result)
         {
-            var memberName = binder.Name.Replace("With", "");
-            _members[memberName] = args[0];
+            if (binder.Name == "With")
+            {
+                ParseNamedArguments(binder.CallInfo, args);
+            }
+            else
+            {
+                var memberName = binder.Name.Replace("With", "");
+                _members[memberName] = args[0];
+            }
 
             result = this;
             return true;
+        }
+
+        private void ParseNamedArguments(CallInfo callInfo, object[] args)
+        {
+            var memberName = callInfo.ArgumentNames.First();
+            memberName = memberName.First().ToString().ToUpper() + memberName.Substring(1);
+            _members[memberName] = args[0];
         }
 
         public T Build()

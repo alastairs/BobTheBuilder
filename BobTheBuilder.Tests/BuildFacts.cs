@@ -51,5 +51,16 @@ namespace BobTheBuilder.Tests
 
             Assert.Equal(expected, result.ComplexProperty);
         }
+
+        [Theory, AutoData]
+        public void SetStringStateByNamedUsingNamedArgument(string expected)
+        {
+            var sut = A.BuilderFor<SampleType>();
+
+            sut.With(stringProperty: expected);
+            SampleType result = sut.Build();
+
+            Assert.Equal(expected, result.StringProperty);
+        }
     }
 }
