@@ -17,12 +17,17 @@ namespace BobTheBuilder
             }
             else
             {
-                var memberName = binder.Name.Replace("With", "");
-                _members[memberName] = args[0];
+                ParseMembersFromMethodName(binder, args);
             }
 
             result = this;
             return true;
+        }
+
+        private void ParseMembersFromMethodName(InvokeMemberBinder binder, object[] args)
+        {
+            var memberName = binder.Name.Replace("With", "");
+            _members[memberName] = args[0];
         }
 
         private void ParseNamedArguments(CallInfo callInfo, object[] args)
