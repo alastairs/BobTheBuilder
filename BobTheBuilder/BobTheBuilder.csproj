@@ -40,6 +40,7 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Builder.cs" />
+    <Compile Include="IArgumentStore.cs" />
     <Compile Include="IDynamicBuilder.cs" />
     <Compile Include="NamedArgumentsDynamicBuilder.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
