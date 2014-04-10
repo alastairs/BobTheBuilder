@@ -13,7 +13,7 @@ namespace BobTheBuilder
         {
             if (binder.Name == "With")
             {
-                ParseNamedArguments(binder.CallInfo, args);
+                ParseMembersFromNamedArguments(binder.CallInfo, args);
             }
             else
             {
@@ -30,7 +30,7 @@ namespace BobTheBuilder
             _members[memberName] = args[0];
         }
 
-        private void ParseNamedArguments(CallInfo callInfo, object[] args)
+        private void ParseMembersFromNamedArguments(CallInfo callInfo, object[] args)
         {
             var memberName = callInfo.ArgumentNames.First();
             memberName = memberName.First().ToString().ToUpper() + memberName.Substring(1);
