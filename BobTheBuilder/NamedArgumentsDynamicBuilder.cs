@@ -37,9 +37,13 @@ namespace BobTheBuilder
 
         private void ParseNamedArgumentValues(CallInfo callInfo, object[] args)
         {
-            var argumentName = callInfo.ArgumentNames.First();
-            argumentName = argumentName.First().ToString().ToUpper() + argumentName.Substring(1);
+            var argumentName = ToCamelCase(callInfo.ArgumentNames.First());
             argumentStore.SetMemberNameAndValue(argumentName, args.First());
+        }
+
+        private static string ToCamelCase(string name)
+        {
+            return name.First().ToString().ToUpper() + name.Substring(1);
         }
 
         public T Build()
