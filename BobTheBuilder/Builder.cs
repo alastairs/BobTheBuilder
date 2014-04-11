@@ -74,7 +74,8 @@ namespace BobTheBuilder
     {
         public static dynamic BuilderFor<T>() where T: class
         {
-            return new NamedArgumentsDynamicBuilder<T>(new DynamicBuilder<T>());
+            var dynamicBuilder = new DynamicBuilder<T>();
+            return new NamedArgumentsDynamicBuilder<T>(dynamicBuilder, dynamicBuilder);
         }
     }
 }
