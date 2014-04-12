@@ -8,9 +8,9 @@ namespace BobTheBuilder.Syntax
 {
     public class NamedArgumentsSyntaxParser<T> : DynamicBuilder<T>, IParser where T : class
     {
-        private readonly IDynamicBuilder<T> wrappedBuilder;
+        private readonly DynamicBuilder<T> wrappedBuilder;
         
-        internal NamedArgumentsSyntaxParser(IDynamicBuilder<T> wrappedBuilder, IArgumentStore argumentStore) : base(argumentStore)
+        internal NamedArgumentsSyntaxParser(DynamicBuilder<T> wrappedBuilder, IArgumentStore argumentStore) : base(argumentStore)
         {
             if (wrappedBuilder == null)
             {
