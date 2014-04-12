@@ -4,8 +4,8 @@
     {
         public static dynamic BuilderFor<T>() where T: class
         {
-            var dynamicBuilder = new DynamicBuilder<T>();
-            return new NamedArgumentsDynamicBuilder<T>(dynamicBuilder, dynamicBuilder);
+            var argumentStore = new InMemoryArgumentStore();
+            return new NamedArgumentsDynamicBuilder<T>(new DynamicBuilder<T>(argumentStore), argumentStore);
         }
     }
 }

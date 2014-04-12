@@ -5,6 +5,8 @@ namespace BobTheBuilder
 {
     public class DynamicBuilder<T> : DynamicBuilderBase<T> where T: class
     {
+        public DynamicBuilder(IArgumentStore argumentStore) : base(argumentStore) { }
+
         public override bool InvokeBuilderMethod(InvokeMemberBinder binder, object[] args, out object result)
         {
             ParseMembersFromMethodName(binder, args);
@@ -16,7 +18,7 @@ namespace BobTheBuilder
         private void ParseMembersFromMethodName(InvokeMemberBinder binder, object[] args)
         {
             var memberName = binder.Name.Replace("With", "");
-            SetMemberNameAndValue(memberName, args[0]);
+            argumentStore.SetMemberNameAndValue(memberName, args[0]);
         }
 
         public override T Build()
@@ -28,7 +30,7 @@ namespace BobTheBuilder
 
         private void PopulatePublicSettableProperties(T instance)
         {
-            var knownMembers = GetAllStoredMembers();
+            var knownMembers = argumentStore.GetAllStoredMembers();
 
             foreach (var member in knownMembers)
             {

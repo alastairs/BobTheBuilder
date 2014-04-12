@@ -7,22 +7,15 @@ namespace BobTheBuilder
     public class NamedArgumentsDynamicBuilder<T> : DynamicBuilderBase<T> where T : class
     {
         private readonly IDynamicBuilder<T> wrappedBuilder;
-        private readonly IArgumentStore argumentStore;
-
-        internal NamedArgumentsDynamicBuilder(IDynamicBuilder<T> wrappedBuilder, IArgumentStore argumentStore)
+        
+        internal NamedArgumentsDynamicBuilder(IDynamicBuilder<T> wrappedBuilder, IArgumentStore argumentStore) : base(argumentStore)
         {
             if (wrappedBuilder == null)
             {
                 throw new ArgumentNullException("wrappedBuilder");
             }
 
-            if (argumentStore == null)
-            {
-                throw new ArgumentNullException("argumentStore");
-            }
-
             this.wrappedBuilder = wrappedBuilder;
-            this.argumentStore = argumentStore;
         }
 
         public override bool InvokeBuilderMethod(InvokeMemberBinder binder, object[] args, out object result)
