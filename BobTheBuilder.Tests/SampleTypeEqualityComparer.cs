@@ -12,8 +12,10 @@ namespace BobTheBuilder.Tests
             }
 
             var stringsAreEqual = x.StringProperty == y.StringProperty;
+            var intsAreEqual = x.IntProperty == y.IntProperty;
             var complexesAreEqual = x.ComplexProperty == y.ComplexProperty;
-            return stringsAreEqual && complexesAreEqual;
+
+            return stringsAreEqual && intsAreEqual && complexesAreEqual;
         }
 
         public int GetHashCode(SampleType obj)

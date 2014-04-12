@@ -42,7 +42,7 @@ Task List
  - Add support for readonly properties via the constructor
  - Add support for objects with constructor dependencies
  - ~~Add support for complex types~~ (**Complete**)
- - Add support for named arguments syntax (`.With(stringProperty: "new value")`).
+ - ~~Add support for named arguments syntax (`.With(stringProperty: "new value")`)~~ (**Complete**)
  - Get a better name...
 
 Please [request features and report bugs](https://github.com/alastairs/BobTheBuilder/issues), or better still [fork me](https://github.com/alastairs/BobTheBuilder/fork) and [send me a pull request](https://github.com/alastairs/BobTheBuilder/compare/). 
