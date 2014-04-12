@@ -83,5 +83,14 @@ namespace BobTheBuilder.Tests
             var exception = Assert.Throws<ArgumentException>(() => sut.With(expected));
             Assert.Equal("No names were specified for the values provided. When using the named arguments (With()) syntax, you should specify the items to be set as argument names, such as With(customerId: customerId).", exception.Message);
         }
+
+        [Theory, AutoData]
+        public void ThrowAnArgumentExceptionWhenSomeArgumentsAreMissingNames(string expectedString, int expectedInt)
+        {
+            var sut = A.BuilderFor<SampleType>();
+
+            var exception = Assert.Throws<ArgumentException>(() => sut.With(expectedString, intProperty: expectedInt));
+            Assert.Equal("One or more arguments are missing a name. Names should be specified with C# named argument syntax, e.g. With(customerId: customerId).", exception.Message);
+        }
     }
 }
