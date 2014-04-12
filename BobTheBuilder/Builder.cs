@@ -5,11 +5,23 @@ using System.Linq;
 
 namespace BobTheBuilder
 {
-    public class DynamicBuilder<T> : DynamicObject, IDynamicBuilder<T>, IArgumentStore where T: class
+    public abstract class DynamicBuilderBase<T> : DynamicObject, IDynamicBuilder<T>, IArgumentStore where T : class
     {
-        private readonly IDictionary<string, object> _members = new Dictionary<string, object>();
+        protected readonly IDictionary<string, object> _members = new Dictionary<string, object>();
 
-        public bool InvokeBuilderMethod(InvokeMemberBinder binder, object[] args, out object result)
+        public abstract bool InvokeBuilderMethod(InvokeMemberBinder binder, object[] args, out object result);
+
+        public abstract T Build();
+
+        public void SetMemberNameAndValue(string name, object value)
+        {
+            _members[name] = value;
+        }
+    }
+
+    public class DynamicBuilder<T> : DynamicBuilderBase<T> where T: class
+    {
+        public override bool InvokeBuilderMethod(InvokeMemberBinder binder, object[] args, out object result)
         {
             if (binder.Name == "With")
             {
@@ -22,11 +34,6 @@ namespace BobTheBuilder
 
             result = this;
             return true;
-        }
-
-        public void SetMemberNameAndValue(string name, object value)
-        {
-            _members[name] = value;
         }
 
         private void ParseMembersFromMethodName(InvokeMemberBinder binder, object[] args)
@@ -42,7 +49,7 @@ namespace BobTheBuilder
             SetMemberNameAndValue(memberName, args[0]);
         }
 
-        public T Build()
+        public override T Build()
         {
             var instance = CreateInstanceOfType();
             PopulatePublicSettableProperties(instance);
