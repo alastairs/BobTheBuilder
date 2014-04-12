@@ -5,7 +5,7 @@ using BobTheBuilder.ArgumentStore;
 
 namespace BobTheBuilder
 {
-    public abstract class DynamicBuilder<T> : DynamicObject, IDynamicBuilder<T> where T : class
+    public class DynamicBuilder<T> : DynamicObject, IDynamicBuilder<T> where T : class
     {
         protected internal readonly IArgumentStore argumentStore;
          
@@ -19,7 +19,11 @@ namespace BobTheBuilder
             this.argumentStore = argumentStore;
         }
 
-        public abstract bool InvokeBuilderMethod(InvokeMemberBinder binder, object[] args, out object result);
+        public virtual bool InvokeBuilderMethod(InvokeMemberBinder binder, object[] args, out object result)
+        {
+            result = this;
+            return true;
+        }
 
         public T Build()
         {
