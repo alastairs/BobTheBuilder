@@ -22,7 +22,7 @@ namespace BobTheBuilder.Syntax
         public bool Parse(InvokeMemberBinder binder, object[] args)
         {
             var memberName = binder.Name;
-            if (memberName == "With")
+            if (!memberName.StartsWith("With") || memberName == "With")
             {
                 return false;
             }
