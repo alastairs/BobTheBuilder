@@ -6,7 +6,7 @@ namespace BobTheBuilder
 {
     public abstract class DynamicBuilderBase<T> : DynamicObject, IDynamicBuilder<T>, IArgumentStore where T : class
     {
-        protected readonly IDictionary<string, object> _members = new Dictionary<string, object>();
+        private readonly IDictionary<string, object> _members = new Dictionary<string, object>();
 
         public override bool TryInvokeMember(InvokeMemberBinder binder, object[] args, out object result)
         {

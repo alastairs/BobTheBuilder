@@ -1,6 +1,5 @@
 using System;
 using System.Dynamic;
-using System.Linq;
 
 namespace BobTheBuilder
 {
@@ -29,10 +28,12 @@ namespace BobTheBuilder
 
         private void PopulatePublicSettableProperties(T instance)
         {
-            foreach (var memberInfo in _members.Select(m => new {memberName = m.Key, desiredValue = m.Value}))
+            var knownMembers = GetAllStoredMembers();
+
+            foreach (var member in knownMembers)
             {
-                var property = typeof (T).GetProperty(memberInfo.memberName);
-                property.SetValue(instance, memberInfo.desiredValue);
+                var property = typeof (T).GetProperty(member.Name);
+                property.SetValue(instance, member.Value);
             }
         }
 
