@@ -6,36 +6,18 @@ using BobTheBuilder.ArgumentStore;
 
 namespace BobTheBuilder.Syntax
 {
-    public class NamedArgumentsSyntaxParser<T> : DynamicBuilder<T>, IParser where T : class
+    public class NamedArgumentsSyntaxParser<T> : IParser where T : class
     {
-        private readonly DynamicBuilder<T> wrappedBuilder;
         private readonly IArgumentStore argumentStore;
 
-        internal NamedArgumentsSyntaxParser(DynamicBuilder<T> wrappedBuilder, IArgumentStore argumentStore) : base(argumentStore)
+        internal NamedArgumentsSyntaxParser(IArgumentStore argumentStore)
         {
-            if (wrappedBuilder == null)
-            {
-                throw new ArgumentNullException("wrappedBuilder");
-            }
-
             if (argumentStore == null)
             {
                 throw new ArgumentNullException("argumentStore");
             }
 
-            this.wrappedBuilder = wrappedBuilder;
             this.argumentStore = argumentStore;
-        }
-
-        public override bool InvokeBuilderMethod(InvokeMemberBinder binder, object[] args, out object result)
-        {
-            result = this;
-            if (!Parse(binder, args))
-            {
-                return wrappedBuilder.InvokeBuilderMethod(binder, args, out result);
-            }
-
-            return true;
         }
 
         public bool Parse(InvokeMemberBinder binder, object[] args)

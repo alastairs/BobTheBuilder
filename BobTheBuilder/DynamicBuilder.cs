@@ -2,27 +2,29 @@ using System;
 using System.Dynamic;
 
 using BobTheBuilder.ArgumentStore;
+using BobTheBuilder.Syntax;
 
 namespace BobTheBuilder
 {
     public class DynamicBuilder<T> : DynamicObject, IDynamicBuilder<T> where T : class
     {
+        private readonly IParser parser;
         private readonly IArgumentStore argumentStore;
          
-        public DynamicBuilder(IArgumentStore argumentStore)
+        public DynamicBuilder(IParser parser, IArgumentStore argumentStore)
         {
+            if (parser == null)
+            {
+                throw new ArgumentNullException("parser");
+            }
+
             if (argumentStore == null)
             {
                 throw new ArgumentNullException("argumentStore");
             }
 
+            this.parser = parser;
             this.argumentStore = argumentStore;
-        }
-
-        public virtual bool InvokeBuilderMethod(InvokeMemberBinder binder, object[] args, out object result)
-        {
-            result = this;
-            return true;
         }
 
         public T Build()
@@ -51,7 +53,8 @@ namespace BobTheBuilder
 
         public override bool TryInvokeMember(InvokeMemberBinder binder, object[] args, out object result)
         {
-            return InvokeBuilderMethod(binder, args, out result);
+            result = this;
+            return parser.Parse(binder, args);
         }
 
         public static implicit operator T(DynamicBuilder<T> builder)
