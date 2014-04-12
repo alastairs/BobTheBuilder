@@ -6,7 +6,7 @@ using BobTheBuilder.ArgumentStore;
 
 namespace BobTheBuilder.Syntax
 {
-    public class NamedArgumentsDynamicBuilder<T> : DynamicBuilderBase<T> where T : class
+    public class NamedArgumentsDynamicBuilder<T> : DynamicBuilderBase<T>, IParser where T : class
     {
         private readonly IDynamicBuilder<T> wrappedBuilder;
         
@@ -22,14 +22,24 @@ namespace BobTheBuilder.Syntax
 
         public override bool InvokeBuilderMethod(InvokeMemberBinder binder, object[] args, out object result)
         {
+            result = this;
+            if (!Parse(binder, args))
+            {
+                return wrappedBuilder.InvokeBuilderMethod(binder, args, out result);
+            }
+
+            return true;
+        }
+
+        public bool Parse(InvokeMemberBinder binder, object[] args)
+        {
             if (binder.Name == "With")
             {
                 ParseNamedArgumentValues(binder.CallInfo, args);
-                result = this;
                 return true;
             }
 
-            return wrappedBuilder.InvokeBuilderMethod(binder, args, out result);
+            return false;
         }
 
         private void ParseNamedArgumentValues(CallInfo callInfo, object[] args)
