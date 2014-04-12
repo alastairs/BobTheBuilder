@@ -4,7 +4,7 @@ using System.Linq;
 
 namespace BobTheBuilder
 {
-    public class NamedArgumentsDynamicBuilder<T> : DynamicObject, IDynamicBuilder<T> where T : class
+    public class NamedArgumentsDynamicBuilder<T> : DynamicBuilderBase<T> where T : class
     {
         private readonly IDynamicBuilder<T> wrappedBuilder;
         private readonly IArgumentStore argumentStore;
@@ -30,7 +30,7 @@ namespace BobTheBuilder
             return InvokeBuilderMethod(binder, args, out result);
         }
 
-        public bool InvokeBuilderMethod(InvokeMemberBinder binder, object[] args, out object result)
+        public override bool InvokeBuilderMethod(InvokeMemberBinder binder, object[] args, out object result)
         {
             if (binder.Name == "With")
             {
@@ -64,7 +64,7 @@ namespace BobTheBuilder
             return name.First().ToString().ToUpper() + name.Substring(1);
         }
 
-        public T Build()
+        public override T Build()
         {
             return wrappedBuilder.Build();
         }
