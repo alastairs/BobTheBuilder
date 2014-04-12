@@ -6,7 +6,7 @@ using BobTheBuilder.ArgumentStore;
 
 namespace BobTheBuilder.Syntax
 {
-    public class NamedArgumentsSyntaxParser : IParser
+    internal class NamedArgumentsSyntaxParser : IParser
     {
         private readonly IArgumentStore argumentStore;
 
