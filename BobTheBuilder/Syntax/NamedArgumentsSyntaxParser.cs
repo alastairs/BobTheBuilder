@@ -6,11 +6,11 @@ using BobTheBuilder.ArgumentStore;
 
 namespace BobTheBuilder.Syntax
 {
-    public class NamedArgumentsDynamicBuilder<T> : DynamicBuilderBase<T>, IParser where T : class
+    public class NamedArgumentsSyntaxParser<T> : DynamicBuilderBase<T>, IParser where T : class
     {
         private readonly IDynamicBuilder<T> wrappedBuilder;
         
-        internal NamedArgumentsDynamicBuilder(IDynamicBuilder<T> wrappedBuilder, IArgumentStore argumentStore) : base(argumentStore)
+        internal NamedArgumentsSyntaxParser(IDynamicBuilder<T> wrappedBuilder, IArgumentStore argumentStore) : base(argumentStore)
         {
             if (wrappedBuilder == null)
             {

@@ -8,7 +8,7 @@ namespace BobTheBuilder
         public static dynamic BuilderFor<T>() where T: class
         {
             var argumentStore = new InMemoryArgumentStore();
-            return new NamedArgumentsDynamicBuilder<T>(new DynamicBuilder<T>(argumentStore), argumentStore);
+            return new NamedArgumentsSyntaxParser<T>(new MethodSyntaxParser<T>(argumentStore), argumentStore);
         }
     }
 }

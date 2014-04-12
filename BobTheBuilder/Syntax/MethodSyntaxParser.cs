@@ -4,9 +4,9 @@ using BobTheBuilder.ArgumentStore;
 
 namespace BobTheBuilder.Syntax
 {
-    public class DynamicBuilder<T> : DynamicBuilderBase<T>, IParser where T: class
+    public class MethodSyntaxParser<T> : DynamicBuilderBase<T>, IParser where T: class
     {
-        public DynamicBuilder(IArgumentStore argumentStore) : base(argumentStore) { }
+        public MethodSyntaxParser(IArgumentStore argumentStore) : base(argumentStore) { }
 
         public override bool InvokeBuilderMethod(InvokeMemberBinder binder, object[] args, out object result)
         {
