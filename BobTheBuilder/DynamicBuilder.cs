@@ -8,14 +8,7 @@ namespace BobTheBuilder
     {
         public override bool InvokeBuilderMethod(InvokeMemberBinder binder, object[] args, out object result)
         {
-            if (binder.Name == "With")
-            {
-                ParseMembersFromNamedArguments(binder.CallInfo, args);
-            }
-            else
-            {
-                ParseMembersFromMethodName(binder, args);
-            }
+            ParseMembersFromMethodName(binder, args);
 
             result = this;
             return true;
@@ -24,13 +17,6 @@ namespace BobTheBuilder
         private void ParseMembersFromMethodName(InvokeMemberBinder binder, object[] args)
         {
             var memberName = binder.Name.Replace("With", "");
-            SetMemberNameAndValue(memberName, args[0]);
-        }
-
-        private void ParseMembersFromNamedArguments(CallInfo callInfo, object[] args)
-        {
-            var memberName = callInfo.ArgumentNames.First();
-            memberName = memberName.First().ToString().ToUpper() + memberName.Substring(1);
             SetMemberNameAndValue(memberName, args[0]);
         }
 
@@ -54,11 +40,6 @@ namespace BobTheBuilder
         {
             var instance = Activator.CreateInstance<T>();
             return instance;
-        }
-
-        public static implicit operator T(DynamicBuilder<T> builder)
-        {
-            return builder.Build();
         }
     }
 }

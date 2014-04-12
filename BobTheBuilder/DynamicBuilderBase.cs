@@ -20,5 +20,10 @@ namespace BobTheBuilder
         {
             _members[name] = value;
         }
+
+        public static implicit operator T(DynamicBuilderBase<T> builder)
+        {
+            return builder.Build();
+        }
     }
 }

@@ -30,6 +30,8 @@ namespace BobTheBuilder
             if (binder.Name == "With")
             {
                 ParseNamedArgumentValues(binder.CallInfo, args);
+                result = this;
+                return true;
             }
 
             return wrappedBuilder.InvokeBuilderMethod(binder, args, out result);
