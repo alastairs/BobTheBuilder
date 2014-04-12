@@ -62,5 +62,17 @@ namespace BobTheBuilder.Tests
 
             Assert.Equal(expected, result.StringProperty);
         }
+
+        [Theory, AutoData]
+        public void SetStringAndIntStateByNameUsingNamedArgument(string expectedString, int expectedInt)
+        {
+            var sut = A.BuilderFor<SampleType>();
+
+            sut.With(stringProperty: expectedString, intProperty: expectedInt);
+            SampleType result = sut.Build();
+
+            var expected = new SampleType {StringProperty = expectedString, IntProperty = expectedInt};
+            Assert.Equal(expected, result, new SampleTypeEqualityComparer());
+        }
     }
 }
