@@ -1,5 +1,12 @@
 ﻿using System;
 
+using BobTheBuilder.ArgumentStore;
+using BobTheBuilder.Syntax;
+
+using Microsoft.CSharp.RuntimeBinder;
+
+using NSubstitute;
+
 using Ploeh.AutoFixture.Xunit;
 
 using Xunit;
@@ -40,6 +47,16 @@ namespace BobTheBuilder.Tests
             SampleType result = sut.Build();
 
             Assert.Equal(expected, result.ComplexProperty);
+        }
+
+        [Theory, AutoData]
+        public void MissingTheMemberNameFromTheMethodResultsInARuntimeBinderException(string anonymous)
+        {
+            var argumentStore = Substitute.For<IArgumentStore>();
+            dynamic sut = new DynamicBuilder<SampleType>(new MethodSyntaxParser(argumentStore), argumentStore);
+
+            var exception = Assert.Throws<RuntimeBinderException>(() => sut.With(anonymous));
+            Assert.True(exception.Message.EndsWith("does not contain a definition for 'With'"));
         }
     }
 }
