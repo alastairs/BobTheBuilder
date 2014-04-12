@@ -24,11 +24,6 @@ namespace BobTheBuilder
 
         public abstract bool InvokeBuilderMethod(InvokeMemberBinder binder, object[] args, out object result);
 
-        public static implicit operator T(DynamicBuilderBase<T> builder)
-        {
-            return builder.Build();
-        }
-
         public T Build()
         {
             var instance = CreateInstanceOfType();
@@ -51,6 +46,11 @@ namespace BobTheBuilder
         {
             var instance = Activator.CreateInstance<T>();
             return instance;
+        }
+
+        public static implicit operator T(DynamicBuilderBase<T> builder)
+        {
+            return builder.Build();
         }
     }
 }
