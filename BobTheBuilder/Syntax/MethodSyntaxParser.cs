@@ -5,7 +5,7 @@ using BobTheBuilder.ArgumentStore;
 
 namespace BobTheBuilder.Syntax
 {
-    public class MethodSyntaxParser<T> : IParser where T: class
+    public class MethodSyntaxParser : IParser
     {
         private readonly IArgumentStore argumentStore;
 

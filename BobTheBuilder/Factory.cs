@@ -11,8 +11,8 @@ namespace BobTheBuilder
             return
                 new DynamicBuilder<T>(
                     new CompositeParser(
-                        new NamedArgumentsSyntaxParser<T>(argumentStore),
-                        new MethodSyntaxParser<T>(argumentStore)),
+                        new NamedArgumentsSyntaxParser(argumentStore),
+                        new MethodSyntaxParser(argumentStore)),
                     argumentStore);
         }
     }
