@@ -25,11 +25,6 @@ namespace BobTheBuilder
             this.argumentStore = argumentStore;
         }
 
-        public override bool TryInvokeMember(InvokeMemberBinder binder, object[] args, out object result)
-        {
-            return InvokeBuilderMethod(binder, args, out result);
-        }
-
         public override bool InvokeBuilderMethod(InvokeMemberBinder binder, object[] args, out object result)
         {
             if (binder.Name == "With")

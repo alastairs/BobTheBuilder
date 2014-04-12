@@ -9,6 +9,11 @@ namespace BobTheBuilder
     {
         protected readonly IDictionary<string, object> _members = new Dictionary<string, object>();
 
+        public override bool TryInvokeMember(InvokeMemberBinder binder, object[] args, out object result)
+        {
+            return InvokeBuilderMethod(binder, args, out result);
+        }
+
         public abstract bool InvokeBuilderMethod(InvokeMemberBinder binder, object[] args, out object result);
 
         public abstract T Build();
