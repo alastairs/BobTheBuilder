@@ -1,6 +1,8 @@
 using System;
 using System.Dynamic;
 
+using BobTheBuilder.ArgumentStore;
+
 namespace BobTheBuilder
 {
     public class DynamicBuilder<T> : DynamicBuilderBase<T> where T: class

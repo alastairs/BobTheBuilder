@@ -1,4 +1,4 @@
-﻿namespace BobTheBuilder
+﻿namespace BobTheBuilder.ArgumentStore
 {
     public class MemberNameAndValue
     {

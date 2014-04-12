@@ -1,4 +1,6 @@
-﻿namespace BobTheBuilder
+﻿using BobTheBuilder.ArgumentStore;
+
+namespace BobTheBuilder
 {
     public class A
     {

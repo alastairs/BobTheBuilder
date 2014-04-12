@@ -1,7 +1,7 @@
 using System.Collections.Generic;
 using System.Linq;
 
-namespace BobTheBuilder
+namespace BobTheBuilder.ArgumentStore
 {
     internal class InMemoryArgumentStore : IArgumentStore
     {

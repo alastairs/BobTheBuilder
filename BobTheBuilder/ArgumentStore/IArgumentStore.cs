@@ -1,6 +1,6 @@
 ﻿using System.Collections.Generic;
 
-namespace BobTheBuilder
+namespace BobTheBuilder.ArgumentStore
 {
     public interface IArgumentStore
     {
