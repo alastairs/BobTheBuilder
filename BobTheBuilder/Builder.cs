@@ -37,6 +37,11 @@ namespace BobTheBuilder
 
         private void ParseMembersFromNamedArguments(CallInfo callInfo, object[] args)
         {
+            if (!callInfo.ArgumentNames.Any())
+            {
+                throw new ArgumentException("No names were specified for the values provided. When using the named arguments (With()) syntax, you should specify the items to be set as argument names, such as With(customerId: customerId).");
+            }
+
             var memberName = callInfo.ArgumentNames.First();
             memberName = memberName.First().ToString().ToUpper() + memberName.Substring(1);
             SetMemberNameAndValue(memberName, args[0]);
