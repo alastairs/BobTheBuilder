@@ -54,6 +54,8 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="BuildFacts.cs" />
+    <Compile Include="MethodSyntaxFacts.cs" />
+    <Compile Include="NamedArgumentsSyntaxFacts.cs" />
     <Compile Include="ExampleUsage.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="SampleType.cs" />
