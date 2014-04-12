@@ -37,6 +37,16 @@ namespace BobTheBuilder
 
         private void ParseNamedArgumentValues(CallInfo callInfo, object[] args)
         {
+            if (!callInfo.ArgumentNames.Any())
+            {
+                throw new ArgumentException("No names were specified for the values provided. When using the named arguments (With()) syntax, you should specify the items to be set as argument names, such as With(customerId: customerId).");
+            }
+
+            if (callInfo.ArgumentNames.Count() != args.Length)
+            {
+                throw new ArgumentException("One or more arguments are missing a name. Names should be specified with C# named argument syntax, e.g. With(customerId: customerId).");
+            }
+
             var argumentIndex = 0;
             foreach (var argumentName in callInfo.ArgumentNames.Select(ToCamelCase))
             {
