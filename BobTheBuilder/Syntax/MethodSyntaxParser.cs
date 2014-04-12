@@ -4,7 +4,7 @@ using BobTheBuilder.ArgumentStore;
 
 namespace BobTheBuilder.Syntax
 {
-    public class MethodSyntaxParser<T> : DynamicBuilderBase<T>, IParser where T: class
+    public class MethodSyntaxParser<T> : DynamicBuilder<T>, IParser where T: class
     {
         public MethodSyntaxParser(IArgumentStore argumentStore) : base(argumentStore) { }
 

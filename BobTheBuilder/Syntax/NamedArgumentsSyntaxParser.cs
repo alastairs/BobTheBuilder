@@ -6,7 +6,7 @@ using BobTheBuilder.ArgumentStore;
 
 namespace BobTheBuilder.Syntax
 {
-    public class NamedArgumentsSyntaxParser<T> : DynamicBuilderBase<T>, IParser where T : class
+    public class NamedArgumentsSyntaxParser<T> : DynamicBuilder<T>, IParser where T : class
     {
         private readonly IDynamicBuilder<T> wrappedBuilder;
         

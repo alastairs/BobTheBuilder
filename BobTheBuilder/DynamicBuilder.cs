@@ -5,11 +5,11 @@ using BobTheBuilder.ArgumentStore;
 
 namespace BobTheBuilder
 {
-    public abstract class DynamicBuilderBase<T> : DynamicObject, IDynamicBuilder<T> where T : class
+    public abstract class DynamicBuilder<T> : DynamicObject, IDynamicBuilder<T> where T : class
     {
         protected internal readonly IArgumentStore argumentStore;
 
-        protected DynamicBuilderBase(IArgumentStore argumentStore)
+        protected DynamicBuilder(IArgumentStore argumentStore)
         {
             if (argumentStore == null)
             {
@@ -50,7 +50,7 @@ namespace BobTheBuilder
             return InvokeBuilderMethod(binder, args, out result);
         }
 
-        public static implicit operator T(DynamicBuilderBase<T> builder)
+        public static implicit operator T(DynamicBuilder<T> builder)
         {
             return builder.Build();
         }
