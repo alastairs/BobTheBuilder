@@ -27,12 +27,17 @@ namespace BobTheBuilder
 
         public override bool TryInvokeMember(InvokeMemberBinder binder, object[] args, out object result)
         {
+            return InvokeBuilderMethod(binder, args, out result);
+        }
+
+        public bool InvokeBuilderMethod(InvokeMemberBinder binder, object[] args, out object result)
+        {
             if (binder.Name == "With")
             {
                 ParseNamedArgumentValues(binder.CallInfo, args);
             }
 
-            return wrappedBuilder.TryInvokeMember(binder, args, out result);
+            return wrappedBuilder.InvokeBuilderMethod(binder, args, out result);
         }
 
         private void ParseNamedArgumentValues(CallInfo callInfo, object[] args)

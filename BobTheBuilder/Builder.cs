@@ -9,7 +9,7 @@ namespace BobTheBuilder
     {
         private readonly IDictionary<string, object> _members = new Dictionary<string, object>();
 
-        public override bool TryInvokeMember(InvokeMemberBinder binder, object[] args, out object result)
+        public bool InvokeBuilderMethod(InvokeMemberBinder binder, object[] args, out object result)
         {
             if (binder.Name == "With")
             {
