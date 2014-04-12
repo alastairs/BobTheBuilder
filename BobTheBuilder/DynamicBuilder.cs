@@ -7,7 +7,7 @@ namespace BobTheBuilder
 {
     public class DynamicBuilder<T> : DynamicObject, IDynamicBuilder<T> where T : class
     {
-        protected internal readonly IArgumentStore argumentStore;
+        private readonly IArgumentStore argumentStore;
          
         protected DynamicBuilder(IArgumentStore argumentStore)
         {
