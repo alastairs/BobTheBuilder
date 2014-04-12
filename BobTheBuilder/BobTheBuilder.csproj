@@ -39,7 +39,9 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Builder.cs" />
+    <Compile Include="Factory.cs" />
+    <Compile Include="DynamicBuilder.cs" />
+    <Compile Include="DynamicBuilderBase.cs" />
     <Compile Include="IArgumentStore.cs" />
     <Compile Include="IDynamicBuilder.cs" />
     <Compile Include="NamedArgumentsDynamicBuilder.cs" />
