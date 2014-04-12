@@ -1,5 +1,6 @@
 using System.Collections.Generic;
 using System.Dynamic;
+using System.Linq;
 
 namespace BobTheBuilder
 {
@@ -19,6 +20,11 @@ namespace BobTheBuilder
         public void SetMemberNameAndValue(string name, object value)
         {
             _members[name] = value;
+        }
+
+        public IEnumerable<MemberNameAndValue> GetAllStoredMembers()
+        {
+            return _members.Select(m => new MemberNameAndValue(m.Key, m.Value));
         }
 
         public static implicit operator T(DynamicBuilderBase<T> builder)
