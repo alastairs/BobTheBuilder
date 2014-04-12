@@ -9,7 +9,7 @@ namespace BobTheBuilder
     {
         private readonly IArgumentStore argumentStore;
          
-        protected DynamicBuilder(IArgumentStore argumentStore)
+        public DynamicBuilder(IArgumentStore argumentStore)
         {
             if (argumentStore == null)
             {
