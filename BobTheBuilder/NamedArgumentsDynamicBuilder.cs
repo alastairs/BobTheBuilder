@@ -53,10 +53,5 @@ namespace BobTheBuilder
         {
             return name.First().ToString().ToUpper() + name.Substring(1);
         }
-
-        public override T Build()
-        {
-            return wrappedBuilder.Build();
-        }
     }
 }
