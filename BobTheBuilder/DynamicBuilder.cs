@@ -1,24 +1,65 @@
 using System;
 using System.Dynamic;
 
+using BobTheBuilder.ArgumentStore;
+using BobTheBuilder.Syntax;
+
 namespace BobTheBuilder
 {
-    public class DynamicBuilder<T> : DynamicBuilderBase<T> where T: class
+    public class DynamicBuilder<T> : DynamicObject, IDynamicBuilder<T> where T : class
     {
-        public DynamicBuilder(IArgumentStore argumentStore) : base(argumentStore) { }
-
-        public override bool InvokeBuilderMethod(InvokeMemberBinder binder, object[] args, out object result)
+        private readonly IParser parser;
+        private readonly IArgumentStore argumentStore;
+         
+        public DynamicBuilder(IParser parser, IArgumentStore argumentStore)
         {
-            ParseMembersFromMethodName(binder, args);
+            if (parser == null)
+            {
+                throw new ArgumentNullException("parser");
+            }
 
-            result = this;
-            return true;
+            if (argumentStore == null)
+            {
+                throw new ArgumentNullException("argumentStore");
+            }
+
+            this.parser = parser;
+            this.argumentStore = argumentStore;
         }
 
-        private void ParseMembersFromMethodName(InvokeMemberBinder binder, object[] args)
+        public T Build()
         {
-            var memberName = binder.Name.Replace("With", "");
-            argumentStore.SetMemberNameAndValue(memberName, args[0]);
+            var instance = CreateInstanceOfType();
+            PopulatePublicSettableProperties(instance);
+            return instance;
+        }
+
+        private static T CreateInstanceOfType()
+        {
+            var instance = Activator.CreateInstance<T>();
+            return instance;
+        }
+
+        private void PopulatePublicSettableProperties(T instance)
+        {
+            var knownMembers = argumentStore.GetAllStoredMembers();
+
+            foreach (var member in knownMembers)
+            {
+                var property = typeof (T).GetProperty(member.Name);
+                property.SetValue(instance, member.Value);
+            }
+        }
+
+        public override bool TryInvokeMember(InvokeMemberBinder binder, object[] args, out object result)
+        {
+            result = this;
+            return parser.Parse(binder, args);
+        }
+
+        public static implicit operator T(DynamicBuilder<T> builder)
+        {
+            return builder.Build();
         }
     }
 }

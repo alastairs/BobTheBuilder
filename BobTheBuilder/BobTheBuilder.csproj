@@ -40,13 +40,15 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Factory.cs" />
+    <Compile Include="Syntax\CompositeParser.cs" />
+    <Compile Include="Syntax\MethodSyntaxParser.cs" />
     <Compile Include="DynamicBuilder.cs" />
-    <Compile Include="DynamicBuilderBase.cs" />
-    <Compile Include="IArgumentStore.cs" />
+    <Compile Include="ArgumentStore\IArgumentStore.cs" />
     <Compile Include="IDynamicBuilder.cs" />
-    <Compile Include="InMemoryArgumentStore.cs" />
-    <Compile Include="MemberNameAndValue.cs" />
-    <Compile Include="NamedArgumentsDynamicBuilder.cs" />
+    <Compile Include="ArgumentStore\InMemoryArgumentStore.cs" />
+    <Compile Include="ArgumentStore\MemberNameAndValue.cs" />
+    <Compile Include="Syntax\IParser.cs" />
+    <Compile Include="Syntax\NamedArgumentsSyntaxParser.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />

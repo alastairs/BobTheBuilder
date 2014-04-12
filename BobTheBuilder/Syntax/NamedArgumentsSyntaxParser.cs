@@ -2,32 +2,33 @@
 using System.Dynamic;
 using System.Linq;
 
-namespace BobTheBuilder
+using BobTheBuilder.ArgumentStore;
+
+namespace BobTheBuilder.Syntax
 {
-    public class NamedArgumentsDynamicBuilder<T> : DynamicBuilderBase<T> where T : class
+    internal class NamedArgumentsSyntaxParser : IParser
     {
-        private readonly IDynamicBuilder<T> wrappedBuilder;
-        
-        internal NamedArgumentsDynamicBuilder(IDynamicBuilder<T> wrappedBuilder, IArgumentStore argumentStore) : base(argumentStore)
+        private readonly IArgumentStore argumentStore;
+
+        internal NamedArgumentsSyntaxParser(IArgumentStore argumentStore)
         {
-            if (wrappedBuilder == null)
+            if (argumentStore == null)
             {
-                throw new ArgumentNullException("wrappedBuilder");
+                throw new ArgumentNullException("argumentStore");
             }
 
-            this.wrappedBuilder = wrappedBuilder;
+            this.argumentStore = argumentStore;
         }
 
-        public override bool InvokeBuilderMethod(InvokeMemberBinder binder, object[] args, out object result)
+        public bool Parse(InvokeMemberBinder binder, object[] args)
         {
             if (binder.Name == "With")
             {
                 ParseNamedArgumentValues(binder.CallInfo, args);
-                result = this;
                 return true;
             }
 
-            return wrappedBuilder.InvokeBuilderMethod(binder, args, out result);
+            return false;
         }
 
         private void ParseNamedArgumentValues(CallInfo callInfo, object[] args)

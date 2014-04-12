@@ -1,11 +1,19 @@
-﻿namespace BobTheBuilder
+﻿using BobTheBuilder.ArgumentStore;
+using BobTheBuilder.Syntax;
+
+namespace BobTheBuilder
 {
     public class A
     {
         public static dynamic BuilderFor<T>() where T: class
         {
             var argumentStore = new InMemoryArgumentStore();
-            return new NamedArgumentsDynamicBuilder<T>(new DynamicBuilder<T>(argumentStore), argumentStore);
+            return
+                new DynamicBuilder<T>(
+                    new CompositeParser(
+                        new NamedArgumentsSyntaxParser(argumentStore),
+                        new MethodSyntaxParser(argumentStore)),
+                    argumentStore);
         }
     }
 }
