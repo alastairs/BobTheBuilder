@@ -17,11 +17,6 @@ namespace BobTheBuilder
             this.argumentStore = argumentStore;
         }
 
-        public override bool TryInvokeMember(InvokeMemberBinder binder, object[] args, out object result)
-        {
-            return InvokeBuilderMethod(binder, args, out result);
-        }
-
         public abstract bool InvokeBuilderMethod(InvokeMemberBinder binder, object[] args, out object result);
 
         public T Build()
@@ -46,6 +41,11 @@ namespace BobTheBuilder
                 var property = typeof (T).GetProperty(member.Name);
                 property.SetValue(instance, member.Value);
             }
+        }
+
+        public override bool TryInvokeMember(InvokeMemberBinder binder, object[] args, out object result)
+        {
+            return InvokeBuilderMethod(binder, args, out result);
         }
 
         public static implicit operator T(DynamicBuilderBase<T> builder)
