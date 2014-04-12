@@ -2,7 +2,7 @@
 
 namespace BobTheBuilder
 {
-    internal interface IArgumentStore
+    public interface IArgumentStore
     {
         void SetMemberNameAndValue(string name, object value);
 
