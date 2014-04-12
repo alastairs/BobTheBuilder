@@ -46,6 +46,7 @@
     <Compile Include="IDynamicBuilder.cs" />
     <Compile Include="ArgumentStore\InMemoryArgumentStore.cs" />
     <Compile Include="ArgumentStore\MemberNameAndValue.cs" />
+    <Compile Include="Syntax\IParser.cs" />
     <Compile Include="Syntax\NamedArgumentsDynamicBuilder.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
