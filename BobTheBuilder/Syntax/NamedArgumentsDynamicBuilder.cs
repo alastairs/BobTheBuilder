@@ -4,7 +4,7 @@ using System.Linq;
 
 using BobTheBuilder.ArgumentStore;
 
-namespace BobTheBuilder
+namespace BobTheBuilder.Syntax
 {
     public class NamedArgumentsDynamicBuilder<T> : DynamicBuilderBase<T> where T : class
     {

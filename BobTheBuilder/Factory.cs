@@ -1,4 +1,5 @@
 ﻿using BobTheBuilder.ArgumentStore;
+using BobTheBuilder.Syntax;
 
 namespace BobTheBuilder
 {

@@ -40,13 +40,13 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Factory.cs" />
-    <Compile Include="DynamicBuilder.cs" />
+    <Compile Include="Syntax\DynamicBuilder.cs" />
     <Compile Include="DynamicBuilderBase.cs" />
     <Compile Include="ArgumentStore\IArgumentStore.cs" />
     <Compile Include="IDynamicBuilder.cs" />
     <Compile Include="ArgumentStore\InMemoryArgumentStore.cs" />
     <Compile Include="ArgumentStore\MemberNameAndValue.cs" />
-    <Compile Include="NamedArgumentsDynamicBuilder.cs" />
+    <Compile Include="Syntax\NamedArgumentsDynamicBuilder.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
