@@ -5,7 +5,7 @@ using BobTheBuilder.ArgumentStore;
 
 namespace BobTheBuilder.Syntax
 {
-    internal class MethodSyntaxParser : IParser
+    public class MethodSyntaxParser : IParser
     {
         private readonly IArgumentStore argumentStore;
 
@@ -21,8 +21,13 @@ namespace BobTheBuilder.Syntax
 
         public bool Parse(InvokeMemberBinder binder, object[] args)
         {
-            var memberName = binder.Name.Replace("With", "");
-            argumentStore.SetMemberNameAndValue(memberName, args[0]);
+            var memberName = binder.Name;
+            if (!memberName.StartsWith("With") || memberName == "With")
+            {
+                return false;
+            }
+
+            argumentStore.SetMemberNameAndValue(memberName.Replace("With", ""), args[0]);
             return true;
         }
     }
