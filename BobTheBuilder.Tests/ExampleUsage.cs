@@ -68,5 +68,23 @@ namespace BobTheBuilder.Tests
 
             Assert.Equal(expected, built, new SampleTypeEqualityComparer());
         }
+
+        [Fact]
+        public void UsageWithInheritedProperties()
+        {
+            const string expectedStringValue = "expected value";
+            const int expectedIntValue = 1;
+            var expected = new ExtendedSampleType
+            {
+                IntProperty = expectedIntValue,
+                NewStringProperty = expectedStringValue
+            };
+
+            ExtendedSampleType built = A.BuilderFor<ExtendedSampleType>()
+                                             .WithNewStringProperty(expectedStringValue)
+                                             .WithIntProperty(expectedIntValue);
+
+            Assert.Equal(expected, built, new ExtendedSampleTypeEqualityComparer(new SampleTypeEqualityComparer()));
+        }
     }
 }

@@ -1,4 +1,5 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
 
 namespace BobTheBuilder.Tests
 {
@@ -19,6 +20,37 @@ namespace BobTheBuilder.Tests
         }
 
         public int GetHashCode(SampleType obj)
+        {
+            return 1;
+        }
+    }
+
+    internal class ExtendedSampleTypeEqualityComparer : IEqualityComparer<ExtendedSampleType>
+    {
+        private readonly IEqualityComparer<SampleType> wrappedComparer;
+
+        internal ExtendedSampleTypeEqualityComparer(SampleTypeEqualityComparer wrappedComparer)
+        {
+            if (wrappedComparer == null)
+            {
+                throw new ArgumentNullException("wrappedComparer");
+            }
+
+            this.wrappedComparer = wrappedComparer;
+        }
+
+        public bool Equals(ExtendedSampleType x, ExtendedSampleType y)
+        {
+            if (!wrappedComparer.Equals(x, y))
+            {
+                return false;
+            }
+
+            var newStringsAreEqual = x.NewStringProperty == y.NewStringProperty;
+            return newStringsAreEqual;
+        }
+
+        public int GetHashCode(ExtendedSampleType obj)
         {
             return 1;
         }
