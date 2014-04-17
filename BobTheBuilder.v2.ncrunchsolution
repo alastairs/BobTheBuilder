@@ -7,5 +7,10 @@
   <FrameworkUtilisationTypeForMSpec>UseStaticAnalysis</FrameworkUtilisationTypeForMSpec>
   <FrameworkUtilisationTypeForMSTest>UseStaticAnalysis</FrameworkUtilisationTypeForMSTest>
   <MetricsExclusionList>
+ArgumentStore\IArgumentStore.cs:BobTheBuilder\BobTheBuilder.csproj
+IDynamicBuilder.cs:BobTheBuilder\BobTheBuilder.csproj
+Properties\AssemblyInfo.cs:BobTheBuilder.Tests\BobTheBuilder.Tests.csproj
+Properties\AssemblyInfo.cs:BobTheBuilder\BobTheBuilder.csproj
+Syntax\IParser.cs:BobTheBuilder\BobTheBuilder.csproj
 </MetricsExclusionList>
 </SolutionConfiguration>
