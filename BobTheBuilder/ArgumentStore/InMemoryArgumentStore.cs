@@ -22,5 +22,10 @@ namespace BobTheBuilder.ArgumentStore
         {
             return GetAllStoredMembers().Where(member => !properties.Contains(member.Name));
         }
+
+        public IEnumerable<MemberNameAndValue> GetConstructorArguments(ILookup<string, ParameterInfo> arguments)
+        {
+            return GetAllStoredMembers().Where(member => arguments.Contains(member.Name));
+        }
     }
 }

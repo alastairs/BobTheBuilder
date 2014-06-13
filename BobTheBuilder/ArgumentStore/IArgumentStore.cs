@@ -10,5 +10,6 @@ namespace BobTheBuilder.ArgumentStore
 
         IEnumerable<MemberNameAndValue> GetAllStoredMembers();
         IEnumerable<MemberNameAndValue> GetMissingArguments(ILookup<string, PropertyInfo> properties);
+        IEnumerable<MemberNameAndValue> GetConstructorArguments(ILookup<string, ParameterInfo> arguments);
     }
 }

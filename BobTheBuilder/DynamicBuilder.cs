@@ -42,7 +42,10 @@ namespace BobTheBuilder
             var destinationType = typeof (T);
             EvaluateMissingMembers(destinationType);
 
-            var instance = CreateInstanceOfType();
+            var constructorParameters = destinationType.GetConstructors().Single().GetParameters().ToLookup(p => p.Name);
+            var constructorArguments = argumentStore.GetConstructorArguments(constructorParameters);
+
+            var instance = CreateInstanceOfType(constructorArguments);
             PopulatePublicSettableProperties(instance);
             return instance;
         }
@@ -64,7 +67,7 @@ namespace BobTheBuilder
             return argumentStore.GetMissingArguments(properties);
         }
 
-        private static T CreateInstanceOfType()
+        private static T CreateInstanceOfType(IEnumerable<MemberNameAndValue> constructorArguments)
         {
             var instance = Activator.CreateInstance<T>();
             return instance;
