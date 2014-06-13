@@ -39,6 +39,22 @@ namespace BobTheBuilder
         public T Build()
         {
             var properties = typeof (T).GetProperties().ToLookup(p => p.Name);
+            var missingArguments = GetMissingArguments(properties);
+
+            if (missingArguments.Any())
+            {
+                var missingMember = missingArguments.First();
+                throw new MissingMemberException(string.Format(@"The property ""{0}"" does not exist on ""{1}""",
+                        missingMember.Name, typeof (T).Name));
+            }
+
+            var instance = CreateInstanceOfType();
+            PopulatePublicSettableProperties(instance);
+            return instance;
+        }
+
+        private IEnumerable<MemberNameAndValue> GetMissingArguments(ILookup<string, PropertyInfo> properties)
+        {
             var argumentLocations = argumentStore.GetAllStoredMembers().GroupBy(member =>
             {
                 if (properties.Contains(member.Name))
@@ -54,14 +70,10 @@ namespace BobTheBuilder
             List<MemberNameAndValue> value;
             if (argumentLocations.TryGetValue(ArgumentLocation.Missing, out value))
             {
-                var missingMember = value.First();
-                throw new MissingMemberException(string.Format(@"The property ""{0}"" does not exist on ""{1}""",
-                        missingMember.Name, typeof (T).Name));
+                return value;
             }
 
-            var instance = CreateInstanceOfType();
-            PopulatePublicSettableProperties(instance);
-            return instance;
+            return Enumerable.Empty<MemberNameAndValue>();
         }
 
         private static T CreateInstanceOfType()
