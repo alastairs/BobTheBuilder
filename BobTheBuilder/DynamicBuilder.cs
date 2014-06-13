@@ -1,11 +1,20 @@
 using System;
+using System.Collections.Generic;
+using System.Data;
 using System.Dynamic;
-
+using System.Linq;
+using System.Reflection;
 using BobTheBuilder.ArgumentStore;
 using BobTheBuilder.Syntax;
 
 namespace BobTheBuilder
 {
+    public enum ArgumentLocation
+    {
+        Property,
+        Missing
+    }
+
     public class DynamicBuilder<T> : DynamicObject, IDynamicBuilder<T> where T : class
     {
         private readonly IParser parser;
@@ -29,6 +38,27 @@ namespace BobTheBuilder
 
         public T Build()
         {
+            var properties = typeof (T).GetProperties().ToLookup(p => p.Name);
+            var argumentLocations = argumentStore.GetAllStoredMembers().GroupBy(member =>
+            {
+                if (properties.Contains(member.Name))
+                {
+                    return ArgumentLocation.Property;
+                }
+                else
+                {
+                    return ArgumentLocation.Missing;
+                }
+            }).ToDictionary(g => g.Key, g => g.ToList());
+
+            List<MemberNameAndValue> value;
+            if (argumentLocations.TryGetValue(ArgumentLocation.Missing, out value))
+            {
+                var missingMember = value.First();
+                throw new MissingMemberException(string.Format(@"The property ""{0}"" does not exist on ""{1}""",
+                        missingMember.Name, typeof (T).Name));
+            }
+
             var instance = CreateInstanceOfType();
             PopulatePublicSettableProperties(instance);
             return instance;
@@ -47,10 +77,6 @@ namespace BobTheBuilder
             foreach (var member in knownMembers)
             {
                 var property = typeof (T).GetProperty(member.Name);
-                if (property == null)
-                {
-                    throw new MissingMemberException(string.Format(@"The property ""{0}"" does not exist on ""{1}""", member.Name, typeof(T).Name));
-                }
                 property.SetValue(instance, member.Value);
             }
         }
