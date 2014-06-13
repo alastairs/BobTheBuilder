@@ -1,4 +1,5 @@
-﻿using Xunit;
+﻿using System;
+using Xunit;
 
 namespace BobTheBuilder.Tests
 {
@@ -13,6 +14,17 @@ namespace BobTheBuilder.Tests
 
             Assert.IsAssignableFrom<dynamic>(result);
             Assert.IsAssignableFrom<SampleType>(result);
+        }
+
+        [Fact]
+        public void FailsIfAPropertyCannotBeFound()
+        {
+            var sut = A.BuilderFor<SampleType>()
+                .WithStringPurrrrrrroperty("Not a thing");
+
+            var exception = Assert.Throws<MissingMemberException>(() => sut.Build());
+
+            Assert.Equal(@"The property ""StringPurrrrrrroperty"" does not exist on ""SampleType""", exception.Message);
         }
     }
 }

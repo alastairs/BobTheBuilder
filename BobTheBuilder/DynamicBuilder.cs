@@ -47,6 +47,10 @@ namespace BobTheBuilder
             foreach (var member in knownMembers)
             {
                 var property = typeof (T).GetProperty(member.Name);
+                if (property == null)
+                {
+                    throw new MissingMemberException(string.Format(@"The property ""{0}"" does not exist on ""{1}""", member.Name, typeof(T).Name));
+                }
                 property.SetValue(instance, member.Value);
             }
         }
