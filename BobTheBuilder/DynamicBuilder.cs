@@ -45,8 +45,11 @@ namespace BobTheBuilder
             var constructorParameters = destinationType.GetConstructors().Single().GetParameters().ToLookup(p => p.Name);
             var constructorArguments = argumentStore.GetConstructorArguments(constructorParameters);
 
+            var properties = destinationType.GetProperties().ToLookup(p => p.Name);
+            var propertyValues = argumentStore.GetPropertyValues(properties);
+
             var instance = CreateInstanceOfType(constructorArguments);
-            PopulatePublicSettableProperties(instance);
+            PopulatePublicSettableProperties(instance, propertyValues);
             return instance;
         }
 
@@ -69,15 +72,13 @@ namespace BobTheBuilder
 
         private static T CreateInstanceOfType(IEnumerable<MemberNameAndValue> constructorArguments)
         {
-            var instance = Activator.CreateInstance<T>();
-            return instance;
+            var constructor = typeof (T).GetConstructors().Single();
+            return (T)constructor.Invoke(constructorArguments.Select(arg => arg.Value).ToArray());
         }
 
-        private void PopulatePublicSettableProperties(T instance)
+        private void PopulatePublicSettableProperties(T instance, IEnumerable<MemberNameAndValue> propertyValues)
         {
-            var knownMembers = argumentStore.GetAllStoredMembers();
-
-            foreach (var member in knownMembers)
+            foreach (var member in propertyValues)
             {
                 var property = typeof (T).GetProperty(member.Name);
                 property.SetValue(instance, member.Value);
