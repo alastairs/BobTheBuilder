@@ -16,8 +16,8 @@ namespace BobTheBuilder.Tests
             };
 
             var built = A.BuilderFor<SampleType>()
-                .WithStringProperty(stringProperty)
-                .Build();
+                            .WithStringProperty(stringProperty)
+                            .Build();
 
             Assert.Equal(expected, built, new SampleTypeEqualityComparer());
         }
@@ -32,7 +32,7 @@ namespace BobTheBuilder.Tests
             };
 
             SampleType built = A.BuilderFor<SampleType>()
-                .WithStringProperty(stringProperty);
+                                    .WithStringProperty(stringProperty);
 
             Assert.Equal(expected, built, new SampleTypeEqualityComparer());
         }
@@ -47,7 +47,7 @@ namespace BobTheBuilder.Tests
             };
 
             SampleType built = A.BuilderFor<SampleType>()
-                .WithComplexProperty(complexProperty);
+                                    .WithComplexProperty(complexProperty);
 
             Assert.Equal(expected, built, new SampleTypeEqualityComparer());
         }
@@ -63,8 +63,9 @@ namespace BobTheBuilder.Tests
                 IntProperty = expectedIntValue
             };
 
-            SampleType built = A.BuilderFor<SampleType>().With(stringProperty: expectedStringValue, 
-                                                               intProperty: expectedIntValue);
+            SampleType built = A.BuilderFor<SampleType>()
+                                    .With(stringProperty: expectedStringValue, 
+                                          intProperty: expectedIntValue);
 
             Assert.Equal(expected, built, new SampleTypeEqualityComparer());
         }
