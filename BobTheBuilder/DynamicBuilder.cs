@@ -4,6 +4,7 @@ using System.Data;
 using System.Dynamic;
 using System.Linq;
 using System.Reflection;
+using System.Runtime.Remoting.Messaging;
 using BobTheBuilder.ArgumentStore;
 using BobTheBuilder.Syntax;
 
@@ -55,25 +56,7 @@ namespace BobTheBuilder
 
         private IEnumerable<MemberNameAndValue> GetMissingArguments(ILookup<string, PropertyInfo> properties)
         {
-            var argumentLocations = argumentStore.GetAllStoredMembers().GroupBy(member =>
-            {
-                if (properties.Contains(member.Name))
-                {
-                    return ArgumentLocation.Property;
-                }
-                else
-                {
-                    return ArgumentLocation.Missing;
-                }
-            }).ToDictionary(g => g.Key, g => g.ToList());
-
-            List<MemberNameAndValue> value;
-            if (argumentLocations.TryGetValue(ArgumentLocation.Missing, out value))
-            {
-                return value;
-            }
-
-            return Enumerable.Empty<MemberNameAndValue>();
+            return argumentStore.GetAllStoredMembers().Where(member => !properties.Contains(member.Name));
         }
 
         private static T CreateInstanceOfType()
