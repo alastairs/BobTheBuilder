@@ -1,5 +1,4 @@
 ﻿using System;
-using System.Collections.Generic;
 using Xunit;
 
 namespace BobTheBuilder.Tests
@@ -91,24 +90,31 @@ namespace BobTheBuilder.Tests
         [Fact]
         public void UsageForImmutableTypes()
         {
+            const string expectedTitle = "My first blog post";
+            const string expectedAuthorName = "Joe Bloggs";
+            var expectedStartDate = new DateTime(2013, 05, 23);
+            const string expectedContent = "This is a blog post";
+            var expectedTimestamp = new DateTime(2014, 09, 12, 23, 55, 00);
+            var expectedTags = new[] { "coding", "csharp" };
+
             ImmutableBlogPost builtPost = A.BuilderFor<ImmutableBlogPost>()
-                                            .WithTitle("My first blog post")
+                                            .WithTitle(expectedTitle)
                                             .WithAuthor(
                                                 A.BuilderFor<ImmutableAuthor>()
-                                                    .With(name: "Joe Bloggs", startDate: new DateTime(2013, 05, 23))
+                                                    .With(name: expectedAuthorName, startDate: expectedStartDate)
                                                     .Build())
-                                            .WithContent("This is a blog post")
-                                            .WithTimestamp(new DateTime(2014, 09, 12, 23, 55, 00))
-                                            .WithTags(new[] {"coding", "csharp"});
+                                            .WithContent(expectedContent)
+                                            .WithTimestamp(expectedTimestamp)
+                                            .WithTags(expectedTags);
 
             var expectedPost = new ImmutableBlogPost(
-                                    "My first blog post",
+                                    expectedTitle,
                                     new ImmutableAuthor(
-                                        "Joe Bloggs",
-                                        new DateTime(2013, 05, 23)),
-                                    "This is a blog",
-                                    new DateTime(2014, 09, 12, 23, 55, 00),
-                                    new[] { "coding", "csharp" });
+                                        expectedAuthorName,
+                                        expectedStartDate),
+                                    expectedContent,
+                                    expectedTimestamp,
+                                    expectedTags);
 
             Assert.Equal(expectedPost, builtPost);
         }
