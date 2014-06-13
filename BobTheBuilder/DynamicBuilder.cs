@@ -39,19 +39,26 @@ namespace BobTheBuilder
 
         public T Build()
         {
-            var properties = typeof (T).GetProperties().ToLookup(p => p.Name);
-            var missingArguments = argumentStore.GetMissingArguments(properties);
+            var destinationType = typeof (T);
+
+            var missingArguments = GetMissingMembers(destinationType);
 
             if (missingArguments.Any())
             {
                 var missingMember = missingArguments.First();
                 throw new MissingMemberException(string.Format(@"The property ""{0}"" does not exist on ""{1}""",
-                        missingMember.Name, typeof (T).Name));
+                        missingMember.Name, destinationType.Name));
             }
 
             var instance = CreateInstanceOfType();
             PopulatePublicSettableProperties(instance);
             return instance;
+        }
+
+        private IEnumerable<MemberNameAndValue> GetMissingMembers(Type destinationType)
+        {
+            var properties = destinationType.GetProperties().ToLookup(p => p.Name);
+            return argumentStore.GetMissingArguments(properties);
         }
 
         private static T CreateInstanceOfType()
