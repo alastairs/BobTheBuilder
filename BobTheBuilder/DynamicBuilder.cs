@@ -40,7 +40,7 @@ namespace BobTheBuilder
         public T Build()
         {
             var properties = typeof (T).GetProperties().ToLookup(p => p.Name);
-            var missingArguments = GetMissingArguments(argumentStore, properties);
+            var missingArguments = argumentStore.GetMissingArguments(properties);
 
             if (missingArguments.Any())
             {
@@ -52,11 +52,6 @@ namespace BobTheBuilder
             var instance = CreateInstanceOfType();
             PopulatePublicSettableProperties(instance);
             return instance;
-        }
-
-        private static IEnumerable<MemberNameAndValue> GetMissingArguments(IArgumentStore argumentStore, ILookup<string, PropertyInfo> properties)
-        {
-            return argumentStore.GetAllStoredMembers().Where(member => !properties.Contains(member.Name));
         }
 
         private static T CreateInstanceOfType()
