@@ -3,7 +3,7 @@ using System.Collections.Generic;
 
 namespace BobTheBuilder.Tests
 {
-    internal class ImmutableBlogPost
+    internal class ImmutableBlogPost : IEquatable<ImmutableBlogPost>
     {
         private readonly string title;
         private readonly ImmutableAuthor author;
@@ -43,6 +43,46 @@ namespace BobTheBuilder.Tests
         public IEnumerable<string> Tags
         {
             get { return tags; }
+        }
+
+        public override bool Equals(object obj)
+        {
+            return Equals(obj as ImmutableBlogPost);
+        }
+
+        public bool Equals(ImmutableBlogPost other)
+        {
+            return Equals(this, other);
+        }
+
+        public bool Equals(ImmutableBlogPost x, ImmutableBlogPost y)
+        {
+            if (ReferenceEquals(x, y))
+            {
+                return true;
+            }
+
+            if (ReferenceEquals(x, null) || ReferenceEquals(y, null))
+            {
+                return false;
+            }
+
+            var authorsAreEqual = x.Author.Equals(y.Author);
+            var contentsAreEqual = x.Content == y.Content;
+            var tagsAreEqual = x.Tags.Equals(y.Tags);
+            var timestampsAreEqual = x.Timestamp == y.Timestamp;
+            var titlesAreEqual = x.Title == y.Title;
+
+            return authorsAreEqual &&
+                   contentsAreEqual &&
+                   tagsAreEqual &&
+                   timestampsAreEqual &&
+                   titlesAreEqual;
+        }
+
+        public override int GetHashCode()
+        {
+            return 1;
         }
     }
 }
