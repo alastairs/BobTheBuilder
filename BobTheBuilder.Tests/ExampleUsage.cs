@@ -1,5 +1,5 @@
 ﻿using System;
-
+using System.Collections.Generic;
 using Xunit;
 
 namespace BobTheBuilder.Tests
@@ -86,6 +86,31 @@ namespace BobTheBuilder.Tests
                                              .WithIntProperty(expectedIntValue);
 
             Assert.Equal(expected, built, new ExtendedSampleTypeEqualityComparer(new SampleTypeEqualityComparer()));
+        }
+
+        [Fact]
+        public void UsageForImmutableTypes()
+        {
+            ImmutableBlogPost builtPost = A.BuilderFor<ImmutableBlogPost>()
+                                            .WithTitle("My first blog post")
+                                            .WithAuthor(
+                                                A.BuilderFor<ImmutableAuthor>()
+                                                    .With(name: "Joe Bloggs", startDate: new DateTime(2013, 05, 23))
+                                                    .Build())
+                                            .WithContent("This is a blog post")
+                                            .WithTimestamp(new DateTime(2014, 09, 12, 23, 55, 00))
+                                            .WithTags(new[] {"coding", "csharp"});
+
+            var expectedPost = new ImmutableBlogPost(
+                                    "My first blog post",
+                                    new ImmutableAuthor(
+                                        "Joe Bloggs",
+                                        new DateTime(2013, 05, 23)),
+                                    "This is a blog",
+                                    new DateTime(2014, 09, 12, 23, 55, 00),
+                                    new[] { "coding", "csharp" });
+
+            Assert.Equal(expectedPost, builtPost);
         }
     }
 }
