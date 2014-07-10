@@ -1,12 +1,9 @@
-using System;
-using System.Collections.Generic;
-using System.Data;
-using System.Dynamic;
-using System.Linq;
-using System.Reflection;
-using System.Runtime.Remoting.Messaging;
 using BobTheBuilder.ArgumentStore;
 using BobTheBuilder.Syntax;
+using System;
+using System.Collections.Generic;
+using System.Dynamic;
+using System.Linq;
 
 namespace BobTheBuilder
 {
@@ -20,7 +17,7 @@ namespace BobTheBuilder
     {
         private readonly IParser parser;
         private readonly IArgumentStore argumentStore;
-         
+
         public DynamicBuilder(IParser parser, IArgumentStore argumentStore)
         {
             if (parser == null)
@@ -39,7 +36,7 @@ namespace BobTheBuilder
 
         public T Build()
         {
-            var destinationType = typeof (T);
+            var destinationType = typeof(T);
             EvaluateMissingMembers(destinationType);
 
             var constructorParameters = destinationType.GetConstructors().Single().GetParameters().ToLookup(p => p.Name);
@@ -72,7 +69,7 @@ namespace BobTheBuilder
 
         private static T CreateInstanceOfType(IEnumerable<MemberNameAndValue> constructorArguments)
         {
-            var constructor = typeof (T).GetConstructors().Single();
+            var constructor = typeof(T).GetConstructors().Single();
             return (T)constructor.Invoke(constructorArguments.Select(arg => arg.Value).ToArray());
         }
 
@@ -80,7 +77,7 @@ namespace BobTheBuilder
         {
             foreach (var member in propertyValues)
             {
-                var property = typeof (T).GetProperty(member.Name);
+                var property = typeof(T).GetProperty(member.Name);
                 property.SetValue(instance, member.Value);
             }
         }
