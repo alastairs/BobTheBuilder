@@ -1,5 +1,4 @@
 ﻿using System;
-
 using Xunit;
 
 namespace BobTheBuilder.Tests
@@ -16,8 +15,8 @@ namespace BobTheBuilder.Tests
             };
 
             var built = A.BuilderFor<SampleType>()
-                .WithStringProperty(stringProperty)
-                .Build();
+                            .WithStringProperty(stringProperty)
+                            .Build();
 
             Assert.Equal(expected, built, new SampleTypeEqualityComparer());
         }
@@ -32,7 +31,7 @@ namespace BobTheBuilder.Tests
             };
 
             SampleType built = A.BuilderFor<SampleType>()
-                .WithStringProperty(stringProperty);
+                                    .WithStringProperty(stringProperty);
 
             Assert.Equal(expected, built, new SampleTypeEqualityComparer());
         }
@@ -47,7 +46,7 @@ namespace BobTheBuilder.Tests
             };
 
             SampleType built = A.BuilderFor<SampleType>()
-                .WithComplexProperty(complexProperty);
+                                    .WithComplexProperty(complexProperty);
 
             Assert.Equal(expected, built, new SampleTypeEqualityComparer());
         }
@@ -63,8 +62,9 @@ namespace BobTheBuilder.Tests
                 IntProperty = expectedIntValue
             };
 
-            SampleType built = A.BuilderFor<SampleType>().With(stringProperty: expectedStringValue, 
-                                                               intProperty: expectedIntValue);
+            SampleType built = A.BuilderFor<SampleType>()
+                                    .With(stringProperty: expectedStringValue, 
+                                          intProperty: expectedIntValue);
 
             Assert.Equal(expected, built, new SampleTypeEqualityComparer());
         }
@@ -85,6 +85,38 @@ namespace BobTheBuilder.Tests
                                              .WithIntProperty(expectedIntValue);
 
             Assert.Equal(expected, built, new ExtendedSampleTypeEqualityComparer(new SampleTypeEqualityComparer()));
+        }
+
+        [Fact]
+        public void UsageForImmutableTypes()
+        {
+            const string expectedTitle = "My first blog post";
+            const string expectedAuthorName = "Joe Bloggs";
+            var expectedStartDate = new DateTime(2013, 05, 23);
+            const string expectedContent = "This is a blog post";
+            var expectedTimestamp = new DateTime(2014, 09, 12, 23, 55, 00);
+            var expectedTags = new[] { "coding", "csharp" };
+
+            ImmutableBlogPost builtPost = A.BuilderFor<ImmutableBlogPost>()
+                                            .WithTitle(expectedTitle)
+                                            .WithAuthor(
+                                                A.BuilderFor<ImmutableAuthor>()
+                                                    .With(name: expectedAuthorName, startDate: expectedStartDate)
+                                                    .Build())
+                                            .WithContent(expectedContent)
+                                            .WithTimestamp(expectedTimestamp)
+                                            .WithTags(expectedTags);
+
+            var expectedPost = new ImmutableBlogPost(
+                                    expectedTitle,
+                                    new ImmutableAuthor(
+                                        expectedAuthorName,
+                                        expectedStartDate),
+                                    expectedContent,
+                                    expectedTimestamp,
+                                    expectedTags);
+
+            Assert.Equal(expectedPost, builtPost);
         }
     }
 }
