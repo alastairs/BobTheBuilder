@@ -2,10 +2,10 @@
 <feed xmlns="http://www.w3.org/2005/Atom">
 
   <title><![CDATA[Bob the Builder]]></title>
-  <link href="http://bobthebuilder.github.io/atom.xml" rel="self"/>
-  <link href="http://bobthebuilder.github.io/"/>
-  <updated>2014-08-03T19:47:41+01:00</updated>
-  <id>http://bobthebuilder.github.io/</id>
+  <link href="http://alastairs.github.io/bobthebuilder/atom.xml" rel="self"/>
+  <link href="http://alastairs.github.io/bobthebuilder/"/>
+  <updated>2014-08-03T19:52:58+01:00</updated>
+  <id>http://alastairs.github.io/bobthebuilder/</id>
   <author>
     <name><![CDATA[Alastair Smith]]></name>
     
