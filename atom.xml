@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="utf-8"?>
+<feed xmlns="http://www.w3.org/2005/Atom">
+
+  <title><![CDATA[Bob the Builder]]></title>
+  <link href="http://bobthebuilder.github.io/atom.xml" rel="self"/>
+  <link href="http://bobthebuilder.github.io/"/>
+  <updated>2014-08-03T19:47:41+01:00</updated>
+  <id>http://bobthebuilder.github.io/</id>
+  <author>
+    <name><![CDATA[Alastair Smith]]></name>
+    
+  </author>
+  <generator uri="http://octopress.org/">Octopress</generator>
+
+  
+</feed>
