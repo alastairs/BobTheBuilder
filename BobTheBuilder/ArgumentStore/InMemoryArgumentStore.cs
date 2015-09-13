@@ -27,13 +27,7 @@ namespace BobTheBuilder.ArgumentStore
 
         public IEnumerable<MemberNameAndValue> GetConstructorArguments(ILookup<string, ParameterInfo> arguments)
         {
-            var constructorArguments = GetAllStoredMembers().Where(member => arguments.Select(a => a.Key.ToPascalCase()).Contains(member.Name)).ToList();
-            foreach (var constructorArgument in constructorArguments)
-            {
-                RemoveMemberByName(constructorArgument.Name);
-            }
-
-            return constructorArguments;
+            return new ConstructorArgumentsQuery(this).Execute(arguments);
         }
 
         public IEnumerable<MemberNameAndValue> GetPropertyValues(ILookup<string, PropertyInfo> properties)
