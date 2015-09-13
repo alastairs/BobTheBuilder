@@ -2,6 +2,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Reflection;
 using BobTheBuilder.Extensions;
+using BobTheBuilder.ArgumentStore.Queries;
 
 namespace BobTheBuilder.ArgumentStore
 {
@@ -21,7 +22,7 @@ namespace BobTheBuilder.ArgumentStore
 
         public IEnumerable<MemberNameAndValue> GetMissingArguments(ILookup<string, PropertyInfo> properties)
         {
-            return GetAllStoredMembers().Where(member => !properties.Contains(member.Name));
+            return new MissingArgumentsQuery(this).Execute(properties);
         }
 
         public IEnumerable<MemberNameAndValue> GetConstructorArguments(ILookup<string, ParameterInfo> arguments)
