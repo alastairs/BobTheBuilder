@@ -1,4 +1,6 @@
-﻿using BobTheBuilder.ArgumentStore;
+﻿using BobTheBuilder.Activation;
+using BobTheBuilder.ArgumentStore;
+using BobTheBuilder.ArgumentStore.Queries;
 using BobTheBuilder.Syntax;
 
 namespace BobTheBuilder
@@ -13,7 +15,10 @@ namespace BobTheBuilder
                     new CompositeParser(
                         new NamedArgumentsSyntaxParser(argumentStore),
                         new MethodSyntaxParser(argumentStore)),
-                    argumentStore);
+                    new Activator(
+                        new MissingArgumentsQuery(argumentStore),
+                        new ConstructorArgumentsQuery(argumentStore),
+                        new PropertyValuesQuery(argumentStore)));
         }
     }
 }

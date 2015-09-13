@@ -1,39 +1,34 @@
-using BobTheBuilder.ArgumentStore;
-using BobTheBuilder.ArgumentStore.Queries;
 using BobTheBuilder.Syntax;
 using System;
 using System.Dynamic;
-using Activator=BobTheBuilder.Activation.Activator;
+using Activator = BobTheBuilder.Activation.Activator;
 
 namespace BobTheBuilder
 {
     public class DynamicBuilder<T> : DynamicObject where T : class
     {
+        private readonly Activator activator;
         private readonly IParser parser;
-        private readonly IArgumentStore argumentStore;
-
-        internal DynamicBuilder(IParser parser, IArgumentStore argumentStore)
+        
+        internal DynamicBuilder(IParser parser, Activator activator)
         {
             if (parser == null)
             {
                 throw new ArgumentNullException("parser");
             }
 
-            if (argumentStore == null)
+            if (activator == null)
             {
-                throw new ArgumentNullException("argumentStore");
+                throw new ArgumentNullException("activator");
             }
 
             this.parser = parser;
-            this.argumentStore = argumentStore;
+            this.activator = activator;
         }
 
         public T Build()
         {
-            return new Activator(
-                new MissingArgumentsQuery(argumentStore), 
-                new ConstructorArgumentsQuery(argumentStore), 
-                new PropertyValuesQuery(argumentStore)).Activate<T>();
+            return activator.Activate<T>();
         }
 
         public override bool TryInvokeMember(InvokeMemberBinder binder, object[] args, out object result)
