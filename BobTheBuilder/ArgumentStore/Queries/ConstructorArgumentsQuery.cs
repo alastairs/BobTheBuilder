@@ -21,8 +21,8 @@ namespace BobTheBuilder.ArgumentStore.Queries
 
         public IEnumerable<MemberNameAndValue> Execute(Type destinationType)
         {
-            var parameterNames = destinationType.GetConstructors().Single().GetParameters().ToLookup(p => p.Name);
-            var constructorArguments = argumentStore.GetAllStoredMembers().Where(member => parameterNames.Select(a => a.Key.ToPascalCase()).Contains(member.Name)).ToList();
+            var parameterNames = destinationType.GetConstructors().Single().GetParameters().Select(p => p.Name.ToPascalCase());
+            var constructorArguments = argumentStore.GetAllStoredMembers().Where(member => parameterNames.Contains(member.Name)).ToList();
             foreach (var constructorArgument in constructorArguments)
             {
                 argumentStore.RemoveMemberByName(constructorArgument.Name);
