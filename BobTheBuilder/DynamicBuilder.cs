@@ -35,11 +35,9 @@ namespace BobTheBuilder
             var destinationType = typeof(T);
             new ReportingMissingArgumentsQuery(new MissingArgumentsQuery(argumentStore)).Execute(destinationType);
 
-            var constructorArguments = new ConstructorArgumentsQuery(argumentStore).Execute(destinationType);
-
             var propertyValues = new PropertyValuesQuery(argumentStore).Execute(destinationType);
 
-            var instance = new InstanceCreator().CreateInstanceOf<T>(constructorArguments);
+            var instance = new InstanceCreator(new ConstructorArgumentsQuery(argumentStore)).CreateInstanceOf<T>();
             PopulatePublicSettableProperties(instance, propertyValues);
             return instance;
         }
