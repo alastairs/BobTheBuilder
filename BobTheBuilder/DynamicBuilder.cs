@@ -49,7 +49,7 @@ namespace BobTheBuilder
             return (T)constructor.Invoke(constructorArguments.Select(arg => arg.Value).ToArray());
         }
 
-        private void PopulatePublicSettableProperties(T instance, IEnumerable<MemberNameAndValue> propertyValues)
+        private static void PopulatePublicSettableProperties(T instance, IEnumerable<MemberNameAndValue> propertyValues)
         {
             foreach (var member in propertyValues)
             {
