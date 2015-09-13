@@ -39,6 +39,7 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Activation\Activator.cs" />
     <Compile Include="Activation\InstanceCreator.cs" />
     <Compile Include="Activation\PropertySetter.cs" />
     <Compile Include="ArgumentStore\Queries\ConstructorArgumentsQuery.cs" />

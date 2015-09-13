@@ -1,9 +1,9 @@
-using BobTheBuilder.Activation;
 using BobTheBuilder.ArgumentStore;
 using BobTheBuilder.ArgumentStore.Queries;
 using BobTheBuilder.Syntax;
 using System;
 using System.Dynamic;
+using Activator=BobTheBuilder.Activation.Activator;
 
 namespace BobTheBuilder
 {
@@ -30,11 +30,10 @@ namespace BobTheBuilder
 
         public T Build()
         {
-            new MissingArgumentsReporter(new MissingArgumentsQuery(argumentStore)).Report(typeof(T));
-
-            var instance = new InstanceCreator(new ConstructorArgumentsQuery(argumentStore)).CreateInstanceOf<T>();
-            new PropertySetter(new PropertyValuesQuery(argumentStore)).PopulatePropertiesOn(instance);
-            return instance;
+            return new Activator(
+                new MissingArgumentsQuery(argumentStore), 
+                new ConstructorArgumentsQuery(argumentStore), 
+                new PropertyValuesQuery(argumentStore)).Activate<T>();
         }
 
         public override bool TryInvokeMember(InvokeMemberBinder binder, object[] args, out object result)
