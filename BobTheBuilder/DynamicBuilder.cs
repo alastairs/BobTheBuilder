@@ -34,39 +34,24 @@ namespace BobTheBuilder
             var destinationType = typeof(T);
             EvaluateMissingMembers(destinationType);
 
-            var constructorArguments = GetConstructorArguments(destinationType);
+            var constructorArguments = new ConstructorArgumentsQuery(argumentStore).Execute(destinationType);
 
-            var propertyValues = GetPropertyValues(destinationType);
+            var propertyValues = new PropertyValuesQuery(argumentStore).Execute(destinationType);
 
             var instance = CreateInstanceOfType(constructorArguments);
             PopulatePublicSettableProperties(instance, propertyValues);
             return instance;
         }
 
-        private IEnumerable<MemberNameAndValue> GetConstructorArguments(Type destinationType)
-        {
-            return new ConstructorArgumentsQuery(argumentStore).Execute(destinationType);
-        }
-
-        private IEnumerable<MemberNameAndValue> GetPropertyValues(Type destinationType)
-        {
-            return new PropertyValuesQuery(argumentStore).Execute(destinationType);
-        }
-
         private void EvaluateMissingMembers(Type destinationType)
         {
-            var missingArguments = GetMissingMembers(destinationType);
+            var missingArguments = new MissingArgumentsQuery(argumentStore).Execute(destinationType);
             if (missingArguments.Any())
             {
                 var missingMember = missingArguments.First();
                 throw new MissingMemberException(string.Format(@"The property ""{0}"" does not exist on ""{1}""",
                     missingMember.Name, destinationType.Name));
             }
-        }
-
-        private IEnumerable<MemberNameAndValue> GetMissingMembers(Type destinationType)
-        {
-            return new MissingArgumentsQuery(argumentStore).Execute(destinationType);
         }
 
         private static T CreateInstanceOfType(IEnumerable<MemberNameAndValue> constructorArguments)
