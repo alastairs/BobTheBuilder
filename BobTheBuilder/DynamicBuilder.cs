@@ -32,7 +32,7 @@ namespace BobTheBuilder
         public T Build()
         {
             var destinationType = typeof(T);
-            EvaluateMissingMembers(destinationType);
+            new ReportingMissingArgumentsQuery(new MissingArgumentsQuery(argumentStore)).Execute(destinationType);
 
             var constructorArguments = new ConstructorArgumentsQuery(argumentStore).Execute(destinationType);
 
@@ -41,11 +41,6 @@ namespace BobTheBuilder
             var instance = CreateInstanceOfType(constructorArguments);
             PopulatePublicSettableProperties(instance, propertyValues);
             return instance;
-        }
-
-        private void EvaluateMissingMembers(Type destinationType)
-        {
-            var missingArguments = new ReportingMissingArgumentsQuery(new MissingArgumentsQuery(argumentStore)).Execute(destinationType);
         }
 
         private static T CreateInstanceOfType(IEnumerable<MemberNameAndValue> constructorArguments)
