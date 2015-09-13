@@ -2,7 +2,7 @@
 
 namespace BobTheBuilder.ArgumentStore
 {
-    public interface IArgumentStore
+    internal interface IArgumentStore
     {
         void SetMemberNameAndValue(string name, object value);
         void RemoveMemberByName(string name);

@@ -46,7 +46,6 @@ namespace BobTheBuilder.Tests
         [Theory, AutoData]
         public void CallingAMethodThatDoesNotBeginWithTheWordWithResultsInARuntimeBinderException(string anonymous)
         {
-            var argumentStore = Substitute.For<IArgumentStore>();
             dynamic sut = A.BuilderFor<SampleType>();
 
             var exception = Assert.Throws<RuntimeBinderException>(() => sut.And(anonymous));
