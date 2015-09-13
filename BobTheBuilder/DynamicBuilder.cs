@@ -5,7 +5,6 @@ using BobTheBuilder.Syntax;
 using System;
 using System.Collections.Generic;
 using System.Dynamic;
-using System.Linq;
 
 namespace BobTheBuilder
 {
@@ -44,11 +43,7 @@ namespace BobTheBuilder
 
         private static void PopulatePublicSettableProperties(T instance, IEnumerable<MemberNameAndValue> propertyValues)
         {
-            foreach (var member in propertyValues)
-            {
-                var property = typeof(T).GetProperty(member.Name);
-                property.SetValue(instance, member.Value);
-            }
+            new PropertySetter().PopulatePropertiesOn(instance, propertyValues);
         }
 
         public override bool TryInvokeMember(InvokeMemberBinder binder, object[] args, out object result)
