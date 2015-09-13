@@ -38,7 +38,7 @@ namespace BobTheBuilder.ArgumentStore
 
         public IEnumerable<MemberNameAndValue> GetPropertyValues(ILookup<string, PropertyInfo> properties)
         {
-            return GetAllStoredMembers().Where(member => properties.Contains(member.Name));
+            return new PropertyValuesQuery(this).Execute(properties);
         }
     }
 }
