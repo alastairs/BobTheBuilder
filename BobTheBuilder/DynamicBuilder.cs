@@ -3,7 +3,6 @@ using BobTheBuilder.ArgumentStore;
 using BobTheBuilder.ArgumentStore.Queries;
 using BobTheBuilder.Syntax;
 using System;
-using System.Collections.Generic;
 using System.Dynamic;
 
 namespace BobTheBuilder
@@ -31,8 +30,7 @@ namespace BobTheBuilder
 
         public T Build()
         {
-            var destinationType = typeof(T);
-            new ReportingMissingArgumentsQuery(new MissingArgumentsQuery(argumentStore)).Execute(destinationType);
+            new ReportingMissingArgumentsQuery(new MissingArgumentsQuery(argumentStore)).Execute(typeof(T));
 
             var instance = new InstanceCreator(new ConstructorArgumentsQuery(argumentStore)).CreateInstanceOf<T>();
             new PropertySetter(new PropertyValuesQuery(argumentStore)).PopulatePropertiesOn(instance);
