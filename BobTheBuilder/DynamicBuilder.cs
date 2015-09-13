@@ -7,12 +7,6 @@ using System.Linq;
 
 namespace BobTheBuilder
 {
-    public enum ArgumentLocation
-    {
-        Property,
-        Missing
-    }
-
     public class DynamicBuilder<T> : DynamicObject, IDynamicBuilder<T> where T : class
     {
         private readonly IParser parser;
