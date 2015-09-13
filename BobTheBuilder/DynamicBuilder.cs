@@ -39,14 +39,9 @@ namespace BobTheBuilder
 
             var propertyValues = new PropertyValuesQuery(argumentStore).Execute(destinationType);
 
-            var instance = CreateInstanceOfType(constructorArguments);
+            var instance = new InstanceCreator().CreateInstanceOf<T>(constructorArguments);
             PopulatePublicSettableProperties(instance, propertyValues);
             return instance;
-        }
-
-        private static T CreateInstanceOfType(IEnumerable<MemberNameAndValue> constructorArguments)
-        {
-            return new InstanceCreator().CreateInstanceOf<T>(constructorArguments);
         }
 
         private static void PopulatePublicSettableProperties(T instance, IEnumerable<MemberNameAndValue> propertyValues)
