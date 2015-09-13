@@ -63,7 +63,7 @@ namespace BobTheBuilder.Tests
         public void CallingAMethodThatDoesNotBeginWithTheWordWithResultsInARuntimeBinderException(string anonymous)
         {
             var argumentStore = Substitute.For<IArgumentStore>();
-            dynamic sut = new DynamicBuilder<SampleType>(new MethodSyntaxParser(argumentStore), argumentStore);
+            dynamic sut = A.BuilderFor<SampleType>();
 
             var exception = Assert.Throws<RuntimeBinderException>(() => sut.And(anonymous));
             Assert.True(exception.Message.EndsWith("does not contain a definition for 'And'"));
