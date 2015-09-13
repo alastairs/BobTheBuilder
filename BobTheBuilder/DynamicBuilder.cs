@@ -66,8 +66,7 @@ namespace BobTheBuilder
 
         private IEnumerable<MemberNameAndValue> GetMissingMembers(Type destinationType)
         {
-            var properties = destinationType.GetProperties().ToLookup(p => p.Name);
-            return new MissingArgumentsQuery(argumentStore).Execute(properties);
+            return new MissingArgumentsQuery(argumentStore).Execute(destinationType);
         }
 
         private static T CreateInstanceOfType(IEnumerable<MemberNameAndValue> constructorArguments)

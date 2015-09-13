@@ -1,7 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
-using System.Reflection;
 
 namespace BobTheBuilder.ArgumentStore.Queries
 {
@@ -19,8 +18,9 @@ namespace BobTheBuilder.ArgumentStore.Queries
             this.argumentStore = argumentStore;
         }
 
-        public IEnumerable<MemberNameAndValue> Execute(ILookup<string, PropertyInfo> properties)
+        public IEnumerable<MemberNameAndValue> Execute(Type destinationType)
         {
+            var properties = destinationType.GetProperties().Select(p => p.Name);
             return argumentStore.GetAllStoredMembers().Where(member => !properties.Contains(member.Name));
         }
     }
