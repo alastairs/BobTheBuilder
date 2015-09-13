@@ -49,8 +49,7 @@ namespace BobTheBuilder
             if (missingArguments.Any())
             {
                 var missingMember = missingArguments.First();
-                throw new MissingMemberException(string.Format(@"The property ""{0}"" does not exist on ""{1}""",
-                    missingMember.Name, destinationType.Name));
+                throw new MissingMemberException($"The property \"{missingMember.Name}\" does not exist on \"{destinationType.Name}\"");
             }
         }
 
