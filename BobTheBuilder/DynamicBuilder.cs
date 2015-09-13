@@ -30,7 +30,7 @@ namespace BobTheBuilder
 
         public T Build()
         {
-            new ReportingMissingArgumentsQuery(new MissingArgumentsQuery(argumentStore)).Execute(typeof(T));
+            new MissingArgumentsReporter(new MissingArgumentsQuery(argumentStore)).Report(typeof(T));
 
             var instance = new InstanceCreator(new ConstructorArgumentsQuery(argumentStore)).CreateInstanceOf<T>();
             new PropertySetter(new PropertyValuesQuery(argumentStore)).PopulatePropertiesOn(instance);

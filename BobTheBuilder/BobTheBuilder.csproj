@@ -45,7 +45,7 @@
     <Compile Include="ArgumentStore\Queries\IArgumentStoreQuery.cs" />
     <Compile Include="ArgumentStore\Queries\MissingArgumentsQuery.cs" />
     <Compile Include="ArgumentStore\Queries\PropertyValuesQuery.cs" />
-    <Compile Include="ArgumentStore\Queries\ReportingMissingArgumentsQuery.cs" />
+    <Compile Include="Activation\MissingArgumentsReporter.cs" />
     <Compile Include="Extensions\NameExtensions.cs" />
     <Compile Include="Factory.cs" />
     <Compile Include="Syntax\CompositeParser.cs" />

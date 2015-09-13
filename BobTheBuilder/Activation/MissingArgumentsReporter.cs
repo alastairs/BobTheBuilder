@@ -1,14 +1,14 @@
-﻿using System;
-using System.Collections.Generic;
+﻿using BobTheBuilder.ArgumentStore.Queries;
+using System;
 using System.Linq;
 
-namespace BobTheBuilder.ArgumentStore.Queries
+namespace BobTheBuilder.Activation
 {
-    internal class ReportingMissingArgumentsQuery : IArgumentStoreQuery
+    internal class MissingArgumentsReporter
     {
         private readonly IArgumentStoreQuery wrappedQuery;
 
-        public ReportingMissingArgumentsQuery(IArgumentStoreQuery wrappedQuery)
+        public MissingArgumentsReporter(IArgumentStoreQuery wrappedQuery)
         {
             if (wrappedQuery == null)
             {
@@ -18,7 +18,7 @@ namespace BobTheBuilder.ArgumentStore.Queries
             this.wrappedQuery = wrappedQuery;
         }
 
-        public IEnumerable<MemberNameAndValue> Execute(Type destinationType)
+        public void Report(Type destinationType)
         {
             var missingArguments = wrappedQuery.Execute(destinationType);
             if (missingArguments.Any())
@@ -26,8 +26,6 @@ namespace BobTheBuilder.ArgumentStore.Queries
                 var missingMember = missingArguments.First();
                 throw new MissingMemberException($"The property \"{missingMember.Name}\" does not exist on \"{destinationType.Name}\"");
             }
-
-            return missingArguments;
         }
     }
 }
