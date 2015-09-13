@@ -37,12 +37,17 @@ namespace BobTheBuilder
             var constructorParameters = destinationType.GetConstructors().Single().GetParameters().ToLookup(p => p.Name);
             var constructorArguments = new ConstructorArgumentsQuery(argumentStore).Execute(constructorParameters);
 
-            var properties = destinationType.GetProperties().ToLookup(p => p.Name);
-            var propertyValues = new PropertyValuesQuery(argumentStore).Execute(properties);
+            var propertyValues = GetPropertyValues(destinationType);
 
             var instance = CreateInstanceOfType(constructorArguments);
             PopulatePublicSettableProperties(instance, propertyValues);
             return instance;
+        }
+
+        private IEnumerable<MemberNameAndValue> GetPropertyValues(Type destinationType)
+        {
+            var properties = destinationType.GetProperties().ToLookup(p => p.Name);
+            return new PropertyValuesQuery(argumentStore).Execute(properties);
         }
 
         private void EvaluateMissingMembers(Type destinationType)
