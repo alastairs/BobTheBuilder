@@ -45,8 +45,7 @@ namespace BobTheBuilder
 
         private IEnumerable<MemberNameAndValue> GetConstructorArguments(Type destinationType)
         {
-            var constructorParameters = destinationType.GetConstructors().Single().GetParameters().ToLookup(p => p.Name);
-            return new ConstructorArgumentsQuery(argumentStore).Execute(constructorParameters);
+            return new ConstructorArgumentsQuery(argumentStore).Execute(destinationType);
         }
 
         private IEnumerable<MemberNameAndValue> GetPropertyValues(Type destinationType)

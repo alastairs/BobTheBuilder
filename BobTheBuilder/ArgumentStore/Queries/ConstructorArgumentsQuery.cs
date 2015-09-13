@@ -2,7 +2,6 @@
 using System;
 using System.Collections.Generic;
 using System.Linq;
-using System.Reflection;
 
 namespace BobTheBuilder.ArgumentStore.Queries
 {
@@ -20,8 +19,9 @@ namespace BobTheBuilder.ArgumentStore.Queries
             this.argumentStore = argumentStore;
         }
 
-        public IEnumerable<MemberNameAndValue> Execute(ILookup<string, ParameterInfo> arguments)
+        public IEnumerable<MemberNameAndValue> Execute(Type destinationType)
         {
+            var arguments = destinationType.GetConstructors().Single().GetParameters().ToLookup(p => p.Name);
             var constructorArguments = argumentStore.GetAllStoredMembers().Where(member => arguments.Select(a => a.Key.ToPascalCase()).Contains(member.Name)).ToList();
             foreach (var constructorArgument in constructorArguments)
             {
