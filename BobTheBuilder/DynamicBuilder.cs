@@ -45,12 +45,7 @@ namespace BobTheBuilder
 
         private void EvaluateMissingMembers(Type destinationType)
         {
-            var missingArguments = new MissingArgumentsQuery(argumentStore).Execute(destinationType);
-            if (missingArguments.Any())
-            {
-                var missingMember = missingArguments.First();
-                throw new MissingMemberException($"The property \"{missingMember.Name}\" does not exist on \"{destinationType.Name}\"");
-            }
+            var missingArguments = new ReportingMissingArgumentsQuery(new MissingArgumentsQuery(argumentStore)).Execute(destinationType);
         }
 
         private static T CreateInstanceOfType(IEnumerable<MemberNameAndValue> constructorArguments)
