@@ -12,7 +12,7 @@ namespace BobTheBuilder
         private readonly IParser parser;
         private readonly IArgumentStore argumentStore;
 
-        public DynamicBuilder(IParser parser, IArgumentStore argumentStore)
+        internal DynamicBuilder(IParser parser, IArgumentStore argumentStore)
         {
             if (parser == null)
             {
