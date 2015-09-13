@@ -1,4 +1,5 @@
 using BobTheBuilder.ArgumentStore;
+using BobTheBuilder.ArgumentStore.Queries;
 using BobTheBuilder.Syntax;
 using System;
 using System.Collections.Generic;
@@ -34,10 +35,10 @@ namespace BobTheBuilder
             EvaluateMissingMembers(destinationType);
 
             var constructorParameters = destinationType.GetConstructors().Single().GetParameters().ToLookup(p => p.Name);
-            var constructorArguments = argumentStore.GetConstructorArguments(constructorParameters);
+            var constructorArguments = new ConstructorArgumentsQuery(argumentStore).Execute(constructorParameters);
 
             var properties = destinationType.GetProperties().ToLookup(p => p.Name);
-            var propertyValues = argumentStore.GetPropertyValues(properties);
+            var propertyValues = new PropertyValuesQuery(argumentStore).Execute(properties);
 
             var instance = CreateInstanceOfType(constructorArguments);
             PopulatePublicSettableProperties(instance, propertyValues);
@@ -58,7 +59,7 @@ namespace BobTheBuilder
         private IEnumerable<MemberNameAndValue> GetMissingMembers(Type destinationType)
         {
             var properties = destinationType.GetProperties().ToLookup(p => p.Name);
-            return argumentStore.GetMissingArguments(properties);
+            return new MissingArgumentsQuery(argumentStore).Execute(properties);
         }
 
         private static T CreateInstanceOfType(IEnumerable<MemberNameAndValue> constructorArguments)
