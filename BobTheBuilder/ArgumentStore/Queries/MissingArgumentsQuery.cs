@@ -4,7 +4,7 @@ using System.Linq;
 
 namespace BobTheBuilder.ArgumentStore.Queries
 {
-    internal class MissingArgumentsQuery
+    internal class MissingArgumentsQuery : IArgumentStoreQuery
     {
         private readonly IArgumentStore argumentStore;
 

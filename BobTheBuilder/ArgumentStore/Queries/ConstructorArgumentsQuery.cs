@@ -5,7 +5,7 @@ using System.Linq;
 
 namespace BobTheBuilder.ArgumentStore.Queries
 {
-    internal class ConstructorArgumentsQuery
+    internal class ConstructorArgumentsQuery : IArgumentStoreQuery
     {
         private readonly IArgumentStore argumentStore;
 

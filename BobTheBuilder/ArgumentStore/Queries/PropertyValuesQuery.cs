@@ -4,7 +4,7 @@ using System.Linq;
 
 namespace BobTheBuilder.ArgumentStore.Queries
 {
-    internal class PropertyValuesQuery
+    internal class PropertyValuesQuery : IArgumentStoreQuery
     {
         private readonly IArgumentStore argumentStore;
 
