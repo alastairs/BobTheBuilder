@@ -1,8 +1,6 @@
 using System.Collections.Generic;
 using System.Linq;
-using System.Reflection;
 using BobTheBuilder.Extensions;
-using BobTheBuilder.ArgumentStore.Queries;
 
 namespace BobTheBuilder.ArgumentStore
 {
@@ -18,21 +16,6 @@ namespace BobTheBuilder.ArgumentStore
         public IEnumerable<MemberNameAndValue> GetAllStoredMembers()
         {
             return _members.Select(m => new MemberNameAndValue(m.Key.ToPascalCase(), m.Value));
-        }
-
-        public IEnumerable<MemberNameAndValue> GetMissingArguments(ILookup<string, PropertyInfo> properties)
-        {
-            return new MissingArgumentsQuery(this).Execute(properties);
-        }
-
-        public IEnumerable<MemberNameAndValue> GetConstructorArguments(ILookup<string, ParameterInfo> arguments)
-        {
-            return new ConstructorArgumentsQuery(this).Execute(arguments);
-        }
-
-        public IEnumerable<MemberNameAndValue> GetPropertyValues(ILookup<string, PropertyInfo> properties)
-        {
-            return new PropertyValuesQuery(this).Execute(properties);
         }
 
         public void RemoveMemberByName(string name)
