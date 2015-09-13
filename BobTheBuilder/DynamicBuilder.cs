@@ -8,7 +8,7 @@ using System.Linq;
 
 namespace BobTheBuilder
 {
-    public class DynamicBuilder<T> : DynamicObject, IDynamicBuilder<T> where T : class
+    public class DynamicBuilder<T> : DynamicObject where T : class
     {
         private readonly IParser parser;
         private readonly IArgumentStore argumentStore;

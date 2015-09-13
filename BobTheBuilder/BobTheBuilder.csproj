@@ -48,7 +48,6 @@
     <Compile Include="Syntax\MethodSyntaxParser.cs" />
     <Compile Include="DynamicBuilder.cs" />
     <Compile Include="ArgumentStore\IArgumentStore.cs" />
-    <Compile Include="IDynamicBuilder.cs" />
     <Compile Include="ArgumentStore\InMemoryArgumentStore.cs" />
     <Compile Include="ArgumentStore\MemberNameAndValue.cs" />
     <Compile Include="Syntax\IParser.cs" />
