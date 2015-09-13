@@ -5,9 +5,9 @@ namespace BobTheBuilder.Activation
 {
     internal class PropertySetter
     {
-        private PropertyValuesQuery propertyValuesQuery;
+        private IArgumentStoreQuery propertyValuesQuery;
 
-        public PropertySetter(PropertyValuesQuery propertyValuesQuery)
+        public PropertySetter(IArgumentStoreQuery propertyValuesQuery)
         {
             if (propertyValuesQuery == null)
             {
