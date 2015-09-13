@@ -1,3 +1,4 @@
+using BobTheBuilder.Activation;
 using BobTheBuilder.ArgumentStore;
 using BobTheBuilder.ArgumentStore.Queries;
 using BobTheBuilder.Syntax;
@@ -45,8 +46,7 @@ namespace BobTheBuilder
 
         private static T CreateInstanceOfType(IEnumerable<MemberNameAndValue> constructorArguments)
         {
-            var constructor = typeof(T).GetConstructors().Single();
-            return (T)constructor.Invoke(constructorArguments.Select(arg => arg.Value).ToArray());
+            return new InstanceCreator().CreateInstanceOf<T>(constructorArguments);
         }
 
         private static void PopulatePublicSettableProperties(T instance, IEnumerable<MemberNameAndValue> propertyValues)

@@ -39,6 +39,7 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Activation\InstanceCreator.cs" />
     <Compile Include="ArgumentStore\Queries\ConstructorArgumentsQuery.cs" />
     <Compile Include="ArgumentStore\Queries\IArgumentStoreQuery.cs" />
     <Compile Include="ArgumentStore\Queries\MissingArgumentsQuery.cs" />
