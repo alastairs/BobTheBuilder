@@ -50,8 +50,7 @@ namespace BobTheBuilder
 
         private IEnumerable<MemberNameAndValue> GetPropertyValues(Type destinationType)
         {
-            var properties = destinationType.GetProperties().ToLookup(p => p.Name);
-            return new PropertyValuesQuery(argumentStore).Execute(properties);
+            return new PropertyValuesQuery(argumentStore).Execute(destinationType);
         }
 
         private void EvaluateMissingMembers(Type destinationType)
