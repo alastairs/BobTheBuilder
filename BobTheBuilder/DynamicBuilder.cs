@@ -34,16 +34,9 @@ namespace BobTheBuilder
             var destinationType = typeof(T);
             new ReportingMissingArgumentsQuery(new MissingArgumentsQuery(argumentStore)).Execute(destinationType);
 
-            var propertyValues = new PropertyValuesQuery(argumentStore).Execute(destinationType);
-
             var instance = new InstanceCreator(new ConstructorArgumentsQuery(argumentStore)).CreateInstanceOf<T>();
-            PopulatePublicSettableProperties(instance, propertyValues);
+            new PropertySetter(new PropertyValuesQuery(argumentStore)).PopulatePropertiesOn(instance);
             return instance;
-        }
-
-        private static void PopulatePublicSettableProperties(T instance, IEnumerable<MemberNameAndValue> propertyValues)
-        {
-            new PropertySetter().PopulatePropertiesOn(instance, propertyValues);
         }
 
         public override bool TryInvokeMember(InvokeMemberBinder binder, object[] args, out object result)
