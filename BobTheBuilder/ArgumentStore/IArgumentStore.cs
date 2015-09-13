@@ -7,6 +7,7 @@ namespace BobTheBuilder.ArgumentStore
     public interface IArgumentStore
     {
         void SetMemberNameAndValue(string name, object value);
+        void RemoveMemberByName(string name);
 
         IEnumerable<MemberNameAndValue> GetAllStoredMembers();
         IEnumerable<MemberNameAndValue> GetMissingArguments(ILookup<string, PropertyInfo> properties);

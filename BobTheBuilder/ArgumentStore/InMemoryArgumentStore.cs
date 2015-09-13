@@ -30,7 +30,7 @@ namespace BobTheBuilder.ArgumentStore
             var constructorArguments = GetAllStoredMembers().Where(member => arguments.Select(a => a.Key.ToPascalCase()).Contains(member.Name)).ToList();
             foreach (var constructorArgument in constructorArguments)
             {
-                _members.Remove(constructorArgument.Name);
+                RemoveMemberByName(constructorArgument.Name);
             }
 
             return constructorArguments;
@@ -39,6 +39,11 @@ namespace BobTheBuilder.ArgumentStore
         public IEnumerable<MemberNameAndValue> GetPropertyValues(ILookup<string, PropertyInfo> properties)
         {
             return new PropertyValuesQuery(this).Execute(properties);
+        }
+
+        public void RemoveMemberByName(string name)
+        {
+            _members.Remove(name);
         }
     }
 }
