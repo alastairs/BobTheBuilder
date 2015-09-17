@@ -1,5 +1,4 @@
-﻿using System;
-using System.Linq;
+﻿using System.Linq;
 
 namespace BobTheBuilder.Extensions
 {
@@ -7,7 +6,7 @@ namespace BobTheBuilder.Extensions
     {
         public static string ToPascalCase(this string camelCasedName)
         {
-            return Char.ToUpper(camelCasedName.First()) + camelCasedName.Substring(1);
+            return char.ToUpper(camelCasedName.First()) + camelCasedName.Substring(1);
         }
     }
 }

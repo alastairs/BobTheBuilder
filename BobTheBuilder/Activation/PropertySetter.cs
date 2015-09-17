@@ -1,19 +1,14 @@
 ﻿using BobTheBuilder.ArgumentStore.Queries;
-using System;
+using JetBrains.Annotations;
 
 namespace BobTheBuilder.Activation
 {
     internal class PropertySetter
     {
-        private IArgumentStoreQuery propertyValuesQuery;
+        private readonly IArgumentStoreQuery propertyValuesQuery;
 
-        public PropertySetter(IArgumentStoreQuery propertyValuesQuery)
+        public PropertySetter([NotNull]IArgumentStoreQuery propertyValuesQuery)
         {
-            if (propertyValuesQuery == null)
-            {
-                throw new ArgumentNullException("propertyValuesQuery");
-            }
-
             this.propertyValuesQuery = propertyValuesQuery;
         }
 

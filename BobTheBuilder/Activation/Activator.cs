@@ -1,31 +1,18 @@
 ﻿using BobTheBuilder.ArgumentStore.Queries;
-using System;
+using JetBrains.Annotations;
 
 namespace BobTheBuilder.Activation
 {
     internal class Activator
     {
-        private IArgumentStoreQuery constructorArgumentsQuery;
-        private IArgumentStoreQuery missingArgumentsQuery;
-        private IArgumentStoreQuery propertyValuesQuery;
+        private readonly IArgumentStoreQuery constructorArgumentsQuery;
+        private readonly IArgumentStoreQuery missingArgumentsQuery;
+        private readonly IArgumentStoreQuery propertyValuesQuery;
 
-        public Activator(IArgumentStoreQuery missingArgumentsQuery, IArgumentStoreQuery constructorArgumentsQuery, IArgumentStoreQuery propertyValuesQuery)
+        public Activator([NotNull]IArgumentStoreQuery missingArgumentsQuery, 
+                         [NotNull]IArgumentStoreQuery constructorArgumentsQuery, 
+                         [NotNull]IArgumentStoreQuery propertyValuesQuery)
         {
-            if (missingArgumentsQuery == null)
-            {
-                throw new ArgumentNullException("missingArgumentsQuery");
-            }
-
-            if (constructorArgumentsQuery == null)
-            {
-                throw new ArgumentNullException("constructorArgumentsQuery");
-            }
-
-            if (propertyValuesQuery == null)
-            {
-                throw new ArgumentNullException("propertyValuesQuery");
-            }
-
             this.missingArgumentsQuery = missingArgumentsQuery;
             this.constructorArgumentsQuery = constructorArgumentsQuery;
             this.propertyValuesQuery = propertyValuesQuery;

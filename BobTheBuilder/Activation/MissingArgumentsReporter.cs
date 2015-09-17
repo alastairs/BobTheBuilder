@@ -1,6 +1,7 @@
 ﻿using BobTheBuilder.ArgumentStore.Queries;
 using System;
 using System.Linq;
+using JetBrains.Annotations;
 
 namespace BobTheBuilder.Activation
 {
@@ -8,13 +9,8 @@ namespace BobTheBuilder.Activation
     {
         private readonly IArgumentStoreQuery wrappedQuery;
 
-        public MissingArgumentsReporter(IArgumentStoreQuery wrappedQuery)
+        public MissingArgumentsReporter([NotNull]IArgumentStoreQuery wrappedQuery)
         {
-            if (wrappedQuery == null)
-            {
-                throw new ArgumentNullException("wrappedQuery");
-            }
-
             this.wrappedQuery = wrappedQuery;
         }
 

@@ -1,7 +1,6 @@
-using System;
 using System.Dynamic;
-
 using BobTheBuilder.ArgumentStore;
+using JetBrains.Annotations;
 
 namespace BobTheBuilder.Syntax
 {
@@ -9,13 +8,8 @@ namespace BobTheBuilder.Syntax
     {
         private readonly IArgumentStore argumentStore;
 
-        public MethodSyntaxParser(IArgumentStore argumentStore)
+        public MethodSyntaxParser([NotNull]IArgumentStore argumentStore)
         {
-            if (argumentStore == null)
-            {
-                throw new ArgumentNullException("argumentStore");
-            }
-
             this.argumentStore = argumentStore;
         }
 

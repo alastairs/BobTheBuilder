@@ -1,6 +1,6 @@
 using BobTheBuilder.Syntax;
-using System;
 using System.Dynamic;
+using JetBrains.Annotations;
 using Activator = BobTheBuilder.Activation.Activator;
 
 namespace BobTheBuilder
@@ -10,18 +10,8 @@ namespace BobTheBuilder
         private readonly Activator activator;
         private readonly IParser parser;
         
-        internal DynamicBuilder(IParser parser, Activator activator)
+        internal DynamicBuilder([NotNull]IParser parser, [NotNull]Activator activator)
         {
-            if (parser == null)
-            {
-                throw new ArgumentNullException("parser");
-            }
-
-            if (activator == null)
-            {
-                throw new ArgumentNullException("activator");
-            }
-
             this.parser = parser;
             this.activator = activator;
         }

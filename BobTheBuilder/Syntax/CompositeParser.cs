@@ -1,21 +1,16 @@
-﻿using System;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using System.Dynamic;
 using System.Linq;
+using JetBrains.Annotations;
 
 namespace BobTheBuilder.Syntax
 {
-    class CompositeParser : IParser
+    internal class CompositeParser : IParser
     {
         private readonly IEnumerable<IParser> wrappedParsers;
 
-        public CompositeParser(params IParser[] wrappedParsers)
+        public CompositeParser([NotNull]params IParser[] wrappedParsers)
         {
-            if (wrappedParsers == null)
-            {
-                throw new ArgumentNullException("wrappedParsers");
-            }
-
             this.wrappedParsers = wrappedParsers;
         }
 

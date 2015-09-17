@@ -2,6 +2,7 @@
 using System;
 using System.Collections.Generic;
 using System.Linq;
+using JetBrains.Annotations;
 
 namespace BobTheBuilder.ArgumentStore.Queries
 {
@@ -9,13 +10,8 @@ namespace BobTheBuilder.ArgumentStore.Queries
     {
         private readonly IArgumentStore argumentStore;
 
-        public ConstructorArgumentsQuery(IArgumentStore argumentStore)
+        public ConstructorArgumentsQuery([NotNull]IArgumentStore argumentStore)
         {
-            if (argumentStore == null)
-            {
-                throw new ArgumentNullException("argumentStore");
-            }
-
             this.argumentStore = argumentStore;
         }
 

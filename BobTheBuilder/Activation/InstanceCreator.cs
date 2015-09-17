@@ -1,20 +1,15 @@
 ﻿using System.Linq;
 using BobTheBuilder.ArgumentStore.Queries;
-using System;
+using JetBrains.Annotations;
 
 namespace BobTheBuilder.Activation
 {
     internal class InstanceCreator
     {
-        private IArgumentStoreQuery constructorArgumentsQuery;
+        private readonly IArgumentStoreQuery constructorArgumentsQuery;
 
-        public InstanceCreator(IArgumentStoreQuery constructorArgumentsQuery)
+        public InstanceCreator([NotNull]IArgumentStoreQuery constructorArgumentsQuery)
         {
-            if (constructorArgumentsQuery == null)
-            {
-                throw new ArgumentNullException("constructorArgumentsQuery");
-            }
-
             this.constructorArgumentsQuery = constructorArgumentsQuery;
         }
 

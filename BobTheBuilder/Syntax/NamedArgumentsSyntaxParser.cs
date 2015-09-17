@@ -3,6 +3,7 @@ using System.Dynamic;
 using System.Linq;
 
 using BobTheBuilder.ArgumentStore;
+using JetBrains.Annotations;
 
 namespace BobTheBuilder.Syntax
 {
@@ -10,13 +11,8 @@ namespace BobTheBuilder.Syntax
     {
         private readonly IArgumentStore argumentStore;
 
-        internal NamedArgumentsSyntaxParser(IArgumentStore argumentStore)
+        internal NamedArgumentsSyntaxParser([NotNull]IArgumentStore argumentStore)
         {
-            if (argumentStore == null)
-            {
-                throw new ArgumentNullException("argumentStore");
-            }
-
             this.argumentStore = argumentStore;
         }
 
