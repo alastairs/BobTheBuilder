@@ -18,7 +18,7 @@ namespace BobTheBuilder.Activation
             var instanceType = typeof(T);
             var constructor = instanceType.GetConstructors().Single();
             var constructorArguments = constructorArgumentsQuery.Execute(instanceType);
-            return (T)constructor.Invoke(constructorArguments.Select(arg => arg.Value).ToArray());
+            return constructor.Invoke(constructorArguments.Select(arg => arg.Value).ToArray()) as T;
         }
     }
 }
