@@ -21,7 +21,7 @@ namespace BobTheBuilder.ArgumentStore.Queries
             var constructorArguments = argumentStore.GetAllStoredMembers().Where(member => parameterNames.Contains(member.Name)).ToList();
             foreach (var constructorArgument in constructorArguments)
             {
-                argumentStore.RemoveMemberByName(constructorArgument.Name);
+                argumentStore.RemoveMemberBy(constructorArgument.Name);
             }
 
             return constructorArguments;

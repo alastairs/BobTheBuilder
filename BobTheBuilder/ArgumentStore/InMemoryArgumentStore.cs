@@ -19,7 +19,7 @@ namespace BobTheBuilder.ArgumentStore
             return _members.Select(m => new MemberNameAndValue(m.Key.ToPascalCase(), m.Value));
         }
 
-        public void RemoveMemberByName(string name)
+        public void RemoveMemberBy(string name)
         {
             _members.Remove(name);
         }
