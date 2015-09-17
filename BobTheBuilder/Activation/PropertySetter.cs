@@ -17,7 +17,7 @@ namespace BobTheBuilder.Activation
             this.propertyValuesQuery = propertyValuesQuery;
         }
 
-        public void PopulatePropertiesOn<T>(T instance) where T: class
+        public T PopulatePropertiesOn<T>(T instance) where T: class
         {
             var destinationType = typeof(T);
             var propertyValues = propertyValuesQuery.Execute(destinationType);
@@ -27,6 +27,8 @@ namespace BobTheBuilder.Activation
                 var property = destinationType.GetProperty(member.Name);
                 property.SetValue(instance, member.Value);
             }
+
+            return instance;
         }
     }
 }

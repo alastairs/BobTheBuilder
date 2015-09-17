@@ -35,9 +35,7 @@ namespace BobTheBuilder.Activation
         {
             new MissingArgumentsReporter(missingArgumentsQuery).Report(typeof(T));
             var instance = new InstanceCreator(constructorArgumentsQuery).CreateInstanceOf<T>();
-            new PropertySetter(propertyValuesQuery).PopulatePropertiesOn(instance);
-
-            return instance;
+            return new PropertySetter(propertyValuesQuery).PopulatePropertiesOn(instance);
         }
     }
 }
