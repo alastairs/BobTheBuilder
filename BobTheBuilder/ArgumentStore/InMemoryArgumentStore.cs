@@ -9,9 +9,9 @@ namespace BobTheBuilder.ArgumentStore
     {
         private readonly IDictionary<string, object> _members = new Dictionary<string, object>();
 
-        public void SetMemberNameAndValue([NotNull]string name, [NotNull]object value)
+        public void Set([NotNull]MemberNameAndValue member)
         {
-            _members[name] = value;
+            _members[member.Name] = member.Value;
         }
 
         public IEnumerable<MemberNameAndValue> GetAllStoredMembers()

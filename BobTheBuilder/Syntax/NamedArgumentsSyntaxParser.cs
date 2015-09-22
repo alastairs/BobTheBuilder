@@ -42,7 +42,7 @@ namespace BobTheBuilder.Syntax
             var argumentIndex = 0;
             foreach (var argumentName in callInfo.ArgumentNames.Select(ToCamelCase))
             {
-                argumentStore.SetMemberNameAndValue(argumentName, args[argumentIndex++]);
+                argumentStore.Set(new MemberNameAndValue(argumentName, args[argumentIndex++]));
             }
         }
 

@@ -4,7 +4,7 @@ namespace BobTheBuilder.ArgumentStore
 {
     internal interface IArgumentStore
     {
-        void SetMemberNameAndValue(string name, object value);
+        void Set(MemberNameAndValue member);
         void RemoveMemberBy(string name);
 
         IEnumerable<MemberNameAndValue> GetAllStoredMembers();

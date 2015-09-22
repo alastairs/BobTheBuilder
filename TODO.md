@@ -1,11 +1,11 @@
 Remaining items from Corey Haines' code review:
 
-https://softwarecraftsmanship.slack.com/archives/code-review/p1442490996000286
-> Oh, there is a MemberNameAndValue type, this piques my interest. If this is true, then why are the arguments here: https://github.com/alastairs/BobTheBuilder/compare/refactor#diff-89fedd88d3fd99c3f33f0985091d9e47R7
-> string/object
-> ```void SetMemberNameAndValue(string name, object value);```
-> and not
-> ```void Set(MemberNameAndValue newValues);```
+~~https://softwarecraftsmanship.slack.com/archives/code-review/p1442490996000286~~
+> ~~Oh, there is a MemberNameAndValue type, this piques my interest. If this is true, then why are the arguments here: https://github.com/alastairs/BobTheBuilder/compare/refactor#diff-89fedd88d3fd99c3f33f0985091d9e47R7~~
+> ~~string/object~~
+> ~~```void SetMemberNameAndValue(string name, object value);```~~
+> ~~and not~~
+> ~~```void Set(MemberNameAndValue newValues);```~~
 
 https://softwarecraftsmanship.slack.com/archives/code-review/p1442491272000292
 > Ah, here: https://github.com/alastairs/BobTheBuilder/compare/refactor#diff-b52b567330ab0d5f05f260078ab2fbbfR26

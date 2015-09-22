@@ -21,7 +21,7 @@ namespace BobTheBuilder.Syntax
                 return false;
             }
 
-            argumentStore.SetMemberNameAndValue(memberName.Replace("With", ""), args[0]);
+            argumentStore.Set(new MemberNameAndValue(memberName.Replace("With", ""), args[0]));
             return true;
         }
     }
