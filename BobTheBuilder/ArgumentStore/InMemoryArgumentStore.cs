@@ -19,7 +19,7 @@ namespace BobTheBuilder.ArgumentStore
             var members = GetAllStoredMembers().Where(member => names.Contains(member.Name)).ToList();
             foreach (var member in members)
             {
-                RemoveMemberBy(member.Name);
+                _members.Remove(member.Name);
             }
 
             return members;
@@ -28,11 +28,6 @@ namespace BobTheBuilder.ArgumentStore
         public IEnumerable<MemberNameAndValue> GetAllStoredMembers()
         {
             return _members.Select(m => new MemberNameAndValue(m.Key.ToPascalCase(), m.Value));
-        }
-
-        public void RemoveMemberBy(string name)
-        {
-            _members.Remove(name);
         }
     }
 }
