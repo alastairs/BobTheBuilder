@@ -7,12 +7,12 @@ Remaining items from Corey Haines' code review:
 > ~~and not~~
 > ~~```void Set(MemberNameAndValue newValues);```~~
 
-https://softwarecraftsmanship.slack.com/archives/code-review/p1442491272000292
-> Ah, here: https://github.com/alastairs/BobTheBuilder/compare/refactor#diff-b52b567330ab0d5f05f260078ab2fbbfR26
-> I think I see this. The looping and removal seems like it should be in ArgumentStore, something like
-> ```Remove(IEnumberable names)```
-> Then, this method would simplify dramatically, as you would just determine the list and pass it to the argument store.
-> Also, you could probably move the conversion call `ToList` to the return statement, depending on what `Remove` accepted
+~~https://softwarecraftsmanship.slack.com/archives/code-review/p1442491272000292~~
+> ~~Ah, here: https://github.com/alastairs/BobTheBuilder/compare/refactor#diff-b52b567330ab0d5f05f260078ab2fbbfR26~~
+> ~~I think I see this. The looping and removal seems like it should be in ArgumentStore, something like~~
+> ~~```Remove(IEnumberable names)```~~
+> ~~Then, this method would simplify dramatically, as you would just determine the list and pass it to the argument store.~~
+> ~~Also, you could probably move the conversion call `ToList` to the return statement, depending on what `Remove` accepted~~
 
 https://softwarecraftsmanship.slack.com/archives/code-review/p1442490996000286
 > Mostly I look at this method: https://github.com/alastairs/BobTheBuilder/compare/refactor#diff-b52b567330ab0d5f05f260078ab2fbbfR22
