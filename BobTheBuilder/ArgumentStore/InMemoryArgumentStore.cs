@@ -14,6 +14,11 @@ namespace BobTheBuilder.ArgumentStore
             _members[member.Name] = member.Value;
         }
 
+        public IEnumerable<MemberNameAndValue> Remove(IEnumerable<string> names)
+        {
+            throw new System.NotImplementedException();
+        }
+
         public IEnumerable<MemberNameAndValue> GetAllStoredMembers()
         {
             return _members.Select(m => new MemberNameAndValue(m.Key.ToPascalCase(), m.Value));

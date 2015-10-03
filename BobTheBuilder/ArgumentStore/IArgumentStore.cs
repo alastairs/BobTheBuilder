@@ -6,6 +6,7 @@ namespace BobTheBuilder.ArgumentStore
     {
         void Set(MemberNameAndValue member);
         void RemoveMemberBy(string name);
+        IEnumerable<MemberNameAndValue> Remove(IEnumerable<string> names);
 
         IEnumerable<MemberNameAndValue> GetAllStoredMembers();
     }
