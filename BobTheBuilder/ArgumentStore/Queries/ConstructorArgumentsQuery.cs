@@ -17,7 +17,8 @@ namespace BobTheBuilder.ArgumentStore.Queries
 
         public IEnumerable<MemberNameAndValue> Execute(Type destinationType)
         {
-            var parameterNames = destinationType.GetConstructors().Single().GetParameters().Select(p => p.Name.ToPascalCase());
+            var singleConstructor = destinationType.GetConstructors().Single();
+            var parameterNames = singleConstructor.GetParameters().Select(p => p.Name.ToPascalCase());
             return argumentStore.Remove(parameterNames);
         }
     }
