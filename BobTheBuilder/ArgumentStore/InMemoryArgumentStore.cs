@@ -16,7 +16,13 @@ namespace BobTheBuilder.ArgumentStore
 
         public IEnumerable<MemberNameAndValue> Remove(IEnumerable<string> names)
         {
-            throw new System.NotImplementedException();
+            var members = GetAllStoredMembers().Where(member => names.Contains(member.Name)).ToList();
+            foreach (var member in members)
+            {
+                RemoveMemberBy(member.Name);
+            }
+
+            return members;
         }
 
         public IEnumerable<MemberNameAndValue> GetAllStoredMembers()
