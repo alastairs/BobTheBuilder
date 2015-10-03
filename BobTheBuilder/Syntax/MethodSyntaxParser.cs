@@ -1,21 +1,15 @@
-using System;
 using System.Dynamic;
-
 using BobTheBuilder.ArgumentStore;
+using JetBrains.Annotations;
 
 namespace BobTheBuilder.Syntax
 {
-    public class MethodSyntaxParser : IParser
+    internal class MethodSyntaxParser : IParser
     {
         private readonly IArgumentStore argumentStore;
 
-        public MethodSyntaxParser(IArgumentStore argumentStore)
+        public MethodSyntaxParser([NotNull]IArgumentStore argumentStore)
         {
-            if (argumentStore == null)
-            {
-                throw new ArgumentNullException("argumentStore");
-            }
-
             this.argumentStore = argumentStore;
         }
 
@@ -27,7 +21,7 @@ namespace BobTheBuilder.Syntax
                 return false;
             }
 
-            argumentStore.SetMemberNameAndValue(memberName.Replace("With", ""), args[0]);
+            argumentStore.Set(new MemberNameAndValue(memberName.Replace("With", ""), args[0]));
             return true;
         }
     }

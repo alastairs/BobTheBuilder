@@ -1,14 +1,8 @@
-﻿using System;
-
-using BobTheBuilder.ArgumentStore;
-using BobTheBuilder.Syntax;
-
+﻿using BobTheBuilder.ArgumentStore;
 using Microsoft.CSharp.RuntimeBinder;
-
 using NSubstitute;
-
 using Ploeh.AutoFixture.Xunit;
-
+using System;
 using Xunit;
 using Xunit.Extensions;
 
@@ -50,20 +44,9 @@ namespace BobTheBuilder.Tests
         }
 
         [Theory, AutoData]
-        public void MissingTheMemberNameFromTheMethodResultsInARuntimeBinderException(string anonymous)
-        {
-            var argumentStore = Substitute.For<IArgumentStore>();
-            dynamic sut = new DynamicBuilder<SampleType>(new MethodSyntaxParser(argumentStore), argumentStore);
-
-            var exception = Assert.Throws<RuntimeBinderException>(() => sut.With(anonymous));
-            Assert.True(exception.Message.EndsWith("does not contain a definition for 'With'"));
-        }
-
-        [Theory, AutoData]
         public void CallingAMethodThatDoesNotBeginWithTheWordWithResultsInARuntimeBinderException(string anonymous)
         {
-            var argumentStore = Substitute.For<IArgumentStore>();
-            dynamic sut = new DynamicBuilder<SampleType>(new MethodSyntaxParser(argumentStore), argumentStore);
+            dynamic sut = A.BuilderFor<SampleType>();
 
             var exception = Assert.Throws<RuntimeBinderException>(() => sut.And(anonymous));
             Assert.True(exception.Message.EndsWith("does not contain a definition for 'And'"));

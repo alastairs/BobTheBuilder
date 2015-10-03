@@ -2,7 +2,7 @@
 
 namespace BobTheBuilder.Syntax
 {
-    public interface IParser
+    internal interface IParser
     {
         bool Parse(InvokeMemberBinder binder, object[] callArguments);
     }

@@ -30,6 +30,10 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <ItemGroup>
+    <Reference Include="JetBrains.Annotations, Version=9.2.0.0, Culture=neutral, PublicKeyToken=1010a0d8d6380325, processorArchitecture=MSIL">
+      <HintPath>..\packages\JetBrains.Annotations.9.2.0\lib\net20\JetBrains.Annotations.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
     <Reference Include="System" />
     <Reference Include="System.Core" />
     <Reference Include="System.Xml.Linq" />
@@ -39,18 +43,28 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Activation\Activator.cs" />
+    <Compile Include="Activation\InstanceCreator.cs" />
+    <Compile Include="Activation\PropertySetter.cs" />
+    <Compile Include="ArgumentStore\Queries\ConstructorArgumentsQuery.cs" />
+    <Compile Include="ArgumentStore\Queries\IArgumentStoreQuery.cs" />
+    <Compile Include="ArgumentStore\Queries\MissingArgumentsQuery.cs" />
+    <Compile Include="ArgumentStore\Queries\PropertyValuesQuery.cs" />
+    <Compile Include="Activation\MissingArgumentsReporter.cs" />
     <Compile Include="Extensions\NameExtensions.cs" />
     <Compile Include="Factory.cs" />
     <Compile Include="Syntax\CompositeParser.cs" />
     <Compile Include="Syntax\MethodSyntaxParser.cs" />
     <Compile Include="DynamicBuilder.cs" />
     <Compile Include="ArgumentStore\IArgumentStore.cs" />
-    <Compile Include="IDynamicBuilder.cs" />
     <Compile Include="ArgumentStore\InMemoryArgumentStore.cs" />
     <Compile Include="ArgumentStore\MemberNameAndValue.cs" />
     <Compile Include="Syntax\IParser.cs" />
     <Compile Include="Syntax\NamedArgumentsSyntaxParser.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="packages.config" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
