@@ -39,7 +39,7 @@ Note that a dynamic builder can be implicitly cast to the type it builds and the
 Task List
 ---------
 
- - Add support for readonly properties via the constructor
+ - ~~Add support for readonly properties via the constructor~~
  - Add support for objects with constructor dependencies
  - ~~Add support for complex types~~ (**Complete**)
  - ~~Add support for named arguments syntax (`.With(stringProperty: "new value")`)~~ (**Complete**)
