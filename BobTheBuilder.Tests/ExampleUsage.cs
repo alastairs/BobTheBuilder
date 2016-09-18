@@ -71,7 +71,7 @@ namespace BobTheBuilder.Tests
         }
 
         [Fact]
-        public void UsageWithNestedBuilder()
+        public void UsageWithNestedBuilderInMethodSyntax()
         {
             var built = A.BuilderFor<ImmutableBlogPost>()
                 .WithTitle("anonymousTitle")
@@ -81,6 +81,28 @@ namespace BobTheBuilder.Tests
                 .WithContent("anonymousContent")
                 .WithTimestamp(DateTime.Today)
                 .WithTags(Enumerable.Empty<string>());
+
+            var expected = new ImmutableBlogPost(
+                "anonymousTitle",
+                new ImmutableAuthor("Jo", DateTime.Today),
+                "anonymousContent",
+                DateTime.Today,
+                Enumerable.Empty<string>()
+            );
+            Assert.Equal(expected, built);
+        }
+
+        [Fact]
+        public void UsageWithNestedBuilderInNamedArgumentsSyntax()
+        {
+            var built = A.BuilderFor<ImmutableBlogPost>().With(
+                title: "anonymousTitle",
+                author: A.BuilderFor<ImmutableAuthor>().With(
+                    name: "Jo",
+                    startDate: DateTime.Today),
+                content: "anonymousContent",
+                timestamp: DateTime.Today,
+                tags: Enumerable.Empty<string>());
 
             var expected = new ImmutableBlogPost(
                 "anonymousTitle",
