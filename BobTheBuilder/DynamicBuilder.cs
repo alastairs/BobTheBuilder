@@ -5,17 +5,7 @@ using Activator = BobTheBuilder.Activation.Activator;
 
 namespace BobTheBuilder
 {
-    public abstract class DynamicBuilder : DynamicObject
-    {
-        public object Build()
-        {
-            return InnerBuild();
-        }
-
-        protected abstract object InnerBuild();
-    }
-
-    public class DynamicBuilder<T> : DynamicBuilder where T : class
+    public class DynamicBuilder<T> : DynamicObject, IBuilder where T : class
     {
         private readonly Activator activator;
         private readonly IParser parser;
@@ -26,14 +16,14 @@ namespace BobTheBuilder
             this.activator = activator;
         }
 
-        public new T Build()
-        {
-            return (T) base.Build();
-        }
-
-        protected override object InnerBuild()
+        public T Build()
         {
             return activator.Activate<T>();
+        }
+
+        object IBuilder.Build()
+        {
+            return Build();
         }
 
         public override bool TryInvokeMember(InvokeMemberBinder binder, object[] args, out object result)

@@ -23,7 +23,7 @@ namespace BobTheBuilder.Activation
 
         private static object EvaluateBuilder(object arg)
         {
-            var builder = arg as DynamicBuilder;
+            var builder = arg as IBuilder;
             return builder != null ? builder.Build() : arg;
         }
     }

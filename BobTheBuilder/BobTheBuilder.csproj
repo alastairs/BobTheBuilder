@@ -54,6 +54,7 @@
     <Compile Include="Activation\BuilderArgumentEvaluator.cs" />
     <Compile Include="Extensions\NameExtensions.cs" />
     <Compile Include="Factory.cs" />
+    <Compile Include="IBuilder.cs" />
     <Compile Include="Syntax\CompositeParser.cs" />
     <Compile Include="Syntax\MethodSyntaxParser.cs" />
     <Compile Include="DynamicBuilder.cs" />
