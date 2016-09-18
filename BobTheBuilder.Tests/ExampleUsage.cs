@@ -70,6 +70,25 @@ namespace BobTheBuilder.Tests
         }
 
         [Fact]
+        public void UsageWithObjectSyntax()
+        {
+            const string expectedStringValue = "expected value";
+            const int expectedIntValue = 1;
+            var expected = new SampleType
+            {
+                StringProperty = expectedStringValue,
+                IntProperty = expectedIntValue
+            };
+
+            SampleType built = A.BuilderFor<SampleType>().With(new {
+                StringProperty = expectedStringValue,
+                IntProperty = expectedIntValue
+            });
+
+            Assert.Equal(expected, built, new SampleTypeEqualityComparer());
+        }
+
+        [Fact]
         public void UsageWithInheritedProperties()
         {
             const string expectedStringValue = "expected value";

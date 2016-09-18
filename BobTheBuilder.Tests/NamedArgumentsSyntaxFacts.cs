@@ -1,5 +1,5 @@
 ﻿using System;
-
+using BobTheBuilder.Syntax;
 using Ploeh.AutoFixture.Xunit;
 
 using Xunit;
@@ -37,8 +37,8 @@ namespace BobTheBuilder.Tests
         {
             var sut = A.BuilderFor<SampleType>();
 
-            var exception = Assert.Throws<ArgumentException>(() => sut.With(expected));
-            Assert.Equal("No names were specified for the values provided. When using the named arguments (With()) syntax, you should specify the items to be set as argument names, such as With(customerId: customerId).", exception.Message);
+            var exception = Assert.Throws<ParseException>(() => sut.With(expected));
+            Assert.Contains("No names were specified for the values provided. When using the named arguments (With()) syntax, you should specify the items to be set as argument names, such as With(customerId: customerId).", exception.Message);
         }
 
         [Theory, AutoData]
@@ -46,8 +46,8 @@ namespace BobTheBuilder.Tests
         {
             var sut = A.BuilderFor<SampleType>();
 
-            var exception = Assert.Throws<ArgumentException>(() => sut.With(expectedString, intProperty: expectedInt));
-            Assert.Equal("One or more arguments are missing a name. Names should be specified with C# named argument syntax, e.g. With(customerId: customerId).", exception.Message);
+            var exception = Assert.Throws<ParseException>(() => sut.With(expectedString, intProperty: expectedInt));
+            Assert.Contains("One or more arguments are missing a name. Names should be specified with C# named argument syntax, e.g. With(customerId: customerId).", exception.Message);
         }
     }
 }
