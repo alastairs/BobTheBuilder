@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Linq;
 using Xunit;
 
 namespace BobTheBuilder.Tests
@@ -67,6 +68,28 @@ namespace BobTheBuilder.Tests
                                           intProperty: expectedIntValue);
 
             Assert.Equal(expected, built, new SampleTypeEqualityComparer());
+        }
+
+        [Fact]
+        public void UsageWithNestedBuilder()
+        {
+            var built = A.BuilderFor<ImmutableBlogPost>()
+                .WithTitle("anonymousTitle")
+                .WithAuthor(A.BuilderFor<ImmutableAuthor>()
+                            .WithName("Jo")
+                            .WithStartDate(DateTime.Today))
+                .WithContent("anonymousContent")
+                .WithTimestamp(DateTime.Today)
+                .WithTags(Enumerable.Empty<string>());
+
+            var expected = new ImmutableBlogPost(
+                "anonymousTitle",
+                new ImmutableAuthor("Jo", DateTime.Today),
+                "anonymousContent",
+                DateTime.Today,
+                Enumerable.Empty<string>()
+            );
+            Assert.Equal(expected, built);
         }
 
         [Fact]
