@@ -62,6 +62,7 @@
     <Compile Include="BuildFacts.cs" />
     <Compile Include="ImmutableBlogPost.cs" />
     <Compile Include="MethodSyntaxFacts.cs" />
+    <Compile Include="ObjectLiteralSyntaxFacts.cs" />
     <Compile Include="NamedArgumentsSyntaxFacts.cs" />
     <Compile Include="ExampleUsage.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />

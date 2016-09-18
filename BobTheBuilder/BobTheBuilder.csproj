@@ -63,6 +63,7 @@
     <Compile Include="Syntax\NamedArgumentsSyntaxParser.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Syntax\ParseException.cs" />
+    <Compile Include="Syntax\ObjectLiteralSyntaxParser.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="packages.config" />

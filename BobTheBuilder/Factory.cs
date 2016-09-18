@@ -13,6 +13,7 @@ namespace BobTheBuilder
             return
                 new DynamicBuilder<T>(
                     new CompositeParser(
+                        new ObjectLiteralSyntaxParser(argumentStore),
                         new NamedArgumentsSyntaxParser(argumentStore),
                         new MethodSyntaxParser(argumentStore)),
                     new Activator(
