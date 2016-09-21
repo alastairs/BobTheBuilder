@@ -1,6 +1,7 @@
 ﻿using System.Linq;
 using BobTheBuilder.ArgumentStore.Queries;
 using JetBrains.Annotations;
+using System.Reflection;
 
 namespace BobTheBuilder.Activation
 {
