@@ -1,0 +1,19 @@
+﻿{
+  "version": "1.0.0-*",
+
+  "dependencies": {
+    "BobTheBuilder": "1.0.0-*",
+    "AutoFixture": "3.50.2",
+    "AutoFixture.Xunit": "3.50.2",
+    "NSubstitute": "1.7.2.0",
+    "xunit": "1.9.2",
+    "xunit.extensions": "1.9.2",
+    "xunit.runner.visualstudio": "2.2.0-beta2-build1149"
+  },
+
+  "frameworks": {
+    "net45": {
+      
+    }
+  }
+}

@@ -1,0 +1,218 @@
+{
+  "locked": false,
+  "version": 2,
+  "targets": {
+    ".NETFramework,Version=v4.5": {
+      "AutoFixture/3.50.2": {
+        "type": "package",
+        "compile": {
+          "lib/net40/Ploeh.AutoFixture.dll": {}
+        },
+        "runtime": {
+          "lib/net40/Ploeh.AutoFixture.dll": {}
+        }
+      },
+      "AutoFixture.Xunit/3.50.2": {
+        "type": "package",
+        "dependencies": {
+          "AutoFixture": "3.50.2",
+          "xunit.extensions": "[1.8.0.1549, 2.0.0)"
+        },
+        "compile": {
+          "lib/net40/Ploeh.AutoFixture.Xunit.dll": {}
+        },
+        "runtime": {
+          "lib/net40/Ploeh.AutoFixture.Xunit.dll": {}
+        }
+      },
+      "JetBrains.Annotations/10.1.5": {
+        "type": "package",
+        "compile": {
+          "lib/net/JetBrains.Annotations.dll": {}
+        },
+        "runtime": {
+          "lib/net/JetBrains.Annotations.dll": {}
+        }
+      },
+      "NSubstitute/1.7.2": {
+        "type": "package",
+        "compile": {
+          "lib/NET45/NSubstitute.dll": {}
+        },
+        "runtime": {
+          "lib/NET45/NSubstitute.dll": {}
+        }
+      },
+      "xunit/1.9.2": {
+        "type": "package",
+        "compile": {
+          "lib/net20/xunit.dll": {}
+        },
+        "runtime": {
+          "lib/net20/xunit.dll": {}
+        }
+      },
+      "xunit.extensions/1.9.2": {
+        "type": "package",
+        "dependencies": {
+          "xunit": "[1.9.2]"
+        },
+        "compile": {
+          "lib/net20/xunit.extensions.dll": {}
+        },
+        "runtime": {
+          "lib/net20/xunit.extensions.dll": {}
+        }
+      },
+      "xunit.runner.visualstudio/2.2.0-beta2-build1149": {
+        "type": "package"
+      },
+      "BobTheBuilder/1.0.0": {
+        "type": "project",
+        "framework": ".NETFramework,Version=v4.5",
+        "dependencies": {
+          "JetBrains.Annotations": "10.1.5"
+        },
+        "compile": {
+          "net45/BobTheBuilder.dll": {}
+        },
+        "runtime": {
+          "net45/BobTheBuilder.dll": {}
+        }
+      }
+    }
+  },
+  "libraries": {
+    "AutoFixture/3.50.2": {
+      "sha512": "hvm9+qAMyFV1tcS53lzhCE3MetFiKLzDsvY2NKSLMRy2sRTbl7TXF/uSgzrdUDMUucuugFMtJ88cBjZ8e8m2Eg==",
+      "type": "package",
+      "path": "AutoFixture/3.50.2",
+      "files": [
+        "AutoFixture.3.50.2.nupkg.sha512",
+        "AutoFixture.nuspec",
+        "lib/net40/Ploeh.AutoFixture.XML",
+        "lib/net40/Ploeh.AutoFixture.dll",
+        "tools/Install.ps1"
+      ]
+    },
+    "AutoFixture.Xunit/3.50.2": {
+      "sha512": "oROFvgLKWuLGn0wD2X31Rk0YzsUTw3IgmL4ZnmOqa3fH3gK2ddhpunJ0fH6DrANbCcHbgamDJL7NLTUVnDodiA==",
+      "type": "package",
+      "path": "AutoFixture.Xunit/3.50.2",
+      "files": [
+        "AutoFixture.Xunit.3.50.2.nupkg.sha512",
+        "AutoFixture.Xunit.nuspec",
+        "lib/net40/Ploeh.AutoFixture.Xunit.XML",
+        "lib/net40/Ploeh.AutoFixture.Xunit.dll",
+        "tools/Install.ps1"
+      ]
+    },
+    "JetBrains.Annotations/10.1.5": {
+      "sha512": "LRyTrsiTWsV4C4cUMfdEkAdd8S0BREvj3hXZ1gGr3GZGFf0q2KW3IFGMPOguAxOrWH44Nw12jqr37B1Jph2E6A==",
+      "type": "package",
+      "path": "JetBrains.Annotations/10.1.5",
+      "files": [
+        "JetBrains.Annotations.10.1.5.nupkg.sha512",
+        "JetBrains.Annotations.nuspec",
+        "lib/dotnet/JetBrains.Annotations.Dotnet.dll",
+        "lib/net/JetBrains.Annotations.dll",
+        "lib/net/JetBrains.Annotations.xml",
+        "lib/portable-net4+sl4+wp7+netcore45/JetBrains.Annotations.PCL1.dll",
+        "lib/portable-net4+sl4+wp7+netcore45/JetBrains.Annotations.PCL1.xml",
+        "lib/portable-net4+sl5+netcore45+wpa81+wp8+MonoAndroid1+MonoTouch1/JetBrains.Annotations.PCL328.dll",
+        "lib/portable-net4+sl5+netcore45+wpa81+wp8+MonoAndroid1+MonoTouch1/JetBrains.Annotations.PCL328.xml"
+      ]
+    },
+    "NSubstitute/1.7.2": {
+      "sha512": "vDAfItA5TW9c597wvDuLM74K4C2Wh7zSjxHPNeRHkb906dc0wWc6myOub24JpS8ev3kw9QswLO0lMpyxzHagnw==",
+      "type": "package",
+      "path": "NSubstitute/1.7.2",
+      "files": [
+        "BreakingChanges.txt",
+        "CHANGELOG.txt",
+        "LICENSE.txt",
+        "NSubstitute.1.7.2.nupkg.sha512",
+        "NSubstitute.nuspec",
+        "README.txt",
+        "acknowledgements.txt",
+        "lib/NET35/NSubstitute.XML",
+        "lib/NET35/NSubstitute.dll",
+        "lib/NET40/NSubstitute.XML",
+        "lib/NET40/NSubstitute.dll",
+        "lib/NET45/NSubstitute.XML",
+        "lib/NET45/NSubstitute.dll"
+      ]
+    },
+    "xunit/1.9.2": {
+      "sha512": "c1wppJtYPUGPHVP9U1wjmfii4553MuQSXkAt8rudkXW+eUFJxOOfDvhBJ6S0YHHDMFEJwiMN770AT4Lno8EBpw==",
+      "type": "package",
+      "path": "xunit/1.9.2",
+      "files": [
+        "lib/net20/xunit.dll",
+        "lib/net20/xunit.dll.tdnet",
+        "lib/net20/xunit.runner.msbuild.dll",
+        "lib/net20/xunit.runner.tdnet.dll",
+        "lib/net20/xunit.runner.utility.dll",
+        "lib/net20/xunit.xml",
+        "xunit.1.9.2.nupkg.sha512",
+        "xunit.nuspec"
+      ]
+    },
+    "xunit.extensions/1.9.2": {
+      "sha512": "DJqVmnziilQrW47PW9QMVyrc5hUlIiI3+2cHoAG6pE/bb/dr+IAewUD+rgIUZqwVcMmB+1KfPLHm7TLUB6dtJQ==",
+      "type": "package",
+      "path": "xunit.extensions/1.9.2",
+      "files": [
+        "lib/net20/xunit.extensions.dll",
+        "lib/net20/xunit.extensions.xml",
+        "xunit.extensions.1.9.2.nupkg.sha512",
+        "xunit.extensions.nuspec"
+      ]
+    },
+    "xunit.runner.visualstudio/2.2.0-beta2-build1149": {
+      "sha512": "UgVTWC0IloCzTTGCWb/mDexaaRmZWsa2w0CBpNq5qQb+lL6gxjXGgaCgXPD9FxFuQz0KW7xlHmLVnfPYVBjhfA==",
+      "type": "package",
+      "path": "xunit.runner.visualstudio/2.2.0-beta2-build1149",
+      "files": [
+        "build/_common/xunit.abstractions.dll",
+        "build/_common/xunit.runner.utility.desktop.dll",
+        "build/_common/xunit.runner.utility.dotnet.dll",
+        "build/_common/xunit.runner.visualstudio.testadapter.dll",
+        "build/net20/xunit.runner.visualstudio.props",
+        "build/uap10.0/xunit.runner.visualstudio.props",
+        "build/uap10.0/xunit.runner.visualstudio.targets",
+        "build/uap10.0/xunit.runner.visualstudio.uwp.dll",
+        "build/uap10.0/xunit.runner.visualstudio.uwp.pri",
+        "build/win81/xunit.runner.visualstudio.props",
+        "build/win81/xunit.runner.visualstudio.targets",
+        "build/win81/xunit.runner.visualstudio.win81.dll",
+        "build/win81/xunit.runner.visualstudio.win81.pri",
+        "build/wpa81/xunit.runner.visualstudio.props",
+        "build/wpa81/xunit.runner.visualstudio.targets",
+        "build/wpa81/xunit.runner.visualstudio.wpa81.dll",
+        "build/wpa81/xunit.runner.visualstudio.wpa81.pri",
+        "xunit.runner.visualstudio.2.2.0-beta2-build1149.nupkg.sha512",
+        "xunit.runner.visualstudio.nuspec"
+      ]
+    },
+    "BobTheBuilder/1.0.0": {
+      "type": "project",
+      "path": "../BobTheBuilder/project.json",
+      "msbuildProject": "../BobTheBuilder/BobTheBuilder.xproj"
+    }
+  },
+  "projectFileDependencyGroups": {
+    "": [
+      "AutoFixture >= 3.50.2",
+      "AutoFixture.Xunit >= 3.50.2",
+      "BobTheBuilder >= 1.0.0-*",
+      "NSubstitute >= 1.7.2",
+      "xunit >= 1.9.2",
+      "xunit.extensions >= 1.9.2",
+      "xunit.runner.visualstudio >= 2.2.0-beta2-build1149"
+    ],
+    ".NETFramework,Version=v4.5": []
+  },
+  "tools": {},
+  "projectFileToolGroups": {}
+}
