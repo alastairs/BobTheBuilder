@@ -2,6 +2,10 @@
 using BobTheBuilder.ArgumentStore.Queries;
 using JetBrains.Annotations;
 
+#if NETSTANDARD1_2
+using System.Reflection;
+#endif
+
 namespace BobTheBuilder.Activation
 {
     internal class InstanceCreator
