@@ -51,8 +51,10 @@
     <Compile Include="ArgumentStore\Queries\MissingArgumentsQuery.cs" />
     <Compile Include="ArgumentStore\Queries\PropertyValuesQuery.cs" />
     <Compile Include="Activation\MissingArgumentsReporter.cs" />
+    <Compile Include="Activation\BuilderArgumentEvaluator.cs" />
     <Compile Include="Extensions\NameExtensions.cs" />
     <Compile Include="Factory.cs" />
+    <Compile Include="IBuilder.cs" />
     <Compile Include="Syntax\CompositeParser.cs" />
     <Compile Include="Syntax\MethodSyntaxParser.cs" />
     <Compile Include="DynamicBuilder.cs" />

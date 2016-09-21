@@ -2,6 +2,7 @@
 using BobTheBuilder.ArgumentStore;
 using BobTheBuilder.ArgumentStore.Queries;
 using BobTheBuilder.Syntax;
+using Activator = BobTheBuilder.Activation.Activator;
 
 namespace BobTheBuilder
 {
@@ -17,7 +18,8 @@ namespace BobTheBuilder
                         new MethodSyntaxParser(argumentStore)),
                     new Activator(
                         new MissingArgumentsQuery(argumentStore),
-                        new ConstructorArgumentsQuery(argumentStore),
+                        new BuilderArgumentEvaluator(
+                            new ConstructorArgumentsQuery(argumentStore)),
                         new PropertyValuesQuery(argumentStore)));
         }
     }

@@ -5,7 +5,7 @@ using Activator = BobTheBuilder.Activation.Activator;
 
 namespace BobTheBuilder
 {
-    public class DynamicBuilder<T> : DynamicObject where T : class
+    public class DynamicBuilder<T> : DynamicObject, IBuilder where T : class
     {
         private readonly Activator activator;
         private readonly IParser parser;
@@ -19,6 +19,11 @@ namespace BobTheBuilder
         public T Build()
         {
             return activator.Activate<T>();
+        }
+
+        object IBuilder.Build()
+        {
+            return Build();
         }
 
         public override bool TryInvokeMember(InvokeMemberBinder binder, object[] args, out object result)
