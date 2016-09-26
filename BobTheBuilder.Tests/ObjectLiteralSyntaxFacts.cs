@@ -1,9 +1,7 @@
-﻿using System;
-using BobTheBuilder.Syntax;
-using Ploeh.AutoFixture.Xunit;
+﻿using BobTheBuilder.Syntax;
+using Ploeh.AutoFixture.Xunit2;
 
 using Xunit;
-using Xunit.Extensions;
 
 namespace BobTheBuilder.Tests
 {

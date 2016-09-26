@@ -9,7 +9,7 @@ namespace BobTheBuilder
     {
         private readonly Activator activator;
         private readonly IParser parser;
-        
+
         internal DynamicBuilder([NotNull]IParser parser, [NotNull]Activator activator)
         {
             this.parser = parser;

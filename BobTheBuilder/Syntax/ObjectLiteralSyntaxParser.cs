@@ -8,6 +8,7 @@ using JetBrains.Annotations;
 
 namespace BobTheBuilder.Syntax
 {
+#if !NETSTANDARD1_2
     internal class ObjectLiteralSyntaxParser : IParser
     {
         private readonly IArgumentStore argumentStore;
@@ -60,4 +61,5 @@ namespace BobTheBuilder.Syntax
                    && (type.Attributes & TypeAttributes.NotPublic) == TypeAttributes.NotPublic;
         }
     }
+#endif
 }

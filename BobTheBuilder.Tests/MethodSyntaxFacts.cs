@@ -1,7 +1,7 @@
 ﻿using BobTheBuilder.ArgumentStore;
 using Microsoft.CSharp.RuntimeBinder;
 using NSubstitute;
-using Ploeh.AutoFixture.Xunit;
+using Ploeh.AutoFixture.Xunit2;
 using System;
 using Xunit;
 using Xunit.Extensions;

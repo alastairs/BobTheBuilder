@@ -3,6 +3,10 @@ using System.Collections.Generic;
 using System.Linq;
 using JetBrains.Annotations;
 
+#if NETSTANDARD1_2
+using System.Reflection;
+#endif
+
 namespace BobTheBuilder.ArgumentStore.Queries
 {
     internal class PropertyValuesQuery : IArgumentStoreQuery
