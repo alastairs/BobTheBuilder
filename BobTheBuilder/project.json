@@ -1,5 +1,9 @@
 {
-  "version": "1.0.0-*",
+  "title": "BobTheBuilder",
+  "copyright": "Copyright © 2016 Alastair Smith under the terms of the Apache 2.0 licence",
+  "description": "Dynamically-generated test data builders for your unit tests. Supports varying syntaxes so you can describe your objects in whatever form reads best for you.",
+  "language": "en-GB",
+  "version": "0.5.0-*",
 
   "frameworks": {
     "netstandard1.2": {
