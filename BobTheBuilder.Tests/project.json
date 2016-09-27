@@ -1,20 +1,43 @@
 {
-  "version": "1.0.0-*",
+  "version": "0.5.0-*",
 
   "dependencies": {
-    "NETStandard.Library": "1.6.0",
-    "BobTheBuilder": "1.0.0-*",
+    "BobTheBuilder": "0.5.0-*",
     "AutoFixture": "3.50.2",
     "AutoFixture.Xunit2": "3.50.2",
     "NSubstitute": "1.10.0",
-    "System.Runtime": "4.0.10",
     "xunit": "2.2.0-beta2-build3300",
     "xunit.runner.visualstudio": "2.2.0-beta2-build1149"
   },
 
   "frameworks": {
-    "net451": {},
-    "net452": {},
-    "net46": {}
+    "net45": {
+      "frameworkAssemblies": {
+        "mscorlib": "4.0.0.0",
+        "System.Runtime": "4.0.0.0",
+        "System.Threading.Tasks": "4.0.0.0"
+      },
+      "dependencies": {}
+    },
+    "net451": {
+      "frameworkAssemblies": {
+        "mscorlib": "4.0.0.0",
+        "System.Runtime": "4.0.0.0",
+        "System.Threading.Tasks": "4.0.0.0"
+      }
+    },
+    "net452": {
+      "frameworkAssemblies": {
+        "mscorlib": "4.0.0.0",
+        "System.Runtime": "4.0.0.0",
+        "System.Threading.Tasks": "4.0.0.0"
+      }
+    },
+    "net46": {
+      "dependencies": {
+        "System.Runtime": "4.1.*",
+        "System.Threading.Tasks": "4.0.*"        
+      }
+    }
   }
 }
