@@ -18,6 +18,12 @@
         "JetBrains.Annotations": "10.1.5"
       }
     },
+    "net45": {
+      "dependencies": {
+        "System.Reflection": "4.0.0",
+        "JetBrains.Annotations": "10.1.5"
+      }
+    },
     "net451": {
       "dependencies": {
         "System.Reflection": "4.0.0",
