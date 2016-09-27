@@ -1,12 +1,16 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <package xmlns="http://schemas.microsoft.com/packaging/2012/06/nuspec.xsd">
     <metadata>
-        <id>$id$</id>
+        <id>BobTheBuilder</id>
         <version>$version$</version>
         <authors>Alastair Smith</authors>
         <owners>Alastair Smith</owners>
         <requireLicenseAcceptance>false</requireLicenseAcceptance>
-        <description>$description$</description>
+        <description>
+          Dynamically-generated test data builders for your unit tests. Supports
+          various syntaxes so you can describe your objects in whatever form
+          reads best for you.
+        </description>
         <dependencies>
             <group targetFramework=".NETFramework4.5">
                 <dependency id="JetBrains.Annotations" version="10.1.5" />
