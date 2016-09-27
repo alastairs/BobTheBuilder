@@ -8,6 +8,9 @@
         <requireLicenseAcceptance>false</requireLicenseAcceptance>
         <description>$description$</description>
         <dependencies>
+            <group targetFramework=".NETFramework4.5">
+                <dependency id="JetBrains.Annotations" version="10.1.5" />
+            </group>
             <group targetFramework=".NETFramework4.5.1">
                 <dependency id="System.Reflection" version="4.0.0" />
                 <dependency id="JetBrains.Annotations" version="10.1.5" />
@@ -33,6 +36,7 @@
         </dependencies>
     </metadata>
     <files>
+        <file src="BobTheBuilder\bin\Release\net45\BobTheBuilder.dll" target="lib\net45\BobTheBuilder.dll" />
         <file src="BobTheBuilder\bin\Release\net451\BobTheBuilder.dll" target="lib\net451\BobTheBuilder.dll" />
         <file src="BobTheBuilder\bin\Release\net452\BobTheBuilder.dll" target="lib\net452\BobTheBuilder.dll" />
         <file src="BobTheBuilder\bin\Release\net46\BobTheBuilder.dll" target="lib\net46\BobTheBuilder.dll" />
