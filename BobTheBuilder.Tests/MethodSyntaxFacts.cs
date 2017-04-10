@@ -1,10 +1,7 @@
-﻿using BobTheBuilder.ArgumentStore;
-using Microsoft.CSharp.RuntimeBinder;
-using NSubstitute;
+﻿using Microsoft.CSharp.RuntimeBinder;
 using Ploeh.AutoFixture.Xunit2;
 using System;
 using Xunit;
-using Xunit.Extensions;
 
 namespace BobTheBuilder.Tests
 {

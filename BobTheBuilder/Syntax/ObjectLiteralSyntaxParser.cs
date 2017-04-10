@@ -2,13 +2,13 @@
 using System.Dynamic;
 using System.Linq;
 using System.Reflection;
-using System.Runtime.CompilerServices;
+
 using BobTheBuilder.ArgumentStore;
+
 using JetBrains.Annotations;
 
 namespace BobTheBuilder.Syntax
 {
-#if !NETSTANDARD1_2
     internal class ObjectLiteralSyntaxParser : IParser
     {
         private readonly IArgumentStore argumentStore;
@@ -55,11 +55,10 @@ namespace BobTheBuilder.Syntax
 
         private static bool IsAnonymous(Type type)
         {
-            return Attribute.IsDefined(type, typeof(CompilerGeneratedAttribute), false)
-                   && type.IsGenericType && type.Name.Contains("AnonymousType")
-                   && (type.Name.StartsWith("<>") || type.Name.StartsWith("VB$"))
-                   && (type.Attributes & TypeAttributes.NotPublic) == TypeAttributes.NotPublic;
+            // This is a quick and dirty check.
+            // See http://stackoverflow.com/a/15273117 for more details
+
+            return type.Namespace == null;
         }
     }
-#endif
 }

@@ -6,7 +6,7 @@ using System.Runtime.InteropServices;
 // set of attributes. Change these attribute values to modify the information
 // associated with an assembly.
 [assembly: AssemblyTitle("BobTheBuilder")]
-[assembly: AssemblyDescription("")]
+[assembly: AssemblyDescription("Dynamically-generated test data builders for your unit tests. Supports various syntaxes so you can describe your objects in whatever form reads best for you.")]
 [assembly: AssemblyConfiguration("")]
 [assembly: AssemblyCompany("")]
 [assembly: AssemblyProduct("BobTheBuilder")]

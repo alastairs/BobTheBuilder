@@ -1,16 +1,16 @@
 ﻿<Project Sdk="Microsoft.NET.Sdk">
 
   <PropertyGroup>
-    <Description>Dynamically-generated test data builders for your unit tests. Supports varying syntaxes so you can describe your objects in whatever form reads best for you.</Description>
+    <Description>Dynamically-generated test data builders for your unit tests. Supports various syntaxes so you can describe your objects in whatever form reads best for you.</Description>
     <Copyright>Copyright � 2016 Alastair Smith under the terms of the Apache 2.0 licence</Copyright>
     <AssemblyTitle>BobTheBuilder</AssemblyTitle>
     <NeutralLanguage>en-GB</NeutralLanguage>
-    <VersionPrefix>0.5.0</VersionPrefix>
-    <TargetFrameworks>netstandard1.2;net45;net451;net452;net46</TargetFrameworks>
+    <VersionPrefix>0.5.1</VersionPrefix>
+    <TargetFrameworks>netstandard1.1</TargetFrameworks>
     <AssemblyName>BobTheBuilder</AssemblyName>
     <PackageId>BobTheBuilder</PackageId>
-    <PackageTargetFallback Condition=" '$(TargetFramework)' == 'netstandard1.2' ">$(PackageTargetFallback);dnxcore50</PackageTargetFallback>
-    <NetStandardImplicitPackageVersion Condition=" '$(TargetFramework)' == 'netstandard1.2' ">1.6.0</NetStandardImplicitPackageVersion>
+    <PackageTargetFallback>$(PackageTargetFallback);dnxcore50</PackageTargetFallback>
+    <NetStandardImplicitPackageVersion>1.1.0</NetStandardImplicitPackageVersion>
     <GenerateAssemblyTitleAttribute>false</GenerateAssemblyTitleAttribute>
     <GenerateAssemblyDescriptionAttribute>false</GenerateAssemblyDescriptionAttribute>
     <GenerateAssemblyConfigurationAttribute>false</GenerateAssemblyConfigurationAttribute>
@@ -19,44 +19,21 @@
     <GenerateAssemblyCopyrightAttribute>false</GenerateAssemblyCopyrightAttribute>
     <GenerateAssemblyVersionAttribute>false</GenerateAssemblyVersionAttribute>
     <GenerateAssemblyFileVersionAttribute>false</GenerateAssemblyFileVersionAttribute>
+    <GeneratePackageOnBuild>True</GeneratePackageOnBuild>
+    <Version>0.5.1</Version>
+    <Authors>Alastair Smith</Authors>
+    <PackageProjectUrl>https://github.com/alastairs/BobTheBuilder</PackageProjectUrl>
+    <RepositoryUrl>https://github.com/alastairs/BobTheBuilder</RepositoryUrl>
+    <RepositoryType>git</RepositoryType>
   </PropertyGroup>
 
-  <ItemGroup Condition=" '$(TargetFramework)' == 'netstandard1.2' ">
-    <PackageReference Include="System.Linq" Version="4.1.0" />
+  <ItemGroup>
+    <PackageReference Include="System.Linq" Version="4.3.0" />
     <PackageReference Include="System.Dynamic.Runtime" Version="4.0.11" />
     <PackageReference Include="System.Runtime" Version="4.1.0" />
     <PackageReference Include="System.Runtime.InteropServices" Version="4.1.0" />
     <PackageReference Include="System.Reflection.TypeExtensions" Version="4.1.0" />
     <PackageReference Include="JetBrains.Annotations" Version="10.1.5" />
-  </ItemGroup>
-
-  <ItemGroup Condition=" '$(TargetFramework)' == 'net45' ">
-    <PackageReference Include="JetBrains.Annotations" Version="10.1.5" />
-    <Reference Include="mscorlib" />
-    <Reference Include="System" />
-    <Reference Include="Microsoft.CSharp" />
-  </ItemGroup>
-
-  <ItemGroup Condition=" '$(TargetFramework)' == 'net451' ">
-    <PackageReference Include="System.Reflection" Version="4.1.0" />
-    <PackageReference Include="JetBrains.Annotations" Version="10.1.5" />
-    <Reference Include="System" />
-    <Reference Include="Microsoft.CSharp" />
-  </ItemGroup>
-
-  <ItemGroup Condition=" '$(TargetFramework)' == 'net452' ">
-    <PackageReference Include="System.Reflection" Version="4.1.0" />
-    <PackageReference Include="JetBrains.Annotations" Version="10.1.5" />
-    <Reference Include="System" />
-    <Reference Include="Microsoft.CSharp" />
-  </ItemGroup>
-
-  <ItemGroup Condition=" '$(TargetFramework)' == 'net46' ">
-    <PackageReference Include="System.Reflection" Version="4.1.0" />
-    <PackageReference Include="System.Reflection.TypeExtensions" Version="4.1.0" />
-    <PackageReference Include="JetBrains.Annotations" Version="10.1.5" />
-    <Reference Include="System" />
-    <Reference Include="Microsoft.CSharp" />
   </ItemGroup>
 
 </Project>

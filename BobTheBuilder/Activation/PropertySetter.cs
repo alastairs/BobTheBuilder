@@ -1,9 +1,8 @@
-﻿using BobTheBuilder.ArgumentStore.Queries;
-using JetBrains.Annotations;
+﻿using System.Reflection;
 
-#if NETSTANDARD1_2
-using System.Reflection;
-#endif
+using BobTheBuilder.ArgumentStore.Queries;
+
+using JetBrains.Annotations;
 
 namespace BobTheBuilder.Activation
 {

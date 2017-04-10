@@ -3,6 +3,7 @@ using System.Dynamic;
 using System.Linq;
 
 using BobTheBuilder.ArgumentStore;
+using BobTheBuilder.Extensions;
 using JetBrains.Annotations;
 
 namespace BobTheBuilder.Syntax
@@ -40,15 +41,10 @@ namespace BobTheBuilder.Syntax
             }
 
             var argumentIndex = 0;
-            foreach (var argumentName in callInfo.ArgumentNames.Select(ToCamelCase))
+            foreach (var argumentName in callInfo.ArgumentNames.Select(n => n.ToPascalCase()))
             {
                 argumentStore.Set(new MemberNameAndValue(argumentName, args[argumentIndex++]));
             }
-        }
-
-        private static string ToCamelCase(string name)
-        {
-            return name.First().ToString().ToUpper() + name.Substring(1);
         }
     }
 }
