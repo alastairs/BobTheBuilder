@@ -26,7 +26,7 @@
   <ItemGroup>
     <PackageReference Include="AutoFixture" Version="3.50.2" />
     <PackageReference Include="AutoFixture.Xunit2" Version="3.50.2" />
-    <PackageReference Include="NSubstitute" Version="1.10.0" />
+    <PackageReference Include="NSubstitute" Version="2.0.2" />
     <PackageReference Include="xunit" Version="2.2.0" />
     <PackageReference Include="xunit.runner.visualstudio" Version="2.2.0" />
   </ItemGroup>
