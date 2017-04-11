@@ -23,6 +23,7 @@ namespace BobTheBuilder.ArgumentStore.Queries
         {
             var singleConstructor = destinationType.GetConstructors().Single();
             var parameterNames = singleConstructor.GetParameters().Select(p => p.Name.ToPascalCase());
+
             return argumentStore.Remove(parameterNames);
         }
     }
