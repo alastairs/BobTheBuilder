@@ -1,0 +1,13 @@
+﻿<SolutionConfiguration>
+  <Settings>
+    <AllowParallelTestExecution>True</AllowParallelTestExecution>
+    <MetricsExclusionList>
+      <Value>ArgumentStore\IArgumentStore.cs:BobTheBuilder\BobTheBuilder.csproj</Value>
+      <Value>IDynamicBuilder.cs:BobTheBuilder\BobTheBuilder.csproj</Value>
+      <Value>Properties\AssemblyInfo.cs:BobTheBuilder.Tests\BobTheBuilder.Tests.csproj</Value>
+      <Value>Properties\AssemblyInfo.cs:BobTheBuilder\BobTheBuilder.csproj</Value>
+      <Value>Syntax\IParser.cs:BobTheBuilder\BobTheBuilder.csproj</Value>
+    </MetricsExclusionList>
+    <SolutionConfigured>True</SolutionConfigured>
+  </Settings>
+</SolutionConfiguration>
