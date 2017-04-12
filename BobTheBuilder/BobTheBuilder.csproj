@@ -32,7 +32,6 @@
     <PackageReference Include="System.Dynamic.Runtime" Version="4.3.0" />
     <PackageReference Include="System.Runtime" Version="4.3.0" />
     <PackageReference Include="System.Runtime.InteropServices" Version="4.3.0" />
-    <PackageReference Include="JetBrains.Annotations" Version="10.4.0" />
   </ItemGroup>
 
 </Project>
