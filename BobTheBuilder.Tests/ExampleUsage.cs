@@ -9,65 +9,64 @@ namespace BobTheBuilder.Tests
         [Fact]
         public void Usage()
         {
-            const string stringProperty = "expected value";
-            var expected = new SampleType
+            const string name = "expected value";
+            var expected = new Person
             {
-                StringProperty = stringProperty
+                Name = name
             };
 
-            var built = A.BuilderFor<SampleType>()
-                            .WithStringProperty(stringProperty)
+            var built = A.BuilderFor<Person>()
+                            .WithName(name)
                             .Build();
 
-            Assert.Equal(expected, built, new SampleTypeEqualityComparer());
+            Assert.Equal(expected, built, new PersonEqualityComparer());
         }
 
         [Fact]
         public void UsageWithImplicitCast()
         {
-            const string stringProperty = "expected value";
-            var expected = new SampleType
+            const string name = "expected value";
+            var expected = new Person
             {
-                StringProperty = stringProperty
+                Name = name
             };
 
-            SampleType built = A.BuilderFor<SampleType>()
-                                    .WithStringProperty(stringProperty);
+            Person built = A.BuilderFor<Person>().WithName(name);
 
-            Assert.Equal(expected, built, new SampleTypeEqualityComparer());
+            Assert.Equal(expected, built, new PersonEqualityComparer());
         }
 
         [Fact]
         public void UsageWithComplexType()
         {
-            var complexProperty = new Exception();
-            var expected = new SampleType
+            var address = new Address();
+            var expected = new Person
             {
-                ComplexProperty = complexProperty
+                Address = address
             };
 
-            SampleType built = A.BuilderFor<SampleType>()
-                                    .WithComplexProperty(complexProperty);
+            Person built = A.BuilderFor<Person>()
+                                    .WithAddress(address);
 
-            Assert.Equal(expected, built, new SampleTypeEqualityComparer());
+            Assert.Equal(expected, built, new PersonEqualityComparer());
         }
 
         [Fact]
         public void UsageWithNamedArgument()
         {
-            const string expectedStringValue = "expected value";
-            const int expectedIntValue = 1;
-            var expected = new SampleType
+            const string name = "expected value";
+            const int age = 1;
+            var expected = new Person
             {
-                StringProperty = expectedStringValue,
-                IntProperty = expectedIntValue
+                Name = name,
+                AgeInYears = age
             };
 
-            SampleType built = A.BuilderFor<SampleType>()
-                                    .With(stringProperty: expectedStringValue, 
-                                          intProperty: expectedIntValue);
+            Person built = A.BuilderFor<Person>()
+                                .With(name: name,
+                                     ageInYears: age);
 
-            Assert.Equal(expected, built, new SampleTypeEqualityComparer());
+            Assert.Equal(expected, built, new PersonEqualityComparer());
         }
 
         [Fact]
@@ -117,38 +116,35 @@ namespace BobTheBuilder.Tests
         [Fact]
         public void UsageWithObjectSyntax()
         {
-            const string expectedStringValue = "expected value";
-            const int expectedIntValue = 1;
-            var expected = new SampleType
+            const string Name = "expected value";
+            const int AgeInYears = 1;
+            var expected = new Person
             {
-                StringProperty = expectedStringValue,
-                IntProperty = expectedIntValue
+                Name = Name,
+                AgeInYears = AgeInYears
             };
 
-            SampleType built = A.BuilderFor<SampleType>().With(new {
-                StringProperty = expectedStringValue,
-                IntProperty = expectedIntValue
-            });
+            Person built = A.BuilderFor<Person>().With(new { Name, AgeInYears });
 
-            Assert.Equal(expected, built, new SampleTypeEqualityComparer());
+            Assert.Equal(expected, built, new PersonEqualityComparer());
         }
 
         [Fact]
         public void UsageWithInheritedProperties()
         {
-            const string expectedStringValue = "expected value";
-            const int expectedIntValue = 1;
-            var expected = new ExtendedSampleType
+            const string jobTitle = "expected value";
+            const int age = 1;
+            var expected = new Employee
             {
-                IntProperty = expectedIntValue,
-                NewStringProperty = expectedStringValue
+                AgeInYears = age,
+                JobTitle = jobTitle
             };
 
-            ExtendedSampleType built = A.BuilderFor<ExtendedSampleType>()
-                                             .WithNewStringProperty(expectedStringValue)
-                                             .WithIntProperty(expectedIntValue);
+            Employee built = A.BuilderFor<Employee>()
+                             .WithJobTitle(jobTitle)
+                             .WithAgeInYears(age);
 
-            Assert.Equal(expected, built, new ExtendedSampleTypeEqualityComparer(new SampleTypeEqualityComparer()));
+            Assert.Equal(expected, built, new EmployeeEqualityComparer(new PersonEqualityComparer()));
         }
 
         [Fact]

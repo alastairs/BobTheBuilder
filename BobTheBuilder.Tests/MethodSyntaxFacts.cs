@@ -10,40 +10,40 @@ namespace BobTheBuilder.Tests
         [Theory, AutoData]
         public void SetStringStateByName(string expected)
         {
-            var sut = A.BuilderFor<SampleType>();
+            var sut = A.BuilderFor<Person>();
 
-            sut.WithStringProperty(expected);
-            SampleType result = sut.Build();
+            sut.WithName(expected);
+            Person result = sut.Build();
 
-            Assert.Equal(expected, result.StringProperty);
+            Assert.Equal(expected, result.Name);
         }
 
         [Theory, AutoData]
         public void SetIntStateByName(int expected)
         {
-            var sut = A.BuilderFor<SampleType>();
+            var sut = A.BuilderFor<Person>();
 
-            sut.WithIntProperty(expected);
-            SampleType result = sut.Build();
+            sut.WithAgeInYears(expected);
+            Person result = sut.Build();
 
-            Assert.Equal(expected, result.IntProperty);
+            Assert.Equal(expected, result.AgeInYears);
         }
 
         [Theory, AutoData]
-        public void SetComplexStateByName(Exception expected)
+        public void SetComplexStateByName(Address expected)
         {
-            var sut = A.BuilderFor<SampleType>();
+            var sut = A.BuilderFor<Person>();
 
-            sut.WithComplexProperty(expected);
-            SampleType result = sut.Build();
+            sut.WithAddress(expected);
+            Person result = sut.Build();
 
-            Assert.Equal(expected, result.ComplexProperty);
+            Assert.Equal(expected, result.Address);
         }
 
         [Theory, AutoData]
         public void CallingAMethodThatDoesNotBeginWithTheWordWithResultsInARuntimeBinderException(string anonymous)
         {
-            dynamic sut = A.BuilderFor<SampleType>();
+            dynamic sut = A.BuilderFor<Person>();
 
             var exception = Assert.Throws<RuntimeBinderException>(() => sut.And(anonymous));
             Assert.True(exception.Message.EndsWith("does not contain a definition for 'And'"));
