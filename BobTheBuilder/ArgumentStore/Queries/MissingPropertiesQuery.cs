@@ -1,18 +1,18 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
-
+#if NETSTANDARD1_1 || NETSTANDARD1_6
 using BobTheBuilder.Extensions;
-
+#endif
 using JetBrains.Annotations;
 
 namespace BobTheBuilder.ArgumentStore.Queries
 {
-    internal class MissingArgumentsQuery : IArgumentStoreQuery
+    internal class MissingPropertiesQuery : IArgumentStoreQuery
     {
         private readonly IArgumentStore argumentStore;
 
-        public MissingArgumentsQuery([NotNull]IArgumentStore argumentStore)
+        public MissingPropertiesQuery([NotNull]IArgumentStore argumentStore)
         {
             this.argumentStore = argumentStore;
         }

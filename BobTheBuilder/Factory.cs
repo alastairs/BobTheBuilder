@@ -20,7 +20,7 @@ namespace BobTheBuilder
                         new NamedArgumentsSyntaxParser(argumentStore),
                         new MethodSyntaxParser(argumentStore)),
                     new Activator(
-                        new MissingArgumentsQuery(argumentStore),
+                        new MissingPropertiesQuery(argumentStore),
                         new BuilderArgumentEvaluator(
                             new ConstructorArgumentsQuery(argumentStore)),
                         new PropertyValuesQuery(argumentStore)));
