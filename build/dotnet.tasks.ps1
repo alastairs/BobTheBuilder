@@ -94,7 +94,8 @@ task Pack @{
 
 task Publish {
     requires -Environment NUGET_API_KEY
-    exec { dotnet nuget push --skip-duplicate -k $env:NUGET_API_KEY }
+
+    exec { dotnet nuget push (property Output) --skip-duplicate -k $env:NUGET_API_KEY }
 }
 
 # Synopsis: Remove temporary stuff.
