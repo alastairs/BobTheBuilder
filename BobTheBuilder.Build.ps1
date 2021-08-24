@@ -40,18 +40,25 @@ function Test-Command([string]$command) {
     }
 }
 
-if (!(Test-Command dotnet)) {
-    $sdkVersion = (Get-Content "global.json" -ErrorAction SilentlyContinue | ConvertFrom-Json).sdk.version
+function Test-DotnetSdks([string]$version) {
+    Write-Host "Testing for required .NET SDK $requiredSdk"
+    if ($version -eq $null) { return $true }
+    $sdks = & dotnet --list-sdks
+    return ($sdks |? { $_.StartsWith($version) }) -ne $null
+}
 
-    if ($sdkVersion -ne $null) {
-        $version = "-Version $sdkVersion"
+$requiredSdk = (Get-Content "global.json" -ErrorAction SilentlyContinue | ConvertFrom-Json).sdk.version
+if (!(Test-Command dotnet) -or !(Test-DotnetSdks $requiredSdk)) {
+    if ($requiredSdk -ne $null) {
+        $installArgs = @{"-Version" = $requiredSdk }
     }
 
-    # Run a separate PowerShell process because the script calls exit, so it will end the current PowerShell session.
-    & pwsh -NoProfile -ExecutionPolicy unrestricted -Command @"
-[Net.ServicePointManager]::SecurityProtocol = [Net.SecurityProtocolType]::Tls12;
-&([scriptblock]::Create((Invoke-WebRequest -UseBasicParsing 'https://dot.net/v1/dotnet-install.ps1'))) $version
-"@
+    try {
+        Invoke-WebRequest -UseBasicParsing 'https://dot.net/v1/dotnet-install.ps1' -OutFile "dotnet-install.ps1"
+        & ./dotnet-install.ps1 @installArgs
+    } finally {
+        remove-item ./dotnet-install.ps1
+    }
 }
 
 # Direct call: ensure packages and call the dotnet tool
