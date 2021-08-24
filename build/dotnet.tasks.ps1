@@ -7,17 +7,6 @@ $env:DOTNET_SKIP_FIRST_TIME_EXPERIENCE = $true
 
 $Configuration = (property Configuration "Release")
 
-function Get-OutputArgumentFromProperty() {
-    $DEFAULT_VALUE = 'pkg'
-    $outputDirectory = property Output $DEFAULT_VALUE
-    if ($outputDirectory -ne $DEFAULT_VALUE) {
-        return @("-o", $outputDirectory)
-    }
-    else {
-        return @()
-    }
-}
-
 function Get-Projects() {
     return (Get-ChildItem . -Recurse -Include "*.csproj" -Exclude "nCrunchTemp*")
 }
@@ -76,18 +65,17 @@ task Pack @{
     Inputs  = { Get-Artifacts }
     Outputs = { Get-Projects |? { Test-IsPackable $_ } |% { 
         Write-Output "$(property Output `"pkg`")/$($_.BaseName).$(property Version `"0.0.0`").nupkg"
-        Write-Output "$(property Output `"pkg`")/$($_.BaseName).$(property Version `"0.0.0`").symbols.nupkg"
+        Write-Output "$(property Output `"pkg`")/$($_.BaseName).$(property Version `"0.0.0`").snupkg"
     }}
     Jobs    = 'Build', {
-        $output = Get-OutputArgumentFromProperty
-
         exec { 
             dotnet pack --no-build `
                 --include-symbols `
                 --include-source `
                 -c $Configuration `
-                @output `
-                /p:Version=$Version
+                -o (property Output 'pkg') `
+                /p:Version=$Version `
+                /p:SymbolPackageFormat=snupkg
         }
     }
 }
@@ -95,7 +83,7 @@ task Pack @{
 task Publish {
     requires -Environment NUGET_API_KEY
 
-    exec { dotnet nuget push (property Output) --skip-duplicate -k $env:NUGET_API_KEY }
+    exec { dotnet nuget push (property Output 'pkg') -s https://api.nuget.org/v3/index.json --skip-duplicate -k $env:NUGET_API_KEY }
 }
 
 # Synopsis: Remove temporary stuff.
