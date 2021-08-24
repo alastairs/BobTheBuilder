@@ -5,7 +5,11 @@ using System.Reflection;
 
 using BobTheBuilder.Extensions;
 
+#if NETCOREAPP3_0_OR_GREATER
+using System.Diagnostics.CodeAnalysis;
+#else
 using JetBrains.Annotations;
+#endif
 
 
 namespace BobTheBuilder.ArgumentStore.Queries

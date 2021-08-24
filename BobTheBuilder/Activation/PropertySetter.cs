@@ -1,7 +1,12 @@
-﻿using BobTheBuilder.ArgumentStore.Queries;
-using BobTheBuilder.Extensions;
+﻿using System.Reflection;
+using BobTheBuilder.ArgumentStore.Queries;
 
+#if NETCOREAPP3_0_OR_GREATER
+using System.Diagnostics.CodeAnalysis;
+#else
 using JetBrains.Annotations;
+#endif
+
 
 namespace BobTheBuilder.Activation
 {

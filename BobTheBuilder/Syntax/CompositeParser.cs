@@ -2,7 +2,12 @@
 using System.Collections.Generic;
 using System.Dynamic;
 using System.Linq;
+#if NETCOREAPP3_0_OR_GREATER
+using System.Diagnostics.CodeAnalysis;
+#else
 using JetBrains.Annotations;
+#endif
+
 
 namespace BobTheBuilder.Syntax
 {

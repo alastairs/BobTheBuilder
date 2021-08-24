@@ -1,10 +1,14 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
-#if NETSTANDARD1_1 || NETSTANDARD1_6
-using BobTheBuilder.Extensions;
-#endif
+using System.Reflection;
+
+#if NETCOREAPP3_0_OR_GREATER
+using System.Diagnostics.CodeAnalysis;
+#else
 using JetBrains.Annotations;
+#endif
+
 
 namespace BobTheBuilder.ArgumentStore.Queries
 {

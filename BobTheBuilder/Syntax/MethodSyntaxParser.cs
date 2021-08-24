@@ -1,6 +1,10 @@
 using System.Dynamic;
 using BobTheBuilder.ArgumentStore;
+#if NETCOREAPP3_0_OR_GREATER
+using System.Diagnostics.CodeAnalysis;
+#else
 using JetBrains.Annotations;
+#endif
 
 namespace BobTheBuilder.Syntax
 {

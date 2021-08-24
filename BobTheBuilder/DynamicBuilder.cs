@@ -1,6 +1,10 @@
 using BobTheBuilder.Syntax;
 using System.Dynamic;
+#if NETCOREAPP3_0_OR_GREATER
+using System.Diagnostics.CodeAnalysis;
+#else
 using JetBrains.Annotations;
+#endif
 using Activator = BobTheBuilder.Activation.Activator;
 
 namespace BobTheBuilder

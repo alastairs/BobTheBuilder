@@ -22,6 +22,7 @@ SOFTWARE. */
 
 using System;
 
+#if NETSTANDARD || NETFRAMEWORK
 #pragma warning disable 1591
 // ReSharper disable UnusedMember.Global
 // ReSharper disable MemberCanBePrivate.Global
@@ -29,6 +30,7 @@ using System;
 // ReSharper disable IntroduceOptionalParameters.Global
 // ReSharper disable MemberCanBeProtected.Global
 // ReSharper disable InconsistentNaming
+// ReSharper disable once CheckNamespace
 
 namespace JetBrains.Annotations
 {
@@ -1046,3 +1048,4 @@ namespace JetBrains.Annotations
     [AttributeUsage(AttributeTargets.Parameter)]
     internal sealed class RazorWriteMethodParameterAttribute : Attribute { }
 }
+#endif

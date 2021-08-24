@@ -1,9 +1,9 @@
-﻿using System;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using System.Linq;
-using System.Reflection;
 
-namespace BobTheBuilder.Extensions
+#if NETSTANDARD
+// ReSharper disable once CheckNamespace - Polyfills
+namespace System.Reflection
 {
     internal static class NetStandardTypePolyfills
     {
@@ -33,3 +33,4 @@ namespace BobTheBuilder.Extensions
         }
     }
 }
+#endif
