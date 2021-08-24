@@ -5,7 +5,7 @@ using System.Reflection;
 
 namespace BobTheBuilder.Extensions
 {
-    internal static class TypeExtensions
+    internal static class NetStandardTypePolyfills
     {
         internal static IEnumerable<ConstructorInfo> GetConstructors(this Type type)
         {
