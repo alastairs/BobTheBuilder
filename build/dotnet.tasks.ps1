@@ -83,7 +83,10 @@ task Pack @{
 task Publish {
     requires -Environment NUGET_API_KEY
 
-    exec { dotnet nuget push (property Output 'pkg') -s https://api.nuget.org/v3/index.json --skip-duplicate -k $env:NUGET_API_KEY }
+    $packages = Get-ChildItem (property Output 'pkg') -Recurse -Filter *nupkg
+    $packages |% {
+        exec { dotnet nuget push $_ -s https://api.nuget.org/v3/index.json --skip-duplicate -k $env:NUGET_API_KEY }
+    }
 }
 
 # Synopsis: Remove temporary stuff.
