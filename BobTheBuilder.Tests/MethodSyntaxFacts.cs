@@ -1,5 +1,5 @@
 ﻿using Microsoft.CSharp.RuntimeBinder;
-using Ploeh.AutoFixture.Xunit2;
+using AutoFixture.Xunit2;
 using System;
 using Xunit;
 

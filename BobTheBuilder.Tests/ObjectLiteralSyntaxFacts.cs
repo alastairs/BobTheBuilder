@@ -1,5 +1,5 @@
 ﻿using BobTheBuilder.Syntax;
-using Ploeh.AutoFixture.Xunit2;
+using AutoFixture.Xunit2;
 
 using Xunit;
 
