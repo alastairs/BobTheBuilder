@@ -40,5 +40,32 @@ namespace BobTheBuilder
         {
             return builder.Build();
         }
+
+        public BuilderRecord UsingRecords()
+        {
+            return new BuilderRecord(this);
+        }
+
+        public record BuilderRecord : IBuilder
+        {
+            private readonly DynamicBuilder<T> _builder;
+
+            internal BuilderRecord(DynamicBuilder<T> builder) => _builder = builder;
+
+            protected BuilderRecord(BuilderRecord original)
+            {
+
+            }
+
+            object IBuilder.Build()
+            {
+                return Build();
+            }
+
+            public T Build()
+            {
+                return _builder.Build();
+            }
+        }
     }
 }

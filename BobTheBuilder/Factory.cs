@@ -14,9 +14,8 @@ namespace BobTheBuilder
             return
                 new DynamicBuilder<T>(
                     new CompositeParser(
-#if !NETSTANDARD1_2
                         new ObjectLiteralSyntaxParser(argumentStore),
-#endif
+                        new RecordSyntaxParser(argumentStore),
                         new NamedArgumentsSyntaxParser(argumentStore),
                         new MethodSyntaxParser(argumentStore)),
                     new Activator(
