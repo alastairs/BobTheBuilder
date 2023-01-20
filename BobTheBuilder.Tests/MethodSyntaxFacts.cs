@@ -43,10 +43,10 @@ namespace BobTheBuilder.Tests
         [Theory, AutoData]
         public void CallingAMethodThatDoesNotBeginWithTheWordWithResultsInARuntimeBinderException(string anonymous)
         {
-            dynamic sut = A.BuilderFor<Person>();
+            var sut = A.BuilderFor<Person>();
 
             var exception = Assert.Throws<RuntimeBinderException>(() => sut.And(anonymous));
-            Assert.True(exception.Message.EndsWith("does not contain a definition for 'And'"));
+            Assert.EndsWith("does not contain a definition for 'And'", exception.Message);
         }
     }
 }
