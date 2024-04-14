@@ -1,4 +1,4 @@
-
+#! /usr/local/bin/pwsh -File
 <#
 .Synopsis
 	Builds the project with automatic bootstrapping of dependencies.
