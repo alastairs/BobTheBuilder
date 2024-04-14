@@ -5,13 +5,11 @@
     <Copyright>Copyright � 2016 Alastair Smith under the terms of the Apache 2.0 licence</Copyright>
     <AssemblyTitle>BobTheBuilder</AssemblyTitle>
     <NeutralLanguage>en-GB</NeutralLanguage>
-    <VersionPrefix>0.6.0</VersionPrefix>
     <TargetFrameworks>net6.0;net48;netstandard2.1;netstandard2.0;netstandard1.6;netstandard1.1</TargetFrameworks>
     <LangVersion>Latest</LangVersion>
     <AssemblyName>BobTheBuilder</AssemblyName>
     <PackageId>BobTheBuilder</PackageId>
     <GeneratePackageOnBuild>True</GeneratePackageOnBuild>
-    <Version>0.6.0</Version>
     <Authors>Alastair Smith</Authors>
     <PackageProjectUrl>https://github.com/alastairs/BobTheBuilder</PackageProjectUrl>
     <RepositoryUrl>https://github.com/alastairs/BobTheBuilder</RepositoryUrl>

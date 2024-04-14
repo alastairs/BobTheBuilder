@@ -21,8 +21,10 @@ jobs:
           versionSpec: "5.x"
           preferLatestVersion: true
       - name: Determine Version
-        id: version_step # step id used as reference for output values
+        id: version # step id used as reference for output values
         uses: gittools/actions/gitversion/execute@v1.1.1
+        with:
+          useConfigFile: true
       - name: Setup dotnet ${{ matrix.dotnet-version }}
         uses: actions/setup-dotnet@v3
         with:
@@ -38,8 +40,9 @@ jobs:
           path: TestResults-${{ matrix.dotnet-version }}
         if: ${{ always() }}
       - name: Package
-        run: dotnet pack --configuration Release
+        run: dotnet pack --output pkg
       - name: Upload package artifact
         uses: actions/upload-artifact@v4
         with:
-          name:
+          name: BobTheBuilder.${{ steps.version.outputs.majorMinorPatch }}.nupkg
+          path: pkg/BobTheBuilder.${{ steps.version.outputs.majorMinorPatch }}.nupkg

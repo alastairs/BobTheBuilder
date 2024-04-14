@@ -14,8 +14,17 @@ jobs:
           dotnet-version: "9.0.x" # SDK Version to use.
           source-url: https://api.nuget.org/v3/index.json
         env:
-          NUGET_AUTH_TOKEN: ${{secrets.NUGET_API_KEY}}
-      - name: Create the package
-        run: dotnet pack --configuration Release
+          NUGET_AUTH_TOKEN: ${{ secrets.NUGET_API_KEY }}
+      - name: Get release semver
+        run: |
+          version="${{ github.event.release.name }}"
+          prefix="v"
+          result="${version//v}"
+          echo "RELEASE_VERSION=$result" >> "$GITHUB_ENV"
+      - name: Download package
+        uses: actions/download-artifact@v4
+        with:
+          name: BobTheBuilder.$RELEASE_VERSION.nupkg
+          path: pkg
       - name: Publish to NuGet
-        run: dotnet nuget push --api-key $NUGET_AUTH_TOKEN
+        run: dotnet nuget push --api-key $NUGET_AUTH_TOKEN pkg/BobTheBuilder.$RELEASE_VERSION.nupkg
