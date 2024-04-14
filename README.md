@@ -1,7 +1,8 @@
 BobTheBuilder
 =============
 
-[![Build status](https://ci.appveyor.com/api/projects/status/9m6e571bsu9082mi/branch/master?svg=true)](https://ci.appveyor.com/project/alastairs/bobthebuilder/branch/master)
+![Build
+status](https://github.com/alastairs/BobTheBuilder/actions/workflows/dotnet.yml/badge.svg)
 
 Motivation
 ----------
