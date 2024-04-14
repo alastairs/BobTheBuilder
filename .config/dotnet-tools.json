@@ -2,11 +2,12 @@
   "version": 1,
   "isRoot": true,
   "tools": {
-    "ib": {
-      "version": "5.8.4",
+    "gitversion.tool": {
+      "version": "5.12.0",
       "commands": [
-        "ib"
-      ]
+        "dotnet-gitversion"
+      ],
+      "rollForward": false
     }
   }
 }
