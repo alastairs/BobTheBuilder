@@ -33,7 +33,7 @@ jobs:
       - name: Build
         run: dotnet build --configuration Release
       - name: Test
-        run: dotnet test --no-build --logger trx --results-directory "TestResults-9.0.x"
+        run: dotnet test --no-build --configuration Release --logger trx --results-directory "TestResults-9.0.x"
       - name: Upload test results
         uses: actions/upload-artifact@v4
         with:
