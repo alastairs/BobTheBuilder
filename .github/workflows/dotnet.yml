@@ -41,7 +41,7 @@ jobs:
           path: TestResults-9.0.x
         if: ${{ always() }}
       - name: Package
-        run: dotnet pack --no-build --output pkg -p:NuspecFile=nuspec/BobTheBuilder.nuspec
+        run: dotnet pack --no-build --configuration Release --output pkg -p:NuspecFile=${{ env.GITHUB_WORKSPACE }}/nuspec/BobTheBuilder.nuspec
       - name: Upload package artifact
         uses: actions/upload-artifact@v4
         with:
